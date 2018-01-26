@@ -1,6 +1,7 @@
 function Renderer() {
     this.context = this.getCanvas().getContext("2d");
-                
+    this.context.imageSmoothingEnabled = false;
+    
     this.addListeners();
 }
 

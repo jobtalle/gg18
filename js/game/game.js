@@ -5,6 +5,8 @@ function Game(renderer) {
 }
 
 Game.prototype = {
+    SCALE: 2, 
+    
     start() {
         this.lastDate = new Date();
         this.animate();
@@ -34,8 +36,27 @@ Game.prototype = {
         this.planet.update(timeStep);
     },
     
-    render(context) {
+    renderBackground(context) {
+        context.restore();
+        
         this.space.render(context);
+        
+        context.save();
+        context.translate(
+            -context.canvas.width / 2,
+            -context.canvas.height / 2);
+        context.scale(this.SCALE, this.SCALE);
+        context.translate(
+            context.canvas.width / 2,
+            context.canvas.height / 2);
+    },
+    
+    renderGame(context) {
         this.planet.render(context);
+    },
+    
+    render(context) {
+        this.renderBackground(context);
+        this.renderGame(context);
     }
 }
