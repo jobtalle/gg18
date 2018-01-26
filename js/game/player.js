@@ -13,9 +13,9 @@ function Player(controller, angle) {
 
 Player.prototype = {
     COLOR: "#3366ff",
-    SPEED: 4,
-    ACCELERATION: 16,
-    FRICTION: 22,
+    SPEED: 140,
+    ACCELERATION: 900,
+    FRICTION: 1000,
     
     rotate(angle) {
         this.angle += angle;
@@ -46,7 +46,7 @@ Player.prototype = {
         }
         
         if(this.speed != 0)
-            this.angle += this.getRadialSpeed(this.speed);
+            this.angle += this.getRadialSpeed(this.speed) * timeStep;
         
         this.position.x = Math.cos(this.angle) * Planet.prototype.RADIUS;
         this.position.y = Math.sin(this.angle) * Planet.prototype.RADIUS;
