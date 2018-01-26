@@ -15,7 +15,7 @@ Scenery.prototype = {
         context.fillStyle = this.COLOR;
         
         context.beginPath();
-        context.arc(this.position.x, this.position.y, 5, 0, Math.PI * 2);
+        context.arc(this.position.x, this.position.y, 1, 0, Math.PI * 2);
         context.fill();
         
         context.restore();
