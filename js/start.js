@@ -4,4 +4,5 @@ function start() {
     renderer.resize();
     
     var game = new Game(renderer);
+    game.start();
 }

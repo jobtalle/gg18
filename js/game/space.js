@@ -1,8 +1,8 @@
-function Planet() {
+function Space() {
     
 }
 
-Planet.prototype = {
+Space.prototype = {
     render(context) {
         
     },
