@@ -7,15 +7,23 @@ function Planet(players) {
 }
 
 Planet.prototype = {
-    COLOR_PLANET: "#55FF11",
+    COLOR_PLANET: "#399e11",
+    COLOR_PLANET_HIGHLIGHT: "#55FF11",
     RADIUS: 100,
     RADIUS_ORBIT: 150,
     RADIUS_INCOMING: 400,
     ROTATION_SPEED: 0.1,
     SCENERY_AMOUNT: 40,
     BEAMER_COUNT: 6,
+    ATMOSPHERE_SIZE_MODIFIER: 1.2,
+    ATMOSPHERE_COLOR: "#16d6e0",
+    ATMOSPHERE_START_ANGLE: 2.35619449019,
+    ATMOSPHERE_END_ANGLE: -0.78539816339,
     
     render(context) {
+
+        this.renderAtmosphere(context);
+
         context.save();
         context.rotate(this.angle);
         
@@ -25,6 +33,13 @@ Planet.prototype = {
         context.arc(0, 0, this.RADIUS, 0, Math.PI * 2);
         context.fill();
         
+        context.restore();
+
+        this.renderHighlight(context);
+        
+        context.save();
+        context.rotate(this.angle);        
+
         for(var i = 0; i < this.scenery.length; ++i)
             this.scenery[i].render(context);
         
@@ -63,4 +78,41 @@ Planet.prototype = {
         for(var i = 0; i < this.BEAMER_COUNT; ++i)
             this.beamers.push(new Beamer((Math.PI / 3) * i));
     },
+
+    renderAtmosphere(context)
+    {
+        context.save();
+
+        grd=context.createRadialGradient(0,0,this.RADIUS - 10,0,0,130);
+        grd.addColorStop(0, this.ATMOSPHERE_COLOR);
+        grd.addColorStop(1,"#00000000");
+
+        context.beginPath();
+        context.fillStyle = grd;
+        context.arc(0,0, this.RADIUS * this.ATMOSPHERE_SIZE_MODIFIER,  this.ATMOSPHERE_START_ANGLE, this.ATMOSPHERE_END_ANGLE);
+        context.fill();
+
+        context.restore();
+    },
+
+    renderHighlight(context){
+        context.save();
+
+        var grd=context.createRadialGradient(-30,-50,100,-30,-50,300);
+        grd.addColorStop(0, this.COLOR_PLANET_HIGHLIGHT);
+        grd.addColorStop(1,"#00000000");
+
+        context.beginPath();
+        context.fillStyle ="#00000000";
+        context.arc(0,0, this.RADIUS,  0, Math.PI * 2);
+        context.fill();
+        context.clip();
+
+        context.beginPath();
+        context.fillStyle = grd;
+        context.arc(0,0, this.RADIUS,  0, Math.PI * 2);
+        context.fill();
+
+        context.restore();
+    }
 }
