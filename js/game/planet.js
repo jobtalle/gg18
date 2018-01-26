@@ -28,6 +28,10 @@ Planet.prototype = {
         context.restore();
     },
     
+    getRotationSpeed() {
+        return this.ROTATION_SPEED;
+    },
+    
     update(timeStep) {
         this.angle += this.ROTATION_SPEED * timeStep;
         

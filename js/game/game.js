@@ -1,4 +1,5 @@
-function Game(renderer) {
+function Game(renderer, players) {
+    this.players = players;
     this.renderer = renderer;
     this.space = new Space();
     this.planet = new Planet();
@@ -38,6 +39,13 @@ Game.prototype = {
         this.space.update(timeStep);
         this.planet.update(timeStep);
         
+        for(var i = 0; i < this.players.length; ++i) {
+            const player = this.players[i];
+            
+            player.rotate(this.planet.getRotationSpeed() * timeStep);
+            player.update(timeStep);
+        }
+        
         for(var i = 0; i < this.ufos.length; ++i)
             this.ufos[i].update(timeStep);
     },
@@ -59,6 +67,9 @@ Game.prototype = {
     
     renderGame(context) {
         this.planet.render(context);
+        
+        for(var i = 0; i < this.players.length; ++i)
+            this.players[i].render(context);
         
         for(var i = 0; i < this.ufos.length; ++i)
             this.ufos[i].render(context);

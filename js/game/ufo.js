@@ -2,7 +2,7 @@ function Ufo() {
     this.initialAngle = Math.random() * Math.PI * 2;
     this.angle = 0;
     this.orbit = 0;
-    this.orbits = 0;
+    this.orbits = 1;
     this.speed = this.getRadialSpeed(800);
     this.orbitHeight = Planet.prototype.RADIUS_ORBIT;
 }
@@ -55,12 +55,12 @@ Ufo.prototype = {
         if(this.orbit == 0 && this.angle < this.INCOMING_RADIANS) {
             return this.orbitHeight +
                 (Planet.prototype.RADIUS_INCOMING - this.orbitHeight) *
-                (0.5 + Math.cos((this.angle / this.INCOMING_RADIANS) * Math.PI) * 0.5);
+                (1 - Math.sin((this.angle / this.INCOMING_RADIANS) * Math.PI * 0.5));
         }
         else if(this.orbit == this.orbits && this.angle > Math.PI * 2 - this.INCOMING_RADIANS) {
             return this.orbitHeight +
                 (Planet.prototype.RADIUS_INCOMING - this.orbitHeight) *
-                (0.5 + Math.cos(((Math.PI * 2 - this.angle) / this.INCOMING_RADIANS) * Math.PI) * 0.5);
+                (1 - Math.sin(((Math.PI * 2 - this.angle) / this.INCOMING_RADIANS) * Math.PI * 0.5));
         }
         
         return this.orbitHeight;
