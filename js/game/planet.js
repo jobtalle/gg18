@@ -21,7 +21,6 @@ Planet.prototype = {
     ATMOSPHERE_END_ANGLE: -0.78539816339,
     
     render(context) {
-
         this.renderAtmosphere(context);
 
         context.save();
@@ -81,8 +80,6 @@ Planet.prototype = {
 
     renderAtmosphere(context)
     {
-        context.save();
-
         grd = context.createRadialGradient(0, 0, this.RADIUS - 10, 0, 0, 130);
         grd.addColorStop(0, this.ATMOSPHERE_COLOR);
         grd.addColorStop(1, "#00000000");
@@ -91,8 +88,6 @@ Planet.prototype = {
         context.fillStyle = grd;
         context.arc(0,0, this.RADIUS * this.ATMOSPHERE_SIZE_MODIFIER,  this.ATMOSPHERE_START_ANGLE, this.ATMOSPHERE_END_ANGLE);
         context.fill();
-
-        context.restore();
     },
 
     renderHighlight(context){
