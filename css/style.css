@@ -1,0 +1,13 @@
+body {
+    overflow: hidden;
+    font-family: sans-serif;
+    padding: 0px;
+    margin: 0px;
+    user-select: none;
+}
+
+#view {
+    overflow: hidden;
+    width: 100vw;
+    height: 100vh;
+}
