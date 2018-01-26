@@ -13,9 +13,9 @@ function Player(controller, angle) {
 
 Player.prototype = {
     COLOR: "#3366ff",
-    SPEED: 18,
-    ACCELERATION: 64,
-    FRICTION: 90,
+    SPEED: 4,
+    ACCELERATION: 16,
+    FRICTION: 22,
     
     rotate(angle) {
         this.angle += angle;
@@ -72,10 +72,11 @@ Player.prototype = {
         controller.onLeftReleased = this.onLeftReleased.bind(this);
         controller.onRightPressed = this.onRightPressed.bind(this);
         controller.onRightReleased = this.onRightReleased.bind(this);
+        controller.onEnterPressed = this.onEnterPressed.bind(this);
     },
     
     getRadialSpeed(speed) {
-        return speed / (Planet.prototype.RADIUS * 2 * Math.PI);
+        return speed / Planet.prototype.RADIUS;
     },
     
     onLeftPressed() {
@@ -106,6 +107,14 @@ Player.prototype = {
         switch(this.state) {
             case "walking":
                 this.speedChange = 0;
+                break;
+        }
+    },
+    
+    onEnterPressed() {
+        switch(this.state) {
+            case "walking":
+                this.onTryEnter(this);
                 break;
         }
     }

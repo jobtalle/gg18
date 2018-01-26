@@ -49,12 +49,9 @@ Game.prototype = {
         
         context.save();
         context.translate(
-            -context.canvas.width / 2,
-            -context.canvas.height / 2);
-        context.scale(this.SCALE, this.SCALE);
-        context.translate(
             context.canvas.width / 2,
             context.canvas.height / 2);
+        context.scale(this.SCALE, this.SCALE);
     },
     
     renderGame(context) {
@@ -79,5 +76,5 @@ Game.prototype = {
     
     removeUfo(ufo) {
         this.ufos.splice(this.ufos.indexOf(ufo), 1);
-    },
+    }
 }

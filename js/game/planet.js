@@ -2,8 +2,11 @@ function Planet(players) {
     this.players = players;
     this.angle = 0;
     
+    this.listenToPlayers(players);
+    
     this.createScenery();
     this.createBeamers();
+    this.calculateInteractionRadius();
 }
 
 Planet.prototype = {
@@ -19,6 +22,20 @@ Planet.prototype = {
     ATMOSPHERE_COLOR: "#16d6e0",
     ATMOSPHERE_START_ANGLE: 2.35619449019,
     ATMOSPHERE_END_ANGLE: -0.78539816339,
+    INTERACTION_DISTANCE: 10,
+    
+    update(timeStep) {
+        this.angle += this.ROTATION_SPEED * timeStep;
+        
+        if(this.angle > Math.PI * 2)
+            this.angle -= Math.PI * 2;
+        
+        for(var i = 0; i < this.players.length; ++i)
+            this.players[i].update(timeStep);
+        
+        for(var i = 0; i < this.beamers.length; ++i)
+            this.beamers[i].update(timeStep);
+    },
     
     render(context) {
         this.renderAtmosphere(context);
@@ -49,17 +66,27 @@ Planet.prototype = {
             this.players[i].render(context);
     },
     
-    update(timeStep) {
-        this.angle += this.ROTATION_SPEED * timeStep;
+    calculateInteractionRadius() {
+        this.interactionRadius = this.INTERACTION_DISTANCE / this.RADIUS;
+    },
+    
+    listenToPlayers(players) {
+        for(var i = 0; i < players.length; ++i) {
+            const player = players[i];
+            
+            player.onTryEnter = this.tryEnter.bind(this);
+        }
+    },
+    
+    tryEnter(player) {
+        const playerPositionNormalized = player.position.normalize();
         
-        if(this.angle > Math.PI * 2)
-            this.angle -= Math.PI * 2;
-        
-        for(var i = 0; i < this.players.length; ++i)
-            this.players[i].update(timeStep);
-        
-        for(var i = 0; i < this.beamers.length; ++i)
-            this.beamers[i].update(timeStep);
+        for(var i = 0; i < this.beamers.length; ++i) {
+            const beamer = this.beamers[i];
+            
+            if(Math.acos(beamer.positionNormalized.dot(playerPositionNormalized)) < this.interactionRadius)
+                console.log("Biem");
+        }
     },
         
     createScenery() {
