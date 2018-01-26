@@ -44,5 +44,13 @@ Beamer.prototype = {
             Math.cos(angle) * Planet.prototype.RADIUS,
             Math.sin(angle) * Planet.prototype.RADIUS);
         this.positionNormalized = this.position.normalize();
+    },
+    
+    activate() {
+        
+    },
+    
+    deactivate() {
+        
     }
 }

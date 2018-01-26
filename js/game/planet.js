@@ -22,7 +22,7 @@ Planet.prototype = {
     ATMOSPHERE_COLOR: "#16d6e0",
     ATMOSPHERE_START_ANGLE: 2.35619449019,
     ATMOSPHERE_END_ANGLE: -0.78539816339,
-    INTERACTION_DISTANCE: 10,
+    INTERACTION_DISTANCE: 16,
     
     update(timeStep) {
         this.angle += this.ROTATION_SPEED * timeStep;
@@ -84,11 +84,14 @@ Planet.prototype = {
         for(var i = 0; i < this.beamers.length; ++i) {
             const beamer = this.beamers[i];
             
-            if(Math.acos(beamer.positionNormalized.dot(playerPositionNormalized)) < this.interactionRadius)
-                console.log("Biem");
+            if(Math.acos(beamer.positionNormalized.dot(playerPositionNormalized)) < this.interactionRadius) {
+                player.enterBeamer(beamer);
+                
+                break;
+            }
         }
     },
-        
+    
     createScenery() {
         this.scenery = [];
         

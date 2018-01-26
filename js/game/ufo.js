@@ -3,7 +3,7 @@ function Ufo() {
     this.angle = 0;
     this.orbit = 0;
     this.orbits = 1;
-    this.speed = this.getRadialSpeed(800);
+    this.speed = this.getRadialSpeed(300);
     this.orbitHeight = Planet.prototype.RADIUS_ORBIT;
     this.position = new Vector();
 }
