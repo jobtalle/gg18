@@ -42,7 +42,6 @@ PlayerController.prototype = {
 
     onKeyUp(e)
     {
-        console.log(e.code);
         switch(e.code)
         {
             case "ArrowLeft":
