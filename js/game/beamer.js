@@ -10,7 +10,7 @@ function Beamer(angle) {
 
 Beamer.prototype = {
     COLOR: "#0056bb",
-    COLOR_DISH: "blue",
+    COLOR_DISH: "white",
     
     update(timeStep) {
         for(var i = this.beams.length; i-- > 0;) {

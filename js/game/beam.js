@@ -9,10 +9,12 @@ function Beam(angle, color, radians) {
 }
 
 Beam.prototype = {
-    SPEED: 500,
+    SPEED: 800,
     
     update(timeStep) {
         this.outerRadius += this.SPEED * timeStep;
+        if(this.outerRadius > Planet.prototype.RADIUS_INCOMING)
+            this.outerRadius = Planet.prototype.RADIUS_INCOMING;
         
         if(this.cut)
             this.innerRadius += this.SPEED * timeStep;
@@ -22,12 +24,13 @@ Beam.prototype = {
         context.save();
         context.rotate(this.angle + Math.PI * 0.5);
         context.translate(0, -Planet.prototype.RADIUS);
+        context.rotate(-Math.PI * 0.5);
         
-        context.strokeStyle = "white";
+        context.fillStyle = this.color;
         context.beginPath();
-        context.moveTo(0, -this.innerRadius);
-        context.lineTo(0, -this.outerRadius);
-        context.stroke();
+        context.arc(0, 0, this.innerRadius, -this.radians * 0.5, this.radians * 0.5, false);
+        context.arc(0, 0, this.outerRadius, this.radians * 0.5, -this.radians * 0.5, true);
+        context.fill();
         
         context.restore();
     },
