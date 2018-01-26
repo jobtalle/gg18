@@ -13,8 +13,14 @@ Beamer.prototype = {
     COLOR_DISH: "blue",
     
     update(timeStep) {
-        for(var i = 0; i < this.beams.length; ++i)
-            this.beams[i].update(timeStep);
+        for(var i = this.beams.length; i-- > 0;) {
+            const beam = this.beams[i];
+            
+            beam.update(timeStep);
+            
+            if(beam.isInvisible())
+                this.beams.splice(this.beams.indexOf(beam), 1);
+        }
     },
     
     render(context) {
