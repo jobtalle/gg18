@@ -6,6 +6,79 @@ body {
     user-select: none;
 }
 
+#userinterface {
+    position: absolute;
+    top: 90px;
+    left: 90px;
+    font-family: 'Press Start 2P', cursive;
+    
+    color: white;
+}
+
+
+
+@keyframes flash {
+    
+    from    { left: 0px; }
+    to      { left: 100px; }
+}
+
+@keyframes popin {
+    0%      
+    { 
+        transform: scale(0, 0);
+    }
+    35%    
+    { 
+        transform: scale(1, 1);
+        top: 0px;
+    }
+    75%
+    {
+        opacity: 100%;
+        transform: scale(1, 1);
+    }
+    100%
+    {
+        opacity: 0%;
+        transform: scale(0, 0);
+    }
+    
+}
+
+.popup {
+    float: left;
+    position: absolute;
+    width: auto;
+    height: auto;
+    background: none;
+    margin: 0 auto;
+    padding: 15px;
+    border-radius: 80px;
+    text-shadow: 2px 2px rgba(0,0,0,1);
+    
+    animation-name: popin;
+    animation-duration: 1.5s;
+    animation-iteration-count: 1;
+    
+    transform: scale(0, 0);
+}
+
+#gloweffect {
+    width: 30px;
+    height: 80px;
+    box-shadow: 0px 0px 100px white;
+    position: absolute;
+    top: 0px;
+    border-radius: 100px;
+    
+    animation-name: flash;
+    animation-duration: .5s;
+    animation-direction: alternate;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+}
+
 #view {
     overflow: hidden;
     width: 100vw;

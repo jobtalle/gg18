@@ -3,6 +3,7 @@
     <head>
         <title>gg18</title>
         <link rel=stylesheet type="text/css" href="css/style.css"/>
+        <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet"> 
         <script src="js/start.js"></script>
         <script src="js/renderer.js"></script>
         <script src="js/utils/vector.js"></script>
@@ -16,9 +17,51 @@
         <script src="js/game/scenery.js"></script>
     </head>
     <body>
+        
+        <button type="button" onclick="spawnPopup()">Spawn pop-up!!</button>
+        
         <div id="view">
             <canvas id="renderer"></canvas>
+            <div id="userinterface">
+                <div id="popup">
+                </div>
+            </div>
         </div>
         <script>start();</script>
+        
+        <script>
+        function spawnPopup() {
+            var element = document.getElementById("popup");
+            var rnd = getRandomInt(200, 6000);
+            var randomCol = getRandomColor();
+            
+            if (element.classList.contains("popup"))
+                element.classList.remove("popup");
+            
+            void element.offsetWidth;
+            
+            element.style.border = '2px solid ' + randomCol;
+            element.style.textShadow = '2px 2px ' + randomCol;
+            element.style.boxShadow = '0px 0px 25px ' + randomCol;
+            
+            element.classList.add("popup");
+            element.innerHTML = rnd;
+        }
+            
+        function getRandomInt(min, max) {
+            min = Math.ceil(min);
+            max = Math.floor(max);
+            return Math.floor(Math.random() * (max - min)) + min;
+        }
+            
+        function getRandomColor() {
+                var letters = '0123456789ABCDEF';
+                var color = '#';
+                for (var i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+        </script>
     </body>
 </html>
