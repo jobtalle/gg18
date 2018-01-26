@@ -3,6 +3,8 @@ function start() {
     
     renderer.resize();
     
-    var game = new Game(renderer);
+    var game = new Game(
+        renderer,
+        [new Player(new PlayerController())]);
     game.start();
 }
