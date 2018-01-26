@@ -4,6 +4,13 @@ body {
     padding: 0px;
     margin: 0px;
     user-select: none;
+    
+    
+}
+
+#spawnBtn {
+    position: absolute;
+    top: 0;
 }
 
 #userinterface {
@@ -79,8 +86,17 @@ body {
     animation-timing-function: ease-in-out;
 }
 
+@keyframes rotate {
+    from { transform: rotateX()}
+}
+
 #view {
     overflow: hidden;
     width: 100vw;
     height: 100vh;
+    
+    background-image: url(../img/bg.png);
+    background-size: 100%;
+    image-rendering: pixelated;
+    background-repeat: repeat;
 }
