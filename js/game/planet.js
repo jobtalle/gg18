@@ -7,6 +7,8 @@ function Planet() {
 Planet.prototype = {
     COLOR_PLANET: "#55FF11",
     RADIUS: 100,
+    RADIUS_ORBIT: 150,
+    RADIUS_INCOMING: 400,
     ROTATION_SPEED: 0.1,
     SCENERY_AMOUNT: 40,
     
