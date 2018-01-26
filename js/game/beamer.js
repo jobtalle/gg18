@@ -2,6 +2,7 @@ function Beamer(angle) {
     this.angle = angle;
     this.aim = 0;
     this.beamSize = 0.5;
+    this.beams = [];
     
     this.place(angle);
 }
