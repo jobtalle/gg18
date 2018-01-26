@@ -1,9 +1,15 @@
 function Renderer() {
+    this.context = this.getCanvas().context;
+    
     this.addListeners();
 }
 
 Renderer.prototype = {
     ID_CANVAS: "renderer",
+    
+    getContext() {
+        return this.context;
+    },
     
     getCanvas() {
         return document.getElementById(this.ID_CANVAS);

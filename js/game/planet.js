@@ -1,0 +1,7 @@
+function Planet() {
+    
+}
+
+Planet.prototype = {
+    
+}
