@@ -1,6 +1,6 @@
 function Renderer() {
-    this.context = this.getCanvas().context;
-    
+    this.context = this.getCanvas().getContext("2d");
+                
     this.addListeners();
 }
 
