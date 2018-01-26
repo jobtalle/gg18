@@ -1,0 +1,7 @@
+function PlayerController() {
+    
+}
+
+PlayerController.prototype = {
+    
+}
