@@ -2,13 +2,14 @@ function Ufo() {
     this.initialAngle = Math.random() * Math.PI * 2;
     this.angle = 0;
     this.orbit = 0;
-    this.orbits = 1;
-    this.speed = this.getRadialSpeed(400);
+    this.orbits = 0;
+    this.speed = this.getRadialSpeed(800);
+    this.orbitHeight = Planet.prototype.RADIUS_ORBIT;
 }
 
 Ufo.prototype = {
     COLOR: "#66aa33",
-    INCOMING_RADIANS: 1,
+    INCOMING_RADIANS: 1.4,
     
     update(timeStep) {
         const radius = this.getRadius();
@@ -16,7 +17,9 @@ Ufo.prototype = {
         
         if(this.angle > Math.PI * 2) {
             this.angle -= Math.PI * 2;
-            ++this.orbit;
+            
+            if(++this.orbit > this.orbits && this.onLeave != undefined)
+                this.onLeave(this);
         }
         
         this.angle += this.speed * timeStep;
@@ -44,14 +47,23 @@ Ufo.prototype = {
         context.restore();
     },
     
+    addLeaveListener(onLeave) {
+        this.onLeave = onLeave;
+    },
+    
     getRadius() {
         if(this.orbit == 0 && this.angle < this.INCOMING_RADIANS) {
-            return Planet.prototype.RADIUS_ORBIT +
-                (Planet.prototype.RADIUS_INCOMING - Planet.prototype.RADIUS_ORBIT) *
+            return this.orbitHeight +
+                (Planet.prototype.RADIUS_INCOMING - this.orbitHeight) *
                 (0.5 + Math.cos((this.angle / this.INCOMING_RADIANS) * Math.PI) * 0.5);
         }
+        else if(this.orbit == this.orbits && this.angle > Math.PI * 2 - this.INCOMING_RADIANS) {
+            return this.orbitHeight +
+                (Planet.prototype.RADIUS_INCOMING - this.orbitHeight) *
+                (0.5 + Math.cos(((Math.PI * 2 - this.angle) / this.INCOMING_RADIANS) * Math.PI) * 0.5);
+        }
         
-        return Planet.prototype.RADIUS_ORBIT;
+        return this.orbitHeight;
     },
     
     getRadialSpeed(speed) {

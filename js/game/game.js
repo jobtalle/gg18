@@ -4,7 +4,7 @@ function Game(renderer) {
     this.planet = new Planet();
     
     this.ufos = [];
-    this.ufos.push(new Ufo());
+    this.addUfo(new Ufo());
 }
 
 Game.prototype = {
@@ -67,5 +67,15 @@ Game.prototype = {
     render(context) {
         this.renderBackground(context);
         this.renderGame(context);
-    }
+    },
+    
+    addUfo(ufo) {
+        ufo.addLeaveListener(this.removeUfo.bind(this));
+        
+        this.ufos.push(ufo);
+    },
+    
+    removeUfo(ufo) {
+        this.ufos.splice(this.ufos.indexOf(ufo), 1);
+    },
 }
