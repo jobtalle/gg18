@@ -79,7 +79,6 @@ Player.prototype = {
     },
     
     exitBeamer() {
-        this.beamer.deactivate();
         this.state = "walking";
     },
     
@@ -127,7 +126,7 @@ Player.prototype = {
     onActivatePressed() {
         switch(this.state) {
             case "beaming":
-                this.beamer.activate();
+                this.beamer.toggle();
                 break;
         }
     },
@@ -135,7 +134,7 @@ Player.prototype = {
     onActivateReleased() {
         switch(this.state) {
             case "beaming":
-                this.beamer.deactivate();
+                
                 break;
         }
     }
