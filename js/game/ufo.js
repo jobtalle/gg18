@@ -1,7 +1,7 @@
 function Ufo() {
     this.angle = Math.random() * Math.PI * 2;
     this.orbits = 2;
-    this.speed = this.getRadialSpeed(30);
+    this.speed = this.getRadialSpeed(200);
 }
 
 Ufo.prototype = {
@@ -41,6 +41,6 @@ Ufo.prototype = {
     },
     
     getRadialSpeed(speed) {
-        return (Planet.prototype.RADIUS_ORBIT * 2 * Math.PI) / speed;
+        return speed / (Planet.prototype.RADIUS_ORBIT * 2 * Math.PI);
     }
 }
