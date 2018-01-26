@@ -47,8 +47,6 @@ Planet.prototype = {
         
         for(var i = 0; i < this.players.length; ++i)
             this.players[i].render(context);
-        
-        context.restore();
     },
     
     update(timeStep) {

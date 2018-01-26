@@ -62,6 +62,8 @@ Game.prototype = {
         
         for(var i = 0; i < this.ufos.length; ++i)
             this.ufos[i].render(context);
+        
+        context.restore();
     },
     
     render(context) {
