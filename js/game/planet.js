@@ -83,9 +83,9 @@ Planet.prototype = {
     {
         context.save();
 
-        grd=context.createRadialGradient(0,0,this.RADIUS - 10,0,0,130);
+        grd = context.createRadialGradient(0, 0, this.RADIUS - 10, 0, 0, 130);
         grd.addColorStop(0, this.ATMOSPHERE_COLOR);
-        grd.addColorStop(1,"#00000000");
+        grd.addColorStop(1, "#00000000");
 
         context.beginPath();
         context.fillStyle = grd;
@@ -98,19 +98,19 @@ Planet.prototype = {
     renderHighlight(context){
         context.save();
 
-        var grd=context.createRadialGradient(-30,-50,100,-30,-50,300);
+        var grd = context.createRadialGradient(-30, -50, 100, -30, -50, 300);
         grd.addColorStop(0, this.COLOR_PLANET_HIGHLIGHT);
-        grd.addColorStop(1,"#00000000");
+        grd.addColorStop(1, "#00000000");
 
         context.beginPath();
-        context.fillStyle ="#00000000";
-        context.arc(0,0, this.RADIUS,  0, Math.PI * 2);
+        context.fillStyle = "#00000000";
+        context.arc(0, 0, this.RADIUS, 0, Math.PI * 2);
         context.fill();
         context.clip();
 
         context.beginPath();
         context.fillStyle = grd;
-        context.arc(0,0, this.RADIUS,  0, Math.PI * 2);
+        context.arc(0, 0, this.RADIUS, 0, Math.PI * 2);
         context.fill();
 
         context.restore();
