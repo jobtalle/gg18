@@ -13,40 +13,44 @@ function Player(controller, angle) {
 
 Player.prototype = {
     COLOR: "#3366ff",
-    SPEED: 12,
-    ACCELERATION: 40,
-    FRICTION: 32,
+    SPEED: 140,
+    ACCELERATION: 900,
+    FRICTION: 1000,
     
     rotate(angle) {
         this.angle += angle;
     },
     
     update(timeStep) {
-        if(this.speedChange != 0) {
-            this.speed += this.speedChange * this.ACCELERATION * timeStep;
-            
-            if(this.speed < -this.SPEED)
-                this.speed = -this.SPEED;
-            else if(this.speed > this.SPEED)
-                this.speed = this.SPEED;
-        }
-        else {
-            if(this.speed < 0) {
-                this.speed += this.FRICTION * timeStep;
-                
-                if(this.speed > 0)
-                    this.speed = 0;
+        switch(this.state) {
+            case "walking":
+            if(this.speedChange != 0) {
+                this.speed += this.speedChange * this.ACCELERATION * timeStep;
+
+                if(this.speed < -this.SPEED)
+                    this.speed = -this.SPEED;
+                else if(this.speed > this.SPEED)
+                    this.speed = this.SPEED;
             }
-            else if(this.speed > 0) {
-                this.speed -= this.FRICTION * timeStep;
-                
-                if(this.speed < 0)
-                    this.speed = 0;
+            else {
+                if(this.speed < 0) {
+                    this.speed += this.FRICTION * timeStep;
+
+                    if(this.speed > 0)
+                        this.speed = 0;
+                }
+                else if(this.speed > 0) {
+                    this.speed -= this.FRICTION * timeStep;
+
+                    if(this.speed < 0)
+                        this.speed = 0;
+                }
             }
+
+            if(this.speed != 0)
+                this.angle += this.getRadialSpeed(this.speed) * timeStep;
+                break;
         }
-        
-        if(this.speed != 0)
-            this.angle += this.getRadialSpeed(this.speed);
         
         this.position.x = Math.cos(this.angle) * Planet.prototype.RADIUS;
         this.position.y = Math.sin(this.angle) * Planet.prototype.RADIUS;
@@ -67,45 +71,71 @@ Player.prototype = {
         context.restore();
     },
     
+    enterBeamer(beamer) {
+        this.beamer = beamer;
+        this.state = "beaming";
+        this.speed = 0;
+        this.angle = beamer.angle;
+    },
+    
+    exitBeamer() {
+        this.beamer.deactivate();
+        this.state = "walking";
+    },
+    
     listen(controller) {
         controller.onLeftPressed = this.onLeftPressed.bind(this);
         controller.onLeftReleased = this.onLeftReleased.bind(this);
         controller.onRightPressed = this.onRightPressed.bind(this);
         controller.onRightReleased = this.onRightReleased.bind(this);
+        controller.onEnterPressed = this.onEnterPressed.bind(this);
+        controller.onActivatePressed = this.onActivatePressed.bind(this);
+        controller.onActivateReleased = this.onActivateReleased.bind(this);
     },
     
     getRadialSpeed(speed) {
-        return speed / (Planet.prototype.RADIUS * 2 * Math.PI);
+        return speed / Planet.prototype.RADIUS;
     },
     
     onLeftPressed() {
-        switch(this.state) {
-            case "walking":
-                this.speedChange = -1;
-                break;
-        }
+        this.speedChange = -1;
     },
     
     onLeftReleased() {
-        switch(this.state) {
-            case "walking":
-                this.speedChange = 0;
-                break;
-        }
+        this.speedChange = 0;
     },
     
     onRightPressed() {
+        this.speedChange = 1;
+    },
+    
+    onRightReleased() {
+        this.speedChange = 0;
+    },
+    
+    onEnterPressed() {
         switch(this.state) {
             case "walking":
-                this.speedChange = 1;
+                this.onTryEnter(this);
+                break;
+            case "beaming":
+                this.exitBeamer();
                 break;
         }
     },
     
-    onRightReleased() {
+    onActivatePressed() {
         switch(this.state) {
-            case "walking":
-                this.speedChange = 0;
+            case "beaming":
+                this.beamer.activate();
+                break;
+        }
+    },
+    
+    onActivateReleased() {
+        switch(this.state) {
+            case "beaming":
+                this.beamer.deactivate();
                 break;
         }
     }

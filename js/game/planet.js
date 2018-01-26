@@ -1,7 +1,12 @@
-function Planet() {
+function Planet(players) {
+    this.players = players;
     this.angle = 0;
     
+    this.listenToPlayers(players);
+    
     this.createScenery();
+    this.createBeamers();
+    this.calculateInteractionRadius();
 }
 
 Planet.prototype = {
@@ -13,13 +18,27 @@ Planet.prototype = {
     RADIUS_INCOMING: 400,
     ROTATION_SPEED: 0.1,
     SCENERY_AMOUNT: 40,
+    BEAMER_COUNT: 6,
     ATMOSPHERE_SIZE_MODIFIER: 1.2,
     ATMOSPHERE_COLOR: "rgba(89,133,221,0.66)",
     ATMOSPHERE_START_ANGLE: 2.35619449019,
     ATMOSPHERE_END_ANGLE: -0.78539816339,
+    INTERACTION_DISTANCE: 16,
+    
+    update(timeStep) {
+        this.angle += this.ROTATION_SPEED * timeStep;
+        
+        if(this.angle > Math.PI * 2)
+            this.angle -= Math.PI * 2;
+        
+        for(var i = 0; i < this.players.length; ++i)
+            this.players[i].update(timeStep);
+        
+        for(var i = 0; i < this.beamers.length; ++i)
+            this.beamers[i].update(timeStep);
+    },
     
     render(context) {
-
         this.renderAtmosphere(context);
 
         context.save();
@@ -42,25 +61,51 @@ Planet.prototype = {
         for(var i = 0; i < this.scenery.length; ++i)
             this.scenery[i].render(context);
         
-        context.restore();
+        for(var i = 0; i < this.beamers.length; ++i)
+            this.beamers[i].render(context);
+        
+        for(var i = 0; i < this.players.length; ++i)
+            this.players[i].render(context);
     },
     
-    getRotationSpeed() {
-        return this.ROTATION_SPEED;
+    calculateInteractionRadius() {
+        this.interactionRadius = this.INTERACTION_DISTANCE / this.RADIUS;
     },
     
-    update(timeStep) {
-        this.angle += this.ROTATION_SPEED * timeStep;
-        
-        if(this.angle > Math.PI * 2)
-            this.angle -= Math.PI * 2;
+    listenToPlayers(players) {
+        for(var i = 0; i < players.length; ++i) {
+            const player = players[i];
+            
+            player.onTryEnter = this.tryEnter.bind(this);
+        }
     },
+    
+    tryEnter(player) {
+        const playerPositionNormalized = player.position.normalize();
         
+        for(var i = 0; i < this.beamers.length; ++i) {
+            const beamer = this.beamers[i];
+            
+            if(Math.acos(beamer.positionNormalized.dot(playerPositionNormalized)) < this.interactionRadius) {
+                player.enterBeamer(beamer);
+                
+                break;
+            }
+        }
+    },
+    
     createScenery() {
         this.scenery = [];
         
         for(var i = 0; i < this.SCENERY_AMOUNT; ++i)
             this.scenery.push(new Scenery(Math.random() * Math.PI * 2));
+    },
+    
+    createBeamers() {
+        this.beamers = [];
+        
+        for(var i = 0; i < this.BEAMER_COUNT; ++i)
+            this.beamers.push(new Beamer((Math.PI / 3) * i));
     },
 
     renderAtmosphere(context)
@@ -75,7 +120,6 @@ Planet.prototype = {
         context.fillStyle = grd;
         context.arc(0,0, this.RADIUS * this.ATMOSPHERE_SIZE_MODIFIER,  this.ATMOSPHERE_START_ANGLE, this.ATMOSPHERE_END_ANGLE);
         context.fill();
-
         context.restore();
     },
 
