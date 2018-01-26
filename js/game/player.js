@@ -13,9 +13,9 @@ function Player(controller, angle) {
 
 Player.prototype = {
     COLOR: "#3366ff",
-    SPEED: 12,
-    ACCELERATION: 40,
-    FRICTION: 32,
+    SPEED: 18,
+    ACCELERATION: 64,
+    FRICTION: 90,
     
     rotate(angle) {
         this.angle += angle;
