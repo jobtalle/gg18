@@ -1,6 +1,7 @@
 function UfoDispatcher(onSpawn) {
     this.onSpawn = onSpawn;
     this.difficulty = 0;
+    this.sequence = null;
     
     this.load();
 }

@@ -62,10 +62,6 @@ Player.prototype = {
                 if(this.crystal != null)
                     this.crystal.carry(this.angle, this.CARRY_HEIGHT);
                 break;
-            case "beaming":
-                if(this.speedChange != 0)
-                    this.beamer.turn(this.speedChange, timeStep);
-                break;
         }
         
         this.position.x = Math.cos(this.angle) * Planet.prototype.RADIUS;
@@ -140,10 +136,21 @@ Player.prototype = {
         else
             delta = vector.dot(Vector.prototype.fromAngle(this.angle + this.planet.angle).orthogonal());
         
+        this.speedChange = -delta;
+        
         switch(this.state) {
-            case "walking":
             case "beaming":
-                this.speedChange = -delta;
+                if(delta == 0)
+                    break;
+                
+                var aimDir = vector.angle() - this.planet.angle - this.beamer.angle;
+                
+                if(aimDir > Math.PI)
+                    aimDir -= Math.PI * 2;
+                else if(aimDir < -Math.PI)
+                    aimDir += Math.PI * 2;
+                
+                this.beamer.setAim(aimDir);
                 break;
         }
     },

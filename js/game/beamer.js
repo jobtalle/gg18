@@ -1,6 +1,7 @@
 function Beamer(angle) {
     this.angle = angle;
     this.aim = 0;
+    this.aimDir = 0;
     this.beams = [];
     this.crystal = null;
     
@@ -12,10 +13,12 @@ Beamer.prototype = {
     COLOR_DISH: "white",
     DISH_HEIGHT: 12,
     AIM_RANGE: 3,
-    AIM_SPEED: 3,
+    AIM_SPEED: 12,
     CRYSTAL_SCATTER_RANGE: 16,
     
     update(timeStep) {
+        this.turn(timeStep);
+        
         for(var i = this.beams.length; i-- > 0;) {
             const beam = this.beams[i];
             
@@ -97,10 +100,18 @@ Beamer.prototype = {
         }
     },
     
-    turn(direction, timeStep) {
+    setAim(aimDir) {
+        this.aimDir = aimDir;
+    },
+    
+    turn(timeStep) {
         const aimPrevious = this.aim;
+        var delta = this.aimDir - this.aim;
         
-        this.aim += direction * timeStep * this.AIM_SPEED;
+        if(Math.abs(delta) > this.AIM_SPEED * timeStep)
+            delta = Math.sign(delta) * this.AIM_SPEED * timeStep;
+        
+        this.aim += delta;
         
         if(this.aim > this.AIM_RANGE * 0.5)
             this.aim = this.AIM_RANGE * 0.5;
