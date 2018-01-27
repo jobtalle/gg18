@@ -17,6 +17,7 @@ function Beam(angle, aim, crystal, radius) {
 Beam.prototype = {
     SPEED: 800,
     ANGLE: 0.5,
+    FLUTTER: 0.1,
     
     update(timeStep) {
         this.outerRadius += this.SPEED * timeStep;
@@ -30,7 +31,7 @@ Beam.prototype = {
     },
     
     getAngle() {
-        return this.ANGLE * this.crystal.getStrength();
+        return (this.ANGLE * this.crystal.getStrength()) * (1 - this.FLUTTER * 0.5 + Math.random() * this.FLUTTER);
     },
     
     render(context) {
