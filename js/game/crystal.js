@@ -3,6 +3,8 @@ function Crystal(angle, essence) {
     this.essence = essence;
     this.life = this.LIFETIME;
     this.day = true;
+    this.crystalSprite = resources.gems_blue.instantiate();
+    this.setCrystalSprite();
     
     this.position = new Vector(
         Math.cos(angle) * Planet.prototype.RADIUS,
@@ -13,11 +15,12 @@ Crystal.prototype = {
     LIFETIME: 4,
     
     update(timeStep) {
-        
+        this.crystalSprite.update(timeStep);
     },
     
     setDay(day) {
         this.day = day;
+        this.setCrystalSprite();
     },
     
     drain(timeStep) {
@@ -48,21 +51,62 @@ Crystal.prototype = {
     
     render(context) {
         context.save();
-        context.translate(this.position.x, this.position.y);
-        context.rotate(this.angle + Math.PI * 0.5);
+
+        
+        // context.translate(this.position.x, this.position.y);
+        // context.rotate(this.angle + Math.PI * 0.5);
         context.globalAlpha = this.getStrength();
+        this.crystalSprite.draw(context, this.position.x, this.position.y, this.angle + Math.PI * 0.5);
         
-        context.fillStyle = this.getColor();
-        context.beginPath();
-        context.moveTo(0, 0);
-        context.lineTo(-5, -5);
-        context.lineTo(0, -10);
-        context.lineTo(5, -5);
-        context.closePath();
+        // context.fillStyle = this.getColor();
+        // context.beginPath();
+        // context.moveTo(0, 0);
+        // context.lineTo(-5, -5);
+        // context.lineTo(0, -10);
+        // context.lineTo(5, -5);
+        // context.closePath();
         
         
-        context.fill();
+        // context.fill();
         
         context.restore();
+    },
+    
+    setCrystalSprite()
+    {
+        if(this.day)
+        {
+            switch( this.essence.color)
+            {
+                case "red":
+                this.crystalSprite = resources.gems_red.instantiate();
+                break;
+                
+                case "yellow":
+                this.crystalSprite = resources.gems_yellow.instantiate();
+                break;
+
+                case "blue":
+                this.crystalSprite = resources.gems_blue.instantiate();
+                break;
+            }
+        }
+        else
+        {
+            switch( this.essence.color)
+            {
+                case "red":
+                this.crystalSprite = resources.gems_green.instantiate();
+                break;
+                
+                case "yellow":
+                this.crystalSprite = resources.gems_purple.instantiate();
+                break;
+
+                case "blue":
+                this.crystalSprite = resources.gems_orange.instantiate();
+                break;
+            }
+        }
     }
 }

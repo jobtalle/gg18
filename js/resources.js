@@ -61,12 +61,12 @@ Resources.prototype = {
 
         this.alien = new Sprite("img/alien.png", 0,0,1);
 
-        this.gems_blue = new Sprite("img/gems/gems_blue.png", 0,0,1);
-        this.gems_green = new Sprite("img/gems/gems_green.png", 0,0,1);
-        this.gems_orange = new Sprite("img/gems/gems_orange.png", 0,0,1);
-        this.gems_purple = new Sprite("img/gems/gems_purple.png", 0,0,1);
-        this.gems_red = new Sprite("img/gems/gems_red.png", 0,0,1);
-        this.gems_yellow = new Sprite("img/gems/gems_yellow.png", 0,0,1);
+        this.gems_blue = new Sprite("img/gems/gems_blue.png", 0,6,1);
+        this.gems_green = new Sprite("img/gems/gems_green.png", 0,6,1);
+        this.gems_orange = new Sprite("img/gems/gems_orange.png", 0,6,1);
+        this.gems_purple = new Sprite("img/gems/gems_purple.png", 0,6,1);
+        this.gems_red = new Sprite("img/gems/gems_red.png", 0,6,1);
+        this.gems_yellow = new Sprite("img/gems/gems_yellow.png", 0,6,1);
 
         this.heart =  new Sprite("img/particles/heart.png", 0,0,5, 10);
         this.mad =  new Sprite("img/particles/mad.png", 0,0,5, 10);
