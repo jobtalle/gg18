@@ -1,19 +1,32 @@
-function spawnPopup() {
-    var element = document.getElementById("popup");
-    var rnd = getRandomInt(200, 6000);
-    var randomCol = getRandomColor();
+function spawnCharacterSelection(playerAmount) {
+    console.log("creating " + playerAmount + " players");
 
-    if (element.classList.contains("popup"))
-        element.classList.remove("popup");
+    var charHeaders = document.getElementById("characterHeaders");
+    var charPortraits = document.getElementById("characterPortraits");
 
-    void element.offsetWidth;
+    //cleanup on aisle 3
+    while (charHeaders.firstChild){
+        charHeaders.removeChild(charHeaders.firstChild);
+        charPortraits.removeChild(charPortraits.firstChild);
+    }
 
-    element.style.border = '2px solid ' + randomCol;
-    element.style.textShadow = '2px 2px ' + randomCol;
-    element.style.boxShadow = '0px 0px 25px ' + randomCol;
+    for (var i = 0; i < playerAmount; i++) {
+        var th = document.createElement("th");
+        var randomcolor = getRandomColor();
+        th.style.color = randomcolor;
+        th.style.textShadow = '2px 2px rgba(0,0,0,1)';
+        th.innerHTML = 'Player: ' + i.toString();
 
-    element.classList.add("popup");
-    element.innerHTML = rnd;
+        var tr = document.createElement("td");void tr.offsetWidth;
+        tr.classList.add("expandingClass");
+        tr.style.boxShadow = '0px 10px 80px ' + randomcolor;
+        tr.innerHTML = 'portrait of player ' + i.toString() + ' goes here';
+
+        charHeaders.appendChild(th);
+        charPortraits.appendChild(tr);
+
+        instantiatePlayer(i);
+    }
 }
 
 function spawnCharacterSelection(playerAmount) {
@@ -33,7 +46,7 @@ function spawnCharacterSelection(playerAmount) {
         var randomcolor = getRandomColor();
         th.style.color = randomcolor;
         th.style.textShadow = '2px 2px rgba(0,0,0,1)';
-        th.innerHTML = 'Player: ' + i.toString();
+        th.innerHTML = 'Player:' + i.toString();
 
         var tr = document.createElement("td");void tr.offsetWidth;
         tr.classList.add("expandingClass");
@@ -71,7 +84,7 @@ function getRandomColor() {
     return color;
 }
 
-function getOneOfTheSecundaryColors() {
+function getOneOfTheSecondaryColors() {
     var rnd = getRandomInt(0, 5);
     var colors = ['#008000', '#FFFF00', '#FF0000', '#008080', '#800080', '#00FF00'];
 

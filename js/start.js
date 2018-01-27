@@ -3,7 +3,7 @@ function start() {
     renderer = new Renderer();
     gamepad = new Gamepad();
     
-    interface.showStartScreen();
+    //interface.showStartScreen();
     
     renderer.resize();
     interface.startGame();

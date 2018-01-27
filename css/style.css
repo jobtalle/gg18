@@ -36,7 +36,6 @@ body {
     35%    
     { 
         transform: scale(1, 1);
-        top: 0px;
     }
     75%
     {
@@ -99,6 +98,15 @@ body {
     image-rendering: pixelated;
     background-repeat: repeat;
     image-rendering: -moz-crisp-edges;
+    
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    background-size: cover;
+    animation-name: pan;
+    animation-duration: 200s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
 }
 
 @keyframes pan {
@@ -138,32 +146,44 @@ body {
 @keyframes headerBounce {
     0%      
     { 
-        text-shadow: 0px 0px rgba(0,0,0,0.0);
-        color: white;
+        text-shadow: 0px 0px rgba(255,255,255,0.0);
+/*        color: white;*/
         font-size: 200%;
     }
     25%     
     { 
-        text-shadow: 5px 5px rgba(0,0,0,1.0);
-        color: lightgrey;
+        text-shadow: 4px 4px rgba(255,255,255,1.0);
+/*        color: lightgrey;*/
     }
     50%     
     { 
-        text-shadow: 0px 8px rgba(0,0,0,1.0);
-        color: white;
+        text-shadow: 0px 4px rgba(255,255,255,1.0);
+/*        color: white;*/
         font-size: 210%;
     }
     75%     
     { 
-        text-shadow: -5px 5px rgba(0,0,0,1.0);
-        color: lightgrey;
+        text-shadow: -4px 4px rgba(255,255,255,1.0);
+/*        color: lightgrey;*/
     }
     100%    
     { 
-        text-shadow: 0px 0px rgba(0,0,0,0.0);
-        color: white;
+        text-shadow: 0px 0px rgba(255,255,255,0.0);
+/*        color: white;*/
         font-size: 200%;
     }
+    
+    0% {color: #ff0000;}
+    10% {color: #ff8000;}
+    20% {color: #ffff00;}
+    30% {color: #80ff00;}
+    40% {color: #00ff00;}
+    50% {color: #00ff80;}
+    60% {color: #00ffff;}
+    70% {color: #0080ff;}
+    80% {color: #0000ff;}
+    90% {color: #8000ff;}
+    100% {color: #ff0080;}
 }
 
 #header {
@@ -181,7 +201,7 @@ body {
     margin-right: auto;
     
     animation-name: headerBounce;
-    animation-duration: .8s;
+    animation-duration: 1.5s;
     animation-direction: alternate;
     animation-iteration-count: infinite;
     animation-timing-function: ease-in-out;
@@ -226,6 +246,7 @@ body {
 th {
     border: 2px solid white;
     border-radius: 25px 25px 0px 0px;
+    font-size: 1.5rem;
 }
 
 /*not working*/
@@ -235,6 +256,7 @@ th {
 }
 
 td {
+    color: white;
     border: 2px solid white;
     border-top: 0px;
     border-radius: 0px 0px 10px 10px;
@@ -250,10 +272,11 @@ td {
     to      
     { 
         height: 500px;
-    }
+    } 
 }
 
 .expandingClass {
+    
     animation-name: expand;
     animation-fill-mode: forwards;
     animation-duration: 0.4s;

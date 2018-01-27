@@ -4,7 +4,7 @@
         <title>gg18</title>
         <link rel=stylesheet type="text/css" href="css/style.css"/>
         <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
-        <script src="json/sequences.json"></script>
+        <script src="json/sequences2.json"></script>
         <script src="js/utils/mathUtils.js"></script>
         <script src="js/gamepad.js"></script>
         <script src="js/start.js"></script>
@@ -23,6 +23,8 @@
         <script src="js/game/ufoDispatcher.js"></script>
         <script src="js/game/ufoMoverOrbit.js"></script>
         <script src="js/game/beam.js"></script>
+        <script src="js/game/popup.js"></script>
+        <script src="js/game/star.js"></script>
         <script src="js/game/crystalEssence.js"></script>
         <script src="js/interface.js"></script>
         <script src="js/sprite.js"></script>
@@ -31,11 +33,14 @@
     </head>
     <body>
         
-        <button id="charSel" type="button" onclick="spawnCharacterSelection(3)">Spawn character select screen</button>
+<!--        <button id="charSel" type="button" onclick="spawnCharacterSelection(4)">Spawn character select screen</button>-->
+        <button id="charSel" type="button" onclick="new Star(-1, -1, 0)">Spawn star</button>
+        
+<!--        <button id="charSel" type="button" onclick="new Popup(-1, -1, 666)">Doe spawn!</button>-->
         
         <div id="startscreen" style="display: none">
             <div id="header">
-                PRESS ANY BUTTON TO JOIN!
+                PRESS ANY BUTTON TO SKIP/JOIN!
             </div>
             <table id="selectionController">
                 <tr id="characterHeaders">
@@ -48,15 +53,14 @@
         <div id="view">
             <canvas id="renderer"></canvas>
             <div id="userinterface">
-                <div id="popup">
+                <div id="popupParent">
                 </div>
             </div>
         </div>
-<!--
-        <audio controls autoplay loop>
+        
+        <audio autoplay loop>
             <source src="audio/Ufo%20Theme%20nummer%202.ogg" type="audio/ogg">
         </audio>
--->
         <script>resources = new Resources(); start();</script>
     </body>
 </html>

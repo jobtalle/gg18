@@ -177,15 +177,10 @@ Player.prototype = {
     onMove(vector) {
         var delta;
         
-        if(vector.x == 0 && vector.y == 0) {
+        if(vector.x == 0 && vector.y == 0)
             delta = 0;
-            delete this.walkAngle;
-        } else {
-            if(this.walkAngle == undefined)
-                this.walkAngle = this.angle + this.planet.angle;
-
-            delta = vector.dot(Vector.prototype.fromAngle(this.walkAngle).orthogonal());
-        }
+        else
+            delta = vector.dot(Vector.prototype.fromAngle(this.angle + this.planet.angle).orthogonal());
         
         this.speedChange = -delta;
         
