@@ -13,7 +13,7 @@ Beamer.prototype = {
     COLOR_DISH: "white",
     DISH_HEIGHT: 12,
     AIM_RANGE: 3,
-    AIM_SPEED: 1,
+    AIM_SPEED: 5,
     CRYSTAL_SCATTER_RANGE: 16,
     
     update(timeStep) {
@@ -76,6 +76,11 @@ Beamer.prototype = {
         
         for(var i = 0; i < this.beams.length; ++i)
             this.beams[i].render(context);
+    },
+    
+    setDay(day) {
+        if(this.crystal != null)
+            this.crystal.setDay(day);
     },
     
     place(angle) {

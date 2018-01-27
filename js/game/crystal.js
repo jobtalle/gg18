@@ -2,6 +2,7 @@ function Crystal(angle, essence) {
     this.angle = angle;
     this.essence = essence;
     this.life = this.LIFETIME;
+    this.day = true;
     
     this.position = new Vector(
         Math.cos(angle) * Planet.prototype.RADIUS,
@@ -13,6 +14,10 @@ Crystal.prototype = {
     
     update(timeStep) {
         
+    },
+    
+    setDay(day) {
+        this.day = day;
     },
     
     drain(timeStep) {
@@ -27,7 +32,7 @@ Crystal.prototype = {
     },
     
     getColor() {
-        return this.essence.getColor();
+        return this.essence.getColor(this.day);
     },
     
     carry(angle, height) {

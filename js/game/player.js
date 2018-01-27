@@ -124,6 +124,11 @@ Player.prototype = {
         controller.onMove = this.onMove.bind(this);
     },
     
+    setDay(day) {
+        if(this.crystal != null)
+            this.crystal.setDay(day);
+    },
+    
     getRadialSpeed(speed) {
         return speed / Planet.prototype.RADIUS;
     },
