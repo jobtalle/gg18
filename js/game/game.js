@@ -3,6 +3,7 @@ function Game(renderer, players) {
     this.space = new Space();
     this.planet = new Planet(players);
     this.dispatcher = new UfoDispatcher(this.planet.dispatch.bind(this.planet));
+    this.dispatcher.start();
 }
 
 Game.prototype = {
