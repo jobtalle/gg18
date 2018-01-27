@@ -52,6 +52,8 @@ Planet.prototype = {
     render(context) {
         this.renderAtmosphere(context);
 
+        context.imageSmoothingEnabled = false;
+        
         context.save();
         context.rotate(this.angle);
         
