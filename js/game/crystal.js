@@ -65,6 +65,10 @@ Crystal.prototype = {
         context.lineTo(0, -10);
         context.lineTo(5, -5);
         context.closePath();
+        
+        context.shadowBlur = 25;
+        context.shadowColor = this.getColor();
+        
         context.fill();
         
         context.restore();

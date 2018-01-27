@@ -167,7 +167,6 @@ body {
 }
 
 #header {
-    display: none;
     color: white;
     position: absolute;
     font-weight: 700;
@@ -205,6 +204,10 @@ body {
     
     border-spacing: 40px 0px;
     
+}
+
+#charSel {
+    position: absolute;
 }
 
 #characterHeaders {

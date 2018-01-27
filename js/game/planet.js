@@ -201,13 +201,17 @@ Planet.prototype = {
     {
         context.save();
 
-        grd=context.createRadialGradient(0,0,this.RADIUS+10,0,0,130);
+        grd=context.createRadialGradient(0,0,this.RADIUS+10,0,0,140);
         grd.addColorStop(0,"#00000000");
         grd.addColorStop(1, this.ATMOSPHERE_COLOR);
 
         context.beginPath();
         context.fillStyle = grd;
         context.arc(0,0, this.RADIUS * this.ATMOSPHERE_SIZE_MODIFIER,  this.ATMOSPHERE_START_ANGLE, this.ATMOSPHERE_END_ANGLE);
+        
+        context.shadowBlur = 100;
+        context.shadowColor = this.ATMOSPHERE_COLOR;
+        
         context.fill();
         context.restore();
     },

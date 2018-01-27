@@ -34,6 +34,10 @@ Beam.prototype = {
         context.beginPath();
         context.arc(0, 0, this.innerRadius, -this.radians * 0.5, this.radians * 0.5, false);
         context.arc(0, 0, this.outerRadius, this.radians * 0.5, -this.radians * 0.5, true);
+        
+        context.shadowBlur = 25;
+        context.shadowColor = this.crystal.getColor();
+        
         context.fill();
         
         context.restore();

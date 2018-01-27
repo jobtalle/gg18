@@ -4,7 +4,7 @@ function Interface() {
 
 Interface.prototype = {
     showStartScreen() {
-        
+        //spawnCharacterSelection(3);
     },
     
     startGame() {

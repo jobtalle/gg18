@@ -23,8 +23,24 @@
         <script src="js/game/ufoDispatcher.js"></script>
         <script src="js/game/beam.js"></script>
         <script src="js/interface.js"></script>
+        <script src="js/tonysFancyfy/fancyfy.js"></script>
     </head>
     <body>
+        
+        <button id="charSel" type="button" onclick="spawnCharacterSelection(3)">Spawn character select screen</button>
+        
+        <div id="startscreen" style="display: none">
+            <div id="header">
+                PRESS ANY BUTTON TO JOIN!
+            </div>
+            <table id="selectionController">
+                <tr id="characterHeaders">
+                </tr>
+                <tr id="characterPortraits">
+                </tr>
+            </table>
+        </div>
+        
         <div id="view">
             <canvas id="renderer"></canvas>
             <div id="userinterface">
