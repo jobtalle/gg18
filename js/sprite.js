@@ -42,8 +42,12 @@ SpriteInstance.prototype = {
         
         this.frame += timeStep * this.sprite.fps;
         
-        if(this.frame >= this.sprite.frames)
+        if(this.frame >= this.sprite.frames) {
             this.frame -= this.sprite.frames;
+            
+            if(this.onEnd != undefined)
+                this.onEnd();
+        }
     },
     
     setFrame(frame) {
