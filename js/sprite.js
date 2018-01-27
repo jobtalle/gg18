@@ -46,13 +46,21 @@ SpriteInstance.prototype = {
             this.frame -= this.sprite.frames;
     },
     
-    draw(context, x, y, angle) {
+    draw(context, x, y, angle, xScale) {
         if(!this.sprite.isLoaded())
             return;
         
         context.save();
         context.translate(x, y);
         context.rotate(angle);
+        if(xScale == undefined)
+        {
+            context.scale(1, 1);
+        }
+        else
+        {
+            context.scale(xScale, 1);
+        }
         
         context.drawImage(
             this.sprite.image,
