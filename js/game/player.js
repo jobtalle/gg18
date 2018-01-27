@@ -7,6 +7,7 @@ function Player(controller, angle) {
     this.speedChange = 0;
     this.state = "walking";
     this.position = new Vector();
+    this.controller = controller;
     
     this.listen(controller);
 }
@@ -14,14 +15,21 @@ function Player(controller, angle) {
 Player.prototype = {
     COLOR: "#3366ff",
     SPEED: 140,
-    ACCELERATION: 900,
+    ACCELERATION: 90000,
     FRICTION: 1000,
+    controller: null,
     
     rotate(angle) {
         this.angle += angle;
     },
     
     update(timeStep) {
+        if(this.controller != null)
+        {
+            this.controller.update();
+            this.controller.setPlayerPos(this.position);
+        }
+
         switch(this.state) {
             case "walking":
             if(this.speedChange != 0) {
@@ -84,34 +92,38 @@ Player.prototype = {
     },
     
     listen(controller) {
-        controller.onLeftPressed = this.onLeftPressed.bind(this);
-        controller.onLeftReleased = this.onLeftReleased.bind(this);
-        controller.onRightPressed = this.onRightPressed.bind(this);
-        controller.onRightReleased = this.onRightReleased.bind(this);
+        // controller.onLeftPressed = this.onLeftPressed.bind(this);
+        // controller.onLeftReleased = this.onLeftReleased.bind(this);
+        // controller.onRightPressed = this.onRightPressed.bind(this);
+        // controller.onRightReleased = this.onRightReleased.bind(this);
         controller.onEnterPressed = this.onEnterPressed.bind(this);
         controller.onActivatePressed = this.onActivatePressed.bind(this);
         controller.onActivateReleased = this.onActivateReleased.bind(this);
+        controller.onPlayerMove = function(dir) {
+            console.log(dir);
+            this.speedChange = dir;
+        }.bind(this);
     },
     
     getRadialSpeed(speed) {
         return speed / Planet.prototype.RADIUS;
     },
     
-    onLeftPressed() {
-        this.speedChange = -1;
-    },
+    // onLeftPressed() {
+    //     this.speedChange = -1;
+    // },
     
-    onLeftReleased() {
-        this.speedChange = 0;
-    },
+    // onLeftReleased() {
+    //     this.speedChange = 0;
+    // },
     
-    onRightPressed() {
-        this.speedChange = 1;
-    },
+    // onRightPressed() {
+    //     this.speedChange = 1;
+    // },
     
-    onRightReleased() {
-        this.speedChange = 0;
-    },
+    // onRightReleased() {
+    //     this.speedChange = 0;
+    // },
     
     onEnterPressed() {
         switch(this.state) {
