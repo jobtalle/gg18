@@ -13,7 +13,7 @@ function Beamer(angle) {
 Beamer.prototype = {
     COLOR: "#0056bb",
     COLOR_DISH: "white",
-    DISH_HEIGHT: 10,
+    DISH_HEIGHT: 7,
     AIM_RANGE: 3,
     AIM_SPEED: 5,
     CRYSTAL_SCATTER_RANGE: 16,
@@ -50,6 +50,9 @@ Beamer.prototype = {
     },
     
     render(context) {
+        for(var i = 0; i < this.beams.length; ++i)
+            this.beams[i].render(context);
+        
         context.save();
         
         context.translate(this.position.x, this.position.y);
@@ -67,9 +70,6 @@ Beamer.prototype = {
         this.beamerDish.draw(context,0,0,0);
 
         context.restore();
-        
-        for(var i = 0; i < this.beams.length; ++i)
-            this.beams[i].render(context);
     },
     
     setDay(day) {
