@@ -106,13 +106,41 @@ Planet.prototype = {
     },
     
     tryPickup(player) {
-        const playerPositionNormalized = player.position.normalize();
+        var nearestCrystal = this.findNearestCrystal(player.position);
+        
+        if(nearestCrystal != null) {
+            player.pickup(nearestCrystal);
+            this.crystals.splice(this.crystals.indexOf(nearestCrystal), 1);
+        }
+        else {
+            const beamer = this.findNearestBeamer(player.position);
+            
+            if(beamer != null && beamer.crystal != null) {
+                player.pickup(beamer.crystal);
+                beamer.dropCrystal();
+            }
+        }
+    },
+    
+    tryDrop(player) {
+        const beamer = this.findNearestBeamer(player.position);
+        
+        if(beamer == null)
+            this.crystals.push(player.crystal);
+        else
+            beamer.putCrystal(player.crystal, this);
+        
+        player.drop();
+    },
+    
+    findNearestCrystal(vector) {
+        const normalized = vector.normalize();
         var crystalAngle = 1;
         var nearestCrystal = null;
         
         for(var i = 0; i < this.crystals.length; ++i) {
             const crystal = this.crystals[i];
-            const angle = Math.acos(crystal.position.normalize().dot(playerPositionNormalized));
+            const angle = Math.acos(crystal.position.normalize().dot(normalized));
             
             if(angle < this.interactionRadius && angle < crystalAngle) {
                 crystalAngle = angle;
@@ -120,25 +148,17 @@ Planet.prototype = {
             }
         }
         
-        if(nearestCrystal != null) {
-            player.pickup(nearestCrystal);
-            this.crystals.splice(this.crystals.indexOf(nearestCrystal), 1);
-        }
-        else {
-            for(var i = 0; i < this.beamers.length; ++i) {
-                const beamer = this.beamers[i];
-                
-                if(beamer.crystal != null && Math.acos(beamer.positionNormalized.dot(playerPositionNormalized)) < this.interactionRadius) {
-                    player.pickup(beamer.crystal);
-                    beamer.dropCrystal();
-                }
-            }
-        }
+        return nearestCrystal;
     },
     
-    tryDrop(player) {
-        this.crystals.push(player.crystal);
-        player.drop();
+    findNearestBeamer(vector) {
+        const normalized = vector.normalize();
+        
+        for(var i = 0; i < this.beamers.length; ++i)
+            if(Math.acos(this.beamers[i].positionNormalized.dot(normalized)) < this.interactionRadius)
+                return this.beamers[i];
+            
+        return null;
     },
     
     createScenery() {
