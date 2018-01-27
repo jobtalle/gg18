@@ -1,0 +1,210 @@
+sequences = [
+    {
+        "difficulty": {"min": "0", "max": "2"},
+        "ufos": [
+        {
+            "colors": ["red"],
+            "path": "orbits",
+            "speed": "1",
+            "orbitCount": "2",
+            "next": "1"
+        },
+        {
+            "colors": ["orange"],
+            "path": "booster",
+            "speed": "1",
+            "orbitCount": "2",
+            "next": "2"
+        }]
+    },
+    {
+        "difficulty": {"min": "0", "max": "2"},
+        "ufos": [
+        {
+            "colors": ["blue"],
+            "path": "orbits",
+            "speed": "1",
+            "orbitCount": "2",
+            "next": "3"
+        },
+        {
+            "colors": ["green"],
+            "path": "booster",
+            "speed": "1",
+            "orbitCount": "2",
+            "next": "6"
+        }]
+    },
+    {
+        "difficulty": {"min": "1", "max": "3"},
+        "ufos": [
+        {
+            "colors": ["yellow","red"],
+            "path": "orbits",
+            "speed": "1",
+            "orbitCount": "2",
+            "next": "3"
+        },
+        {
+            "colors": ["purple","green"],
+            "path": "orbit",
+            "speed": "1",
+            "orbitCount": "2",
+            "next": "6"
+        }]
+    },
+    {
+        "difficulty": {"min": "1", "max": "3"},
+        "ufos": [
+        {
+            "colors": ["orange","yellow"],
+            "path": "orbits",
+            "speed": "1",
+            "orbitCount": "2",
+            "next": "3"
+        },
+        {
+            "colors": ["green","purple"],
+            "path": "orbit",
+            "speed": "1",
+            "orbitCount": "2",
+            "next": "6"
+        }]
+    },
+    {//rank3
+        "difficulty": {"min": "2", "max": "4"},
+        "ufos": [
+        {
+            "colors": ["red"],
+            "path": "rotator",
+            "speed": "1",
+            "orbitCount": "2",
+            "next": "3"
+        },
+        {
+            "colors": ["orange"],
+            "path": "landing",
+            "speed": "1",
+            "orbitCount": "2",
+            "next": "6"
+        }]
+    },
+    {//rank3
+        "difficulty": {"min": "2", "max": "4"},
+        "ufos": [
+        {
+            "colors": ["blue"],
+            "path": "rotator",
+            "speed": "1",
+            "orbitCount": "2",
+            "next": "3"
+        },
+        {
+            "colors": ["purple"],
+            "path": "landing",
+            "speed": "1",
+            "orbitCount": "2",
+            "next": "6"
+        }]
+    },
+    {//rank4
+        "difficulty": {"min": "3", "max": "5"},
+        "ufos": [
+        {
+            "colors": ["orange","yellow"],
+            "path": "landing",
+            "speed": "1",
+            "orbitCount": "2",
+            "next": "3"
+        },
+        {
+            "colors": ["blue","purple"],
+            "path": "rotator",
+            "speed": "1",
+            "orbitCount": "2",
+            "next": "3"
+        },
+        {
+            "colors": ["green","purple"],
+            "path": "landing",
+            "speed": "1",
+            "orbitCount": "2",
+            "next": "6"
+        }]
+    },
+    {//rank4
+        "difficulty": {"min": "3", "max": "5"},
+        "ufos": [
+        {
+            "colors": ["blue","yellow"],
+            "path": "landing",
+            "speed": "1",
+            "orbitCount": "2",
+            "next": "3"
+        },
+        {
+            "colors": ["red","purple"],
+            "path": "rotator",
+            "speed": "1",
+            "orbitCount": "2",
+            "next": "3"
+        },
+        {
+            "colors": ["green","red"],
+            "path": "landing",
+            "speed": "1",
+            "orbitCount": "2",
+            "next": "6"
+        }]
+    },
+    {//rank5
+        "difficulty": {"min": "4", "max": "5"},
+        "ufos": [
+        {
+            "colors": ["blue","yellow"],
+            "path": "rotator",
+            "speed": "1",
+            "orbitCount": "2",
+            "next": "3"
+        },
+        {
+            "colors": ["orange","purple"],
+            "path": "booster",
+            "speed": "1",
+            "orbitCount": "2",
+            "next": "3"
+        },
+        {
+            "colors": ["blue","red"],
+            "path": "booster",
+            "speed": "1",
+            "orbitCount": "2",
+            "next": "1"
+        }]
+    },
+    {//rank5
+        "difficulty": {"min": "4", "max": "5"},
+        "ufos": [
+        {
+            "colors": ["blue","green"],
+            "path": "rotator",
+            "speed": "1",
+            "orbitCount": "2",
+            "next": "3"
+        },
+        {
+            "colors": ["orange","yellow"],
+            "path": "booster",
+            "speed": "1",
+            "orbitCount": "2",
+            "next": "3"
+        },
+        {
+            "colors": ["green","red"],
+            "path": "booster",
+            "speed": "1",
+            "orbitCount": "2",
+            "next": "1"
+        }]
+    }
+];

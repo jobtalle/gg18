@@ -22,8 +22,6 @@ body {
     color: white;
 }
 
-
-
 @keyframes flash {
     
     from    { left: 0px; }
@@ -206,6 +204,10 @@ body {
     
     border-spacing: 40px 0px;
     
+}
+
+#charSel {
+    position: absolute;
 }
 
 #characterHeaders {
