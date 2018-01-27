@@ -71,15 +71,15 @@ Resources.prototype = {
         this.heart =  new Sprite("img/particles/heart.png", 0,0,5, 10);
         this.mad =  new Sprite("img/particles/mad.png", 0,0,5, 10);
 
-        this.building_1 = new Sprite("img/environment/building_1.png",0,0,2,1);
-        this.building_2 = new Sprite("img/environment/building_2.png",0,0,2,1);
-        this.building_3 = new Sprite("img/environment/building_3.png",0,0,2,1);
-        this.building_4 = new Sprite("img/environment/building_4.png",0,0,2,1);
-        this.building_5 = new Sprite("img/environment/building_5.png",0,0,2,1);
-        this.building_6 = new Sprite("img/environment/building_6.png",0,0,2,1);
+        this.building_1 = new Sprite("img/environment/building_1.png",2,10,2,1);
+        this.building_2 = new Sprite("img/environment/building_2.png",3,12,2,1);
+        this.building_3 = new Sprite("img/environment/building_3.png",3,15,2,1);
+        this.building_4 = new Sprite("img/environment/building_4.png",3,7,2,1);
+        this.building_5 = new Sprite("img/environment/building_5.png",5,14,2,1);
+        this.building_6 = new Sprite("img/environment/building_6.png",2,6,2,1);
         
-        this.bush = new Sprite("img/environment/bush.png",0,0,2,1);
-        this.oak = new Sprite("img/environment/oak.png",0,0,2,1);
-        this.pine = new Sprite("img/environment/pine.png",0,0,2,1);
+        this.bush = new Sprite("img/environment/bush.png",4,4,2,1);
+        this.oak = new Sprite("img/environment/oak.png",4,10,2,1);
+        this.pine = new Sprite("img/environment/pine.png",4,10,2,1);
     }
 }
