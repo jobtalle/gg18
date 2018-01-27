@@ -28,7 +28,7 @@ Star.prototype = {
         var rnd = this.getRandomInt(0,7);
         
         
-        this.element.setAttribute("src", "/img/gems/stars_big_blue.gif");
+        this.element.setAttribute("src", "img/gems/stars_big_blue.gif");
         this.element.setAttribute("width", "32");
         this.element.setAttribute("height", "32");
         
@@ -44,6 +44,7 @@ Star.prototype = {
     getRandomStarSprite(rnd){
         switch (rnd){
             case 0:
+                return ''
                 break;
             case 1:
                 break;
