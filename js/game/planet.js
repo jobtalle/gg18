@@ -233,7 +233,11 @@ Planet.prototype = {
             this.crystals.push(new Crystal(Math.random() * 2 * Math.PI, new CrystalEssence(color)));
         }
     },
-        
+    
+    dispatch(ufoObject) {
+        console.log(ufoObject);
+    },
+    
     createUfos() {
         this.ufos = [];
         this.addUfo(new Ufo([new CrystalEssence("red")], new UfoMoverOrbit(2, this.RADIUS_ORBIT)));

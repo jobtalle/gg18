@@ -2,9 +2,7 @@ function Game(renderer, players) {
     this.renderer = renderer;
     this.space = new Space();
     this.planet = new Planet(players);
-    this.dispatcher = new UfoDispatcher(function(type, color, secondaryColor, timer) {
-        console.log(color);
-    });
+    this.dispatcher = new UfoDispatcher(this.planet.dispatch.bind(this.planet));
 }
 
 Game.prototype = {
