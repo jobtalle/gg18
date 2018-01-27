@@ -8,3 +8,11 @@ function start() {
         [new Player(new PlayerController())]);
     game.start();
 }
+
+function instantiatePlayer(index) {
+    var player = new Player(new PlayerController());
+    
+    player.INDEX = index;
+    
+    console.log("Created player: " + index);
+}

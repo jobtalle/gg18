@@ -54,6 +54,17 @@ Game.prototype = {
         context.scale(this.SCALE, this.SCALE);
     },
     
+    translateContext(context, offset) {
+        context.save();
+        
+        context.translate(
+            offset.x,
+            offset.y
+        );
+        
+        context.restore();
+    },
+    
     renderGame(context) {
         this.planet.render(context);
         

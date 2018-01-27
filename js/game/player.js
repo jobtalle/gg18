@@ -12,6 +12,7 @@ function Player(controller, angle) {
 }
 
 Player.prototype = {
+    INDEX: -1,
     COLOR: "#3366ff",
     SPEED: 140,
     ACCELERATION: 900,

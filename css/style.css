@@ -6,6 +6,7 @@ body {
     user-select: none;
     
     
+    font-family: 'Press Start 2P', cursive;
 }
 
 #spawnBtn {
@@ -17,7 +18,6 @@ body {
     position: absolute;
     top: 90px;
     left: 90px;
-    font-family: 'Press Start 2P', cursive;
     
     color: white;
 }
@@ -86,8 +86,9 @@ body {
     animation-timing-function: ease-in-out;
 }
 
-@keyframes rotate {
-    from { transform: rotateX()}
+@keyframes rot {
+    from    { transform: ; }
+    to      { transform: rotateZ(360deg); }
 }
 
 #view {
@@ -99,4 +100,193 @@ body {
     background-size: 100%;
     image-rendering: pixelated;
     background-repeat: repeat;
+    image-rendering: -moz-crisp-edges;
 }
+
+@keyframes pan {
+    0% {
+        background-position: 0vw 0vh;
+    }
+    100% {
+        background-position: 100vw 100vh;
+    }
+}
+
+#startscreen {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    
+    background-image: url(../img/bg.png);
+    background-size: 100%;
+    image-rendering: pixelated;
+    background-repeat: repeat;
+    image-rendering: -moz-crisp-edges;
+    
+    box-shadow: inset 0px 0px 250px rgba(0,0,0,1);
+    
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    background-size: cover;
+    animation-name: pan;
+    animation-duration: 25s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+@keyframes headerBounce {
+    0%      
+    { 
+        text-shadow: 0px 0px rgba(0,0,0,0.0);
+        color: white;
+        font-size: 200%;
+    }
+    25%     
+    { 
+        text-shadow: 5px 5px rgba(0,0,0,1.0);
+        color: lightgrey;
+    }
+    50%     
+    { 
+        text-shadow: 0px 8px rgba(0,0,0,1.0);
+        color: white;
+        font-size: 210%;
+    }
+    75%     
+    { 
+        text-shadow: -5px 5px rgba(0,0,0,1.0);
+        color: lightgrey;
+    }
+    100%    
+    { 
+        text-shadow: 0px 0px rgba(0,0,0,0.0);
+        color: white;
+        font-size: 200%;
+    }
+}
+
+#header {
+    color: white;
+    position: absolute;
+    font-weight: 700;
+    font-size: 220%;
+    font-family: 'Press Start 2P', cursive;
+    text-align: center;
+    top: 15%;
+    
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    
+    animation-name: headerBounce;
+    animation-duration: .8s;
+    animation-direction: alternate;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+}
+
+#selectionController {
+    position: absolute;
+    top: 25%;
+    width: 100%;
+    
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    
+    padding-left: 15%;
+    padding-right: 15%;
+    
+    padding-bottom: 25%;
+    
+    border-spacing: 40px 0px;
+    
+}
+
+#characterHeaders {
+    background-color: darkgray;
+    height: 50px;
+}
+
+#characterPortraits {
+    color: black;
+    height: 100%;
+    
+    background-blend-mode: screen;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+th {
+    border: 2px solid white;
+    border-radius: 25px 25px 0px 0px;
+}
+
+/*not working*/
+@keyframes breath {
+    from      {box-shadow: 0px 0px 25px white;}
+    to        {box-shadow: 0px 0px 100px white;}
+}
+
+td {
+    border: 2px solid white;
+    border-top: 0px;
+    border-radius: 0px 0px 10px 10px;
+    text-align: center;
+    padding: 10px;
+}
+
+@keyframes expand {
+    from    
+    { 
+        height: 0px;
+    }
+    to      
+    { 
+        height: 500px;
+    }
+}
+
+.expandingClass {
+    animation-name: expand;
+    animation-fill-mode: forwards;
+    animation-duration: 0.4s;
+    animation-timing-function: ease-in-out;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
