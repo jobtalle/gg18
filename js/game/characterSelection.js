@@ -39,7 +39,7 @@ CharSelect.prototype = {
         });
         
         gamepad.on('press', 'start', e => {
-            if (this.playerIndexes.length < 2)
+            if (this.playerIndexes.length < 1)
                 console.log("Can't start game because there are not enough players");
             else{
                 console.log("Starting game!");
