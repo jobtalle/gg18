@@ -7,6 +7,7 @@ function Planet(players) {
     this.createScenery();
     this.createBeamers();
     this.createCrystals();
+    this.createUfos();
     this.calculateInteractionRadius();
 }
 
@@ -25,13 +26,16 @@ Planet.prototype = {
     ATMOSPHERE_START_ANGLE: 2.35619449019,
     ATMOSPHERE_END_ANGLE: -0.78539816339,
     INTERACTION_DISTANCE: 16,
-    CRYSTAL_COUNT: 8,
+    CRYSTAL_COUNT: 12,
     
     update(timeStep) {
         this.angle += this.ROTATION_SPEED * timeStep;
         
         if(this.angle > Math.PI * 2)
             this.angle -= Math.PI * 2;
+        
+        for(var i = 0; i < this.ufos.length; ++i)
+            this.ufos[i].update(timeStep);
         
         for(var i = 0; i < this.crystals.length; ++i)
             this.crystals[i].update(timeStep);
@@ -74,6 +78,17 @@ Planet.prototype = {
         
         for(var i = 0; i < this.players.length; ++i)
             this.players[i].render(context);
+        
+        for(var i = 0; i < this.ufos.length; ++i)
+            this.ufos[i].render(context);
+        
+        context.restore();
+    },
+    
+    checkUfos() {
+        for(var i = 0; i < this.ufos.length; ++i) {
+            
+        }
     },
     
     calculateInteractionRadius() {
@@ -195,6 +210,21 @@ Planet.prototype = {
             
             this.crystals.push(new Crystal(Math.random() * 2 * Math.PI, color));
         }
+    },
+        
+    createUfos() {
+        this.ufos = [];
+        this.addUfo(new Ufo());
+    },
+    
+    addUfo(ufo) {
+        ufo.addLeaveListener(this.removeUfo.bind(this));
+        
+        this.ufos.push(ufo);
+    },
+    
+    removeUfo(ufo) {
+        this.ufos.splice(this.ufos.indexOf(ufo), 1);
     },
 
     renderAtmosphere(context)

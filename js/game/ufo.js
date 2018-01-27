@@ -1,4 +1,5 @@
-function Ufo() {
+function Ufo(crystals) {
+    this.crystals = crystals;
     this.initialAngle = Math.random() * Math.PI * 2;
     this.angle = 0;
     this.orbit = 0;
@@ -45,6 +46,16 @@ Ufo.prototype = {
         context.fill();
         
         context.restore();
+    },
+    
+    isInBeam(beam) {
+        const delta = this.position.subtract(beam.position).normalize();
+        
+        return delta.dot(Vector.prototype.fromAngle(beam.getAngle())) < beam.getAngle();
+    },
+    
+    destroy() {
+        console.log("Ufo destroyed");
     },
     
     addLeaveListener(onLeave) {
