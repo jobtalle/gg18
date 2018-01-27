@@ -16,7 +16,7 @@ function Player(controller, angle) {
 Player.prototype = {
     COLOR: "#3366ff",
     SPEED: 140,
-    ACCELERATION: 90000,
+    ACCELERATION: 900,
     FRICTION: 1000,
     controller: null,
     CARRY_HEIGHT: 12,
@@ -26,21 +26,19 @@ Player.prototype = {
     },
     
     update(timeStep) {
-        if(this.controller != null)
-        {
-            this.controller.update();
-            this.controller.setPlayerPos(this.position);
-        }
+        this.controller.update();
 
         switch(this.state) {
             case "walking":
                 if(this.speedChange != 0) {
-                    this.speed += this.speedChange * this.ACCELERATION * timeStep;
+                    const maxFactor = Math.sign(this.speedChange) * this.speedChange;
+                    
+                    this.speed += Math.sign(this.speedChange) * this.ACCELERATION * timeStep;
 
-                    if(this.speed < -this.SPEED)
-                        this.speed = -this.SPEED;
-                    else if(this.speed > this.SPEED)
-                        this.speed = this.SPEED;
+                    if(this.speed < -this.SPEED * maxFactor)
+                        this.speed = -this.SPEED * maxFactor;
+                    else if(this.speed > this.SPEED * maxFactor)
+                        this.speed = this.SPEED * maxFactor;
                 }
                 else {
                     if(this.speed < 0) {
@@ -126,30 +124,30 @@ Player.prototype = {
         controller.onEnterPressed = this.onEnterPressed.bind(this);
         controller.onActivatePressed = this.onActivatePressed.bind(this);
         controller.onActivateReleased = this.onActivateReleased.bind(this);
-        controller.onPlayerMove = function(dir) {
-            this.speedChange = dir;
-        }.bind(this);
+        controller.onMove = this.onMove.bind(this);
     },
     
     getRadialSpeed(speed) {
         return speed / Planet.prototype.RADIUS;
     },
     
-    // onLeftPressed() {
-    //     this.speedChange = -1;
-    // },
-    
-    // onLeftReleased() {
-    //     this.speedChange = 0;
-    // },
-    
-    // onRightPressed() {
-    //     this.speedChange = 1;
-    // },
-    
-    // onRightReleased() {
-    //     this.speedChange = 0;
-    // },
+    onMove(vector) {
+        var delta;
+        
+        if(vector.x == 0 && vector.y == 0)
+            delta = 0;
+        else
+            delta = vector.dot(Vector.prototype.fromAngle(this.angle + this.planet.angle).orthogonal());
+        
+        switch(this.state) {
+            case "walking":
+                this.speedChange = -delta;
+                break;
+            case "beaming":
+                
+                break;
+        }
+    },
     
     onEnterPressed() {
         switch(this.state) {

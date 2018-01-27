@@ -87,6 +87,7 @@ Planet.prototype = {
             player.onTryEnter = this.tryEnter.bind(this);
             player.onTryPickup = this.tryPickup.bind(this);
             player.onTryDrop = this.tryDrop.bind(this);
+            player.planet = this;
         }
     },
     

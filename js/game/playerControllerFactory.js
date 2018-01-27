@@ -11,48 +11,8 @@ function playerControllerFactory(gamepad) {
 }
 
 playerControllerFactory.prototype = {
-    keyboardSchemes:[
-        {
-            leftKey: "KeyA",
-            rightKey: "KeyD",
-            enterKey: "KeyE",
-            escapeKey: "KeyQ"
-        },
-        {
-            leftKey: "ArrowLeft",
-            rightKey: "ArrowRight",
-            enterKey: "Delete",
-            escapeKey: "PageDown"
-        },
-        {
-            leftKey: "KeyJ",
-            rightKey: "KeyL",
-            enterKey: "KeyO",
-            escapeKey: "KeyU"
-        }
-    ],
-    
-    availableKeyboardSchemes:null,
     availableControllerIds:[],
     gamepad:null,
-
-    getPlayerKeyboardController()
-    {
-        if(this.availableKeyboardSchemes.length > 0)
-        {
-            var scheme = this.availableKeyboardSchemes[0];
-            this.availableKeyboardSchemes.splice(0,1);
-
-            var playerController = new PlayerController;
-            playerController.leftKey = scheme.leftKey;
-            playerController.rightKey = scheme.rightKey;
-            playerController.enterKey = scheme.enterKey;
-            playerController.escapeKey = scheme.escapeKey;
-
-            return playerController;
-        }
-        return null;
-    },
 
     getPlayerControllerController()
     {
