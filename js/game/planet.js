@@ -298,6 +298,8 @@ Planet.prototype = {
     renderHighlight(context){
         context.save();
 
+        
+        // tony doe hier dingen!
         var grd=context.createRadialGradient(-30,-50,100,-30,-50,120);
         grd.addColorStop(0, this.COLOR_PLANET_HIGHLIGHT);
         grd.addColorStop(1,"rgba(0,0,0,0)");
