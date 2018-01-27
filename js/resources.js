@@ -81,5 +81,7 @@ Resources.prototype = {
         this.bush = new Sprite("img/environment/bush.png",4,4,2,1);
         this.oak = new Sprite("img/environment/oak.png",4,10,2,1);
         this.pine = new Sprite("img/environment/pine.png",4,10,2,1);
+        
+        
     }
 }

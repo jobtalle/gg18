@@ -6,6 +6,14 @@ function CharSelect(playerAmount){
     
     this.playerIndexes = [];
     this.players = [];
+    this.CHARACTER_PORTRAITS = ['portraits_idle.gif', 'portraits_idle_arms.gif', 'portraits_running.gif', 'portraits_running_arms.gif', 'portraits_shooting.gif'];
+    
+    
+//    this.portraits_idle = new Sprite("img/portrait/portraits_idle.png", 0,0,3, 6.667);
+//    this.portraits_idle_arms = new Sprite("img/portrait/portraits_idle_arms.png", 0,0,3, 6.667);
+//    this.portraits_running = new Sprite("img/portrait/portraits_running.png", 0,0,4, 6.667);
+//    this.portraits_running_arms = new Sprite("img/portrait/portraits_running_arms.png", 0,0,4, 6.667);
+//    this.portraits_shooting = new Sprite("img/portrait/portraits_shooting.png", 0,0,3, 6.667);
     
     this.createCharacterSelectionScreen();
     this.addCharacterListeners();
@@ -72,11 +80,21 @@ CharSelect.prototype = {
         tr.classList.add("expandingClass");
         tr.style.boxShadow = '0px 10px 80px ' + color;
         tr.innerHTML = 'portrait of player ' + playerId.toString() + ' goes here';
+        
+        var img = document.createElement("IMG");
+        img.setAttribute("src", "img/character/" + this.getNewPortrait());
+        img.setAttribute("width", "100%");
+        img.setAttribute("height", "100%");
 
         charHeaders.appendChild(th);
         charPortraits.appendChild(tr);
+        tr.appendChild(img);
         
         this.players.push(new Player(controllerFactory.createPlayerController(playerId)));
+    },
+    
+    getNewPortrait(){
+        return this.CHARACTER_PORTRAITS[this.getRandomInt(0, this.CHARACTER_PORTRAITS.length)];
     },
     
     getRandomColor() {
@@ -87,5 +105,11 @@ CharSelect.prototype = {
             color += letters[Math.floor(Math.random() * 16)];
         }
         return color;
+    },
+    
+    getRandomInt(min, max) {
+        min = Math.ceil(min);
+        max = Math.floor(max);
+        return Math.floor(Math.random() * (max - min)) + min;
     }
 }
