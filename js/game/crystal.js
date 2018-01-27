@@ -47,18 +47,13 @@ Crystal.prototype = {
         context.rotate(this.angle + Math.PI * 0.5);
         context.globalAlpha = this.getStrength();
         
-//        context.fillStyle = this.getColor();
-//        context.beginPath();
-//        context.moveTo(0, 0);
-//        context.lineTo(-5, -5);
-//        context.lineTo(0, -10);
-//        context.lineTo(5, -5);
-//        context.closePath();
-        
-        var imageObj = new Image();
-        context.imageSmoothingEnabled = false;
-        imageObj.src = './img/gems/gems_' + this.getColor() + '.png';
-        context.drawImage(imageObj, 0, -10, 10, 10);
+        context.fillStyle = this.getColor();
+        context.beginPath();
+        context.moveTo(0, 0);
+        context.lineTo(-5, -5);
+        context.lineTo(0, -10);
+        context.lineTo(5, -5);
+        context.closePath();
         
         
         context.fill();
