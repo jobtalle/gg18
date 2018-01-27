@@ -79,6 +79,10 @@ Player.prototype = {
         context.restore();
     },
     
+    pickup(crystal) {
+        this.crystal = crystal;
+    },
+    
     enterBeamer(beamer) {
         this.beamer = beamer;
         this.state = "beaming";
@@ -133,6 +137,10 @@ Player.prototype = {
     
     onActivatePressed() {
         switch(this.state) {
+            case "walking":
+                if(this.crystal == null)
+                    this.onTryPickup(this);
+                break;
             case "beaming":
                 this.beamer.toggle();
                 break;
@@ -140,10 +148,6 @@ Player.prototype = {
     },
     
     onActivateReleased() {
-        switch(this.state) {
-            case "beaming":
-                
-                break;
-        }
+        
     }
 }

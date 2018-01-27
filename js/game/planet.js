@@ -85,6 +85,7 @@ Planet.prototype = {
             const player = players[i];
             
             player.onTryEnter = this.tryEnter.bind(this);
+            player.onTryPickup = this.tryPickup.bind(this);
         }
     },
     
@@ -99,6 +100,27 @@ Planet.prototype = {
                 
                 break;
             }
+        }
+    },
+    
+    tryPickup(player) {
+        const playerPositionNormalized = player.position.normalize();
+        var crystalAngle = 1;
+        var nearestCrystal = null;
+        
+        for(var i = 0; i < this.crystals.length; ++i) {
+            const crystal = this.crystals[i];
+            const angle = Math.acos(crystal.position.normalize().dot(playerPositionNormalized));
+            
+            if(angle < this.interactionRadius && angle < crystalAngle) {
+                crystalAngle = angle;
+                nearestCrystal = crystal;
+            }
+        }
+        
+        if(nearestCrystal != null) {
+            player.pickup(nearestCrystal);
+            this.crystals.splice(this.crystals.indexOf(nearestCrystal), 1);
         }
     },
     
