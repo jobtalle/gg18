@@ -32,12 +32,12 @@ Resources.prototype = {
         
         this.biemer_base = new Sprite("img/biemer/biemer_base.png", 2,9,1);
         this.biemer_blue = new Sprite("img/biemer/biemer_blue.png", 7,6,1);
-        this.biemer_empty = new Sprite("img/biemer/biemer_empty.png", 0,0,1);
-        this.biemer_green = new Sprite("img/biemer/biemer_green.png", 0,0,1);
-        this.biemer_orange = new Sprite("img/biemer/biemer_orange.png", 0,0,1);
-        this.biemer_purple = new Sprite("img/biemer/biemer_purple.png", 0,0,1);
-        this.biemer_red = new Sprite("img/biemer/biemer_red.png", 0,0,1);
-        this.biemer_yellow = new Sprite("img/biemer/biemer_yellow.png", 0,0,1);
+        this.biemer_empty = new Sprite("img/biemer/biemer_empty.png", 7,6,1);
+        this.biemer_green = new Sprite("img/biemer/biemer_green.png", 7,6,1);
+        this.biemer_orange = new Sprite("img/biemer/biemer_orange.png", 7,6,1);
+        this.biemer_purple = new Sprite("img/biemer/biemer_purple.png", 7,6,1);
+        this.biemer_red = new Sprite("img/biemer/biemer_red.png", 7,6,1);
+        this.biemer_yellow = new Sprite("img/biemer/biemer_yellow.png", 7,6,1);
         
         this.biemer_spark = new Sprite("img/biemer/biemer_spark.png", 0,0,11, 10);
         
