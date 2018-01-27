@@ -12,7 +12,7 @@ function UfoMoverOrbit(orbits, height) {
 
 UfoMoverOrbit.prototype = {
     INCOMING_RADIANS: 1.4,
-    LEAVE_SPEED: 100,
+    LEAVE_SPEED: 170,
     
     update(timeStep) {
         const radius = this.getRadius();

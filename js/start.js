@@ -2,7 +2,6 @@ function start() {
     interface = new Interface();
     renderer = new Renderer();
     gamepad = new Gamepad();
-    controllerFactory = new playerControllerFactory(gamepad);
     
     interface.showStartScreen();
     
