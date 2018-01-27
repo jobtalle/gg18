@@ -7,7 +7,7 @@ function Beamer(angle) {
     
     this.place(angle);
     this.beamerBase = resources.biemer_base.instantiate();
-    this.beamerDish = resources.biemer_blue.instantiate();
+    this.beamerDish = resources.biemer_empty.instantiate();
 }
 
 Beamer.prototype = {
@@ -39,6 +39,7 @@ Beamer.prototype = {
                 this.crystal.drain(timeStep);
                                
                 if(this.crystal.life == 0) {
+                    this.beamerDish = resources.biemer_empty.instantiate();
                     this.crystal = null;
                     
                     if(this.beams.length > 0 && !this.beams[this.beams.length - 1].cut)
@@ -150,6 +151,41 @@ Beamer.prototype = {
         }
         
         this.crystal = crystal;
+
+        if(this.crystal.day)
+        {
+            switch( this.crystal.essence.color)
+            {
+                case "red":
+                this.beamerDish = resources.biemer_red.instantiate();
+                break;
+                
+                case "yellow":
+                this.beamerDish = resources.biemer_yellow.instantiate();
+                break;
+
+                case "blue":
+                this.beamerDish = resources.biemer_blue.instantiate();
+                break;
+            }
+        }
+        else
+        {
+            switch( this.crystal.essence.color)
+            {
+                case "red":
+                this.beamerDish = resources.biemer_green.instantiate();
+                break;
+                
+                case "yellow":
+                this.beamerDish = resources.biemer_purple.instantiate();
+                break;
+
+                case "blue":
+                this.beamerDish = resources.biemer_orange.instantiate();
+                break;
+            }
+        }
         
         if(this.beams.length > 0 && !this.beams[this.beams.length - 1].cut)
             this.beams[this.beams.length - 1].setCrystal(this.crystal);
@@ -159,6 +195,7 @@ Beamer.prototype = {
         if(this.beams.length > 0 && !this.beams[this.beams.length - 1].cut)
             this.beams[this.beams.length - 1].stop();
         
+        this.beamerDish = resources.biemer_empty.instantiate();
         this.crystal = null;
     }
 }
