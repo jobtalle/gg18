@@ -7,6 +7,7 @@ function Planet(players) {
     this.createScenery();
     this.createBeamers();
     this.createCrystals();
+    this.createUfos();
     this.calculateInteractionRadius();
 }
 
@@ -25,13 +26,16 @@ Planet.prototype = {
     ATMOSPHERE_START_ANGLE: 2.35619449019,
     ATMOSPHERE_END_ANGLE: -0.78539816339,
     INTERACTION_DISTANCE: 16,
-    CRYSTAL_COUNT: 8,
+    CRYSTAL_COUNT: 12,
     
     update(timeStep) {
         this.angle += this.ROTATION_SPEED * timeStep;
         
         if(this.angle > Math.PI * 2)
             this.angle -= Math.PI * 2;
+        
+        for(var i = 0; i < this.ufos.length; ++i)
+            this.ufos[i].update(timeStep);
         
         for(var i = 0; i < this.crystals.length; ++i)
             this.crystals[i].update(timeStep);
@@ -41,6 +45,8 @@ Planet.prototype = {
         
         for(var i = 0; i < this.beamers.length; ++i)
             this.beamers[i].update(timeStep);
+        
+        this.checkUfos();
     },
     
     render(context) {
@@ -74,6 +80,37 @@ Planet.prototype = {
         
         for(var i = 0; i < this.players.length; ++i)
             this.players[i].render(context);
+        
+        for(var i = 0; i < this.ufos.length; ++i)
+            this.ufos[i].render(context);
+        
+        context.restore();
+    },
+    
+    getBeams() {
+        var beams = [];
+        
+        for(var i = 0; i < this.beamers.length; ++i)
+            for(var j = 0; j < this.beamers[i].beams.length; ++j)
+                beams.push(this.beamers[i].beams[j]);
+        
+        return beams;
+    },
+    
+    checkUfos() {
+        const beams = this.getBeams();
+        
+        for(var i = 0; i < this.ufos.length; ++i) {
+            const ufo = this.ufos[i];
+            
+            if(ufo.finished)
+                continue;
+            
+            const hitBeams = ufo.findBeams(beams);
+            
+            if(ufo.match(hitBeams))
+                ufo.leave();
+        }
     },
     
     calculateInteractionRadius() {
@@ -106,13 +143,41 @@ Planet.prototype = {
     },
     
     tryPickup(player) {
-        const playerPositionNormalized = player.position.normalize();
+        var nearestCrystal = this.findNearestCrystal(player.position);
+        
+        if(nearestCrystal != null) {
+            player.pickup(nearestCrystal);
+            this.crystals.splice(this.crystals.indexOf(nearestCrystal), 1);
+        }
+        else {
+            const beamer = this.findNearestBeamer(player.position);
+            
+            if(beamer != null && beamer.crystal != null) {
+                player.pickup(beamer.crystal);
+                beamer.dropCrystal();
+            }
+        }
+    },
+    
+    tryDrop(player) {
+        const beamer = this.findNearestBeamer(player.position);
+        
+        if(beamer == null)
+            this.crystals.push(player.crystal);
+        else
+            beamer.putCrystal(player.crystal, this);
+        
+        player.drop();
+    },
+    
+    findNearestCrystal(vector) {
+        const normalized = vector.normalize();
         var crystalAngle = 1;
         var nearestCrystal = null;
         
         for(var i = 0; i < this.crystals.length; ++i) {
             const crystal = this.crystals[i];
-            const angle = Math.acos(crystal.position.normalize().dot(playerPositionNormalized));
+            const angle = Math.acos(crystal.position.normalize().dot(normalized));
             
             if(angle < this.interactionRadius && angle < crystalAngle) {
                 crystalAngle = angle;
@@ -120,25 +185,17 @@ Planet.prototype = {
             }
         }
         
-        if(nearestCrystal != null) {
-            player.pickup(nearestCrystal);
-            this.crystals.splice(this.crystals.indexOf(nearestCrystal), 1);
-        }
-        else {
-            for(var i = 0; i < this.beamers.length; ++i) {
-                const beamer = this.beamers[i];
-                
-                if(beamer.crystal != null && Math.acos(beamer.positionNormalized.dot(playerPositionNormalized)) < this.interactionRadius) {
-                    player.pickup(beamer.crystal);
-                    beamer.dropCrystal();
-                }
-            }
-        }
+        return nearestCrystal;
     },
     
-    tryDrop(player) {
-        this.crystals.push(player.crystal);
-        player.drop();
+    findNearestBeamer(vector) {
+        const normalized = vector.normalize();
+        
+        for(var i = 0; i < this.beamers.length; ++i)
+            if(Math.acos(this.beamers[i].positionNormalized.dot(normalized)) < this.interactionRadius)
+                return this.beamers[i];
+            
+        return null;
     },
     
     createScenery() {
@@ -173,21 +230,41 @@ Planet.prototype = {
                     break;
             }
             
-            this.crystals.push(new Crystal(Math.random() * 2 * Math.PI, color));
+            this.crystals.push(new Crystal(Math.random() * 2 * Math.PI, new CrystalEssence(color)));
         }
+    },
+        
+    createUfos() {
+        this.ufos = [];
+        this.addUfo(new Ufo([new CrystalEssence("red")], new UfoMoverOrbit(2, this.RADIUS_ORBIT)));
+    },
+    
+    addUfo(ufo) {
+        ufo.addLeaveListener(this.removeUfo.bind(this));
+        
+        this.ufos.push(ufo);
+    },
+    
+    removeUfo(ufo) {
+        console.log("Remove ufo");
+        this.ufos.splice(this.ufos.indexOf(ufo), 1);
     },
 
     renderAtmosphere(context)
     {
         context.save();
 
-        grd=context.createRadialGradient(0,0,this.RADIUS+10,0,0,130);
+        grd=context.createRadialGradient(0,0,this.RADIUS+10,0,0,140);
         grd.addColorStop(0,"#00000000");
         grd.addColorStop(1, this.ATMOSPHERE_COLOR);
 
         context.beginPath();
         context.fillStyle = grd;
         context.arc(0,0, this.RADIUS * this.ATMOSPHERE_SIZE_MODIFIER,  this.ATMOSPHERE_START_ANGLE, this.ATMOSPHERE_END_ANGLE);
+        
+        context.shadowBlur = 100;
+        context.shadowColor = this.ATMOSPHERE_COLOR;
+        
         context.fill();
         context.restore();
     },

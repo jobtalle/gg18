@@ -14,6 +14,7 @@ function Player(controller, angle) {
 }
 
 Player.prototype = {
+    INDEX: -1,
     COLOR: "#3366ff",
     SPEED: 140,
     ACCELERATION: 900,
@@ -62,7 +63,6 @@ Player.prototype = {
                     this.crystal.carry(this.angle, this.CARRY_HEIGHT);
                 break;
             case "beaming":
-                console.log(this.speedChange);
                 if(this.speedChange != 0)
                     this.beamer.turn(this.speedChange, timeStep);
                 break;

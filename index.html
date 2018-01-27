@@ -16,16 +16,31 @@
         <script src="js/game/ufo.js"></script>
         <script src="js/game/beamer.js"></script>
         <script src="js/game/space.js"></script>
-        <script src="js/game/playerControllerFactory.js"></script>
         <script src="js/game/playerController.js"></script>
         <script src="js/game/scenery.js"></script>
         <script src="js/game/crystal.js"></script>
         <script src="js/game/ufoDispatcher.js"></script>
+        <script src="js/game/ufoMoverOrbit.js"></script>
         <script src="js/game/beam.js"></script>
+        <script src="js/game/crystalEssence.js"></script>
+        <script src="js/interface.js"></script>
+        <script src="js/tonysFancyfy/fancyfy.js"></script>
     </head>
     <body>
         
-        <button id="spawnBtn" type="button" onclick="spawnPopup()">Spawn pop-up!!</button>
+        <button id="charSel" type="button" onclick="spawnCharacterSelection(3)">Spawn character select screen</button>
+        
+        <div id="startscreen" style="display: none">
+            <div id="header">
+                PRESS ANY BUTTON TO JOIN!
+            </div>
+            <table id="selectionController">
+                <tr id="characterHeaders">
+                </tr>
+                <tr id="characterPortraits">
+                </tr>
+            </table>
+        </div>
         
         <div id="view">
             <canvas id="renderer"></canvas>
@@ -34,42 +49,11 @@
                 </div>
             </div>
         </div>
+<!--
+        <audio controls autoplay loop>
+            <source src="audio/Ufo%20Theme%20nummer%202.ogg" type="audio/ogg">
+        </audio>
+-->
         <script>start();</script>
-        
-        <script>
-        function spawnPopup() {
-            var element = document.getElementById("popup");
-            var rnd = getRandomInt(200, 6000);
-            var randomCol = getRandomColor();
-            
-            if (element.classList.contains("popup"))
-                element.classList.remove("popup");
-            
-            void element.offsetWidth;
-            
-            element.style.border = '2px solid ' + randomCol;
-            element.style.textShadow = '2px 2px ' + randomCol;
-            element.style.boxShadow = '0px 0px 25px ' + randomCol;
-            
-            element.classList.add("popup");
-            element.innerHTML = rnd;
-        }
-            
-        function getRandomInt(min, max) {
-            min = Math.ceil(min);
-            max = Math.floor(max);
-            return Math.floor(Math.random() * (max - min)) + min;
-        }
-            
-        function getRandomColor() {
-            var letters = '0123456789ABCDEF';
-            var color = '#';
-            for (var i = 0; i < 6; i++) 
-            {
-                color += letters[Math.floor(Math.random() * 16)];
-            }
-            return color;
-        }
-        </script>
     </body>
 </html>

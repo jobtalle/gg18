@@ -1,7 +1,6 @@
 function Beamer(angle) {
     this.angle = angle;
     this.aim = 0;
-    this.beamSize = 0.5;
     this.beams = [];
     this.crystal = null;
     
@@ -24,6 +23,21 @@ Beamer.prototype = {
             
             if(beam.isInvisible())
                 this.beams.splice(this.beams.indexOf(beam), 1);
+        }
+        
+        if(this.crystal != null) {
+            this.crystal.update(timeStep);
+            
+            if(this.beams.length > 0 && !this.beams[this.beams.length - 1].cut) {
+                this.crystal.drain(timeStep);
+                               
+                if(this.crystal.life == 0) {
+                    this.crystal = null;
+                    
+                    if(this.beams.length > 0 && !this.beams[this.beams.length - 1].cut)
+                        this.beams[this.beams.length - 1].stop();
+                }
+            }
         }
     },
     
@@ -72,16 +86,14 @@ Beamer.prototype = {
         if(this.crystal == null)
             return;
         
-        if(this.beams.length > 0 && !this.beams[this.beams.length - 1].cut) {
+        if(this.beams.length > 0 && !this.beams[this.beams.length - 1].cut)
             this.beams[this.beams.length - 1].stop();
-        }
         else {
             this.beams.push(new Beam(
                 this.angle,
                 this.aim,
                 this.crystal,
-                Planet.prototype.RADIUS + this.DISH_HEIGHT,
-                this.beamSize));
+                Planet.prototype.RADIUS + this.DISH_HEIGHT));
         }
     },
     

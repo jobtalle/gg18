@@ -2,10 +2,13 @@ function Game(renderer, players) {
     this.renderer = renderer;
     this.space = new Space();
     this.planet = new Planet(players);
+<<<<<<< HEAD
     
     this.ufos = [];
     this.addUfo(new Ufo());
     this.dispatcher = new UfoDispatcher();
+=======
+>>>>>>> cae3b5a6519cdb1415bda91c0ba3a575af7c1025
 }
 
 Game.prototype = {
@@ -38,10 +41,13 @@ Game.prototype = {
     update(timeStep) {
         this.space.update(timeStep);
         this.planet.update(timeStep);
+<<<<<<< HEAD
         this.dispatcher.update(timeStep);
         
         for(var i = 0; i < this.ufos.length; ++i)
             this.ufos[i].update(timeStep);
+=======
+>>>>>>> cae3b5a6519cdb1415bda91c0ba3a575af7c1025
     },
     
     renderBackground(context) {
@@ -56,27 +62,23 @@ Game.prototype = {
         context.scale(this.SCALE, this.SCALE);
     },
     
-    renderGame(context) {
-        this.planet.render(context);
+    translateContext(context, offset) {
+        context.save();
         
-        for(var i = 0; i < this.ufos.length; ++i)
-            this.ufos[i].render(context);
+        context.translate(
+            offset.x,
+            offset.y
+        );
         
         context.restore();
+    },
+    
+    renderGame(context) {
+        this.planet.render(context);
     },
     
     render(context) {
         this.renderBackground(context);
         this.renderGame(context);
-    },
-    
-    addUfo(ufo) {
-        ufo.addLeaveListener(this.removeUfo.bind(this));
-        
-        this.ufos.push(ufo);
-    },
-    
-    removeUfo(ufo) {
-        this.ufos.splice(this.ufos.indexOf(ufo), 1);
     }
 }
