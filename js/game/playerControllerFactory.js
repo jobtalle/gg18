@@ -31,6 +31,7 @@ playerControllerFactory.prototype = {
             escapeKey: "KeyU"
         }
     ],
+    
     availableKeyboardSchemes:null,
     availableControllerIds:[],
     gamepad:null,
@@ -63,6 +64,7 @@ playerControllerFactory.prototype = {
         }
         return null;
     },
+    
     getPlayerControllerController(id)
     {
         var index = this.availableControllerIds.indexOf(id);
@@ -73,6 +75,7 @@ playerControllerFactory.prototype = {
         }
         return null;
     },
+    
     releaseControllerId(id)
     {
         if(!this.availableControllerIds.includes(id))

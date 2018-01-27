@@ -29,14 +29,6 @@ function PlayerController(gamepad, controllerId)
             {
                 var vector = new Vector(e.value[0], e.value[1]);
                 this.targetAngle = this.getAngle(vector);
-                // if(this.onAxis != null)
-                // {
-                //     this.onAxis(vector);
-                // }
-                // if(this.onPlayerMove != null)
-                // {
-                //     this.onPlayerMove(this.getPlayerDirection(vector));
-                // }
             }
         });
     }
@@ -113,17 +105,6 @@ PlayerController.prototype = {
     {
         switch(e.code)
         {
-            // case this.leftKey:
-            // this.keyboardPos.x = 0;
-            // case this.rightKey:
-            // this.keyboardPos.x = 0;
-            //     break;
-            // case this.upKey:
-            // this.keyboardPos.y = 0;
-            //     break;
-            // case this.downKey:
-            // this.keyboardPos.y = 0;
-            //     break;
             case this.enterKey:
                 if(this.onEnterReleased != null)
                     this.onEnterReleased();
@@ -164,6 +145,7 @@ PlayerController.prototype = {
         playerAngle = Math.atan2(this.playerPos.x, this.playerPos.y);
         return Math.sign(deltaAngle(angle, playerAngle));
     },
+    
     getPlayerAngleDifference(vector)
     {
         angle = Math.atan2(vector.x, vector.y);
@@ -171,6 +153,7 @@ PlayerController.prototype = {
         playerAngle = Math.atan2(this.playerPos.x, this.playerPos.y);
         return deltaAngle(angle, playerAngle);
     },
+    
     getAngle(vector)
     {
         angle = Math.atan2(vector.x, vector.y);

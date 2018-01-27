@@ -123,11 +123,6 @@ Player.prototype = {
     },
     
     listen(controller) {
-        // controller.onLeftPressed = this.onLeftPressed.bind(this);
-        // controller.onLeftReleased = this.onLeftReleased.bind(this);
-        // controller.onRightPressed = this.onRightPressed.bind(this);
-        // controller.onRightReleased = this.onRightReleased.bind(this);
-        
         controller.onEnterPressed = this.onEnterPressed.bind(this);
         controller.onActivatePressed = this.onActivatePressed.bind(this);
         controller.onActivateReleased = this.onActivateReleased.bind(this);
