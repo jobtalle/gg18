@@ -45,6 +45,8 @@ Planet.prototype = {
         
         for(var i = 0; i < this.beamers.length; ++i)
             this.beamers[i].update(timeStep);
+        
+        this.checkUfos();
     },
     
     render(context) {
@@ -85,9 +87,29 @@ Planet.prototype = {
         context.restore();
     },
     
+    getBeams() {
+        var beams = [];
+        
+        for(var i = 0; i < this.beamers.length; ++i)
+            for(var j = 0; j < this.beamers[i].beams.length; ++j)
+                beams.push(this.beamers[i].beams[j]);
+        
+        return beams;
+    },
+    
     checkUfos() {
+        const beams = this.getBeams();
+        
         for(var i = 0; i < this.ufos.length; ++i) {
+            const ufo = this.ufos[i];
             
+            if(ufo.finished)
+                continue;
+            
+            const hitBeams = ufo.findBeams(beams);
+            
+            if(ufo.match(hitBeams))
+                ufo.leave();
         }
     },
     
@@ -208,13 +230,13 @@ Planet.prototype = {
                     break;
             }
             
-            this.crystals.push(new Crystal(Math.random() * 2 * Math.PI, color));
+            this.crystals.push(new Crystal(Math.random() * 2 * Math.PI, new CrystalEssence(color)));
         }
     },
         
     createUfos() {
         this.ufos = [];
-        this.addUfo(new Ufo());
+        this.addUfo(new Ufo([new CrystalEssence("red")]));
     },
     
     addUfo(ufo) {

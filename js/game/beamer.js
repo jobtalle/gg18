@@ -31,8 +31,12 @@ Beamer.prototype = {
             if(this.beams.length > 0 && !this.beams[this.beams.length - 1].cut) {
                 this.crystal.drain(timeStep);
                                
-                if(this.crystal.life == 0)
+                if(this.crystal.life == 0) {
                     this.crystal = null;
+                    
+                    if(this.beams.length > 0 && !this.beams[this.beams.length - 1].cut)
+                        this.beams[this.beams.length - 1].stop();
+                }
             }
         }
     },
@@ -82,9 +86,8 @@ Beamer.prototype = {
         if(this.crystal == null)
             return;
         
-        if(this.beams.length > 0 && !this.beams[this.beams.length - 1].cut) {
+        if(this.beams.length > 0 && !this.beams[this.beams.length - 1].cut)
             this.beams[this.beams.length - 1].stop();
-        }
         else {
             this.beams.push(new Beam(
                 this.angle,

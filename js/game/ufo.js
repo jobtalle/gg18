@@ -1,5 +1,5 @@
-function Ufo(crystals) {
-    this.crystals = crystals;
+function Ufo(essence) {
+    this.essence = essence;
     this.initialAngle = Math.random() * Math.PI * 2;
     this.angle = 0;
     this.orbit = 0;
@@ -7,6 +7,9 @@ function Ufo(crystals) {
     this.speed = this.getRadialSpeed(300);
     this.orbitHeight = Planet.prototype.RADIUS_ORBIT;
     this.position = new Vector();
+    this.finished = false;
+    
+    this.storeColors();
 }
 
 Ufo.prototype = {
@@ -40,7 +43,7 @@ Ufo.prototype = {
         context.lineTo(8, 0);
         context.stroke();
         
-        context.fillStyle = this.COLOR;
+        context.fillStyle = this.essence[0].getColor();
         context.beginPath();
         context.arc(0, 0, 4, 0, Math.PI * 2);
         context.fill();
@@ -48,13 +51,53 @@ Ufo.prototype = {
         context.restore();
     },
     
+    storeColors() {
+        this.colors = [];
+        
+        for(var i = 0; i < this.essence; ++i)
+            this.colors.push(this.essence.color);
+    },
+    
+    findBeams(beams) {
+        var hitBeams = [];
+        
+        for(var i = 0; i < beams.length; ++i)
+            if(this.isInBeam(beams[i]))
+                hitBeams.push(beams[i]);
+        
+        return hitBeams;
+    },
+    
     isInBeam(beam) {
         const delta = this.position.subtract(beam.position).normalize();
         
-        return delta.dot(Vector.prototype.fromAngle(beam.getAngle())) < beam.getAngle();
+        return Math.acos(delta.dot(Vector.prototype.fromAngle(beam.angle))) < beam.getAngle() * 0.5;
     },
     
-    destroy() {
+    match(beams) {
+        if(beams.length == 0)
+            return false;
+        
+        var matches = new Array(this.colors.length);
+        
+        for(var i = 0; i < this.colors.length; ++i)
+            matches[i] = false;
+        
+        for(var i = 0; i < beams.length; ++i) {
+            const index = this.colors.indexOf(beams[i].crystal.essence.color);
+            
+            if(index != -1)
+                matches[index] = true;
+        }
+        
+        for(var i = 0; i < this.colors.length; ++i)
+            if(!matches[i]) return false;
+        
+        return true;
+    },
+    
+    leave() {
+        this.finished = true;
         console.log("Ufo destroyed");
     },
     

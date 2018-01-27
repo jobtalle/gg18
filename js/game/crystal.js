@@ -1,6 +1,6 @@
-function Crystal(angle, color) {
+function Crystal(angle, essence) {
     this.angle = angle;
-    this.color = color;
+    this.essence = essence;
     this.life = this.LIFETIME;
     
     this.position = new Vector(
@@ -26,6 +26,10 @@ Crystal.prototype = {
         return Math.sqrt(this.life / this.LIFETIME);
     },
     
+    getColor() {
+        return this.essence.getColor();
+    },
+    
     carry(angle, height) {
         this.angle = angle;
         this.position.x = Math.cos(angle) * (Planet.prototype.RADIUS + height);
@@ -35,21 +39,6 @@ Crystal.prototype = {
     drop(angle) {
         this.position.x = Math.cos(angle) * Planet.prototype.RADIUS;
         this.position.y = Math.sin(angle) * Planet.prototype.RADIUS;
-    },
-    
-    getColor() {
-        switch(this.color) {
-            default:
-            case "red":
-                return "rgb(255, 100, 100)";
-                break;
-            case "green":
-                return "rgb(100, 255, 100)";
-                break;
-            case "blue":
-                return "rgb(100, 100, 255)";
-                break;
-        }
     },
     
     render(context) {

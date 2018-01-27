@@ -62,7 +62,7 @@ Beam.prototype = {
     },
     
     isInvisible() {
-        return this.innerRadius > Planet.prototype.RADIUS_INCOMING;
+        return this.crystal.getStrength() == 0 || this.innerRadius > Planet.prototype.RADIUS_INCOMING;
     },
     
     rotate(angle) {
