@@ -22,17 +22,20 @@
         <script src="js/game/crystal.js"></script>
         <script src="js/game/ufoDispatcher.js"></script>
         <script src="js/game/beam.js"></script>
+        <script src="js/game/popup.js"></script>
         <script src="js/game/crystalEssence.js"></script>
         <script src="js/interface.js"></script>
         <script src="js/tonysFancyfy/fancyfy.js"></script>
     </head>
     <body>
         
-        <button id="charSel" type="button" onclick="spawnCharacterSelection(3)">Spawn character select screen</button>
+        <button id="charSel" type="button" onclick="spawnCharacterSelection(4)">Spawn character select screen</button>
+        
+<!--        <button id="charSel" type="button" onclick="new Popup(-1, -1, 666)">Doe spawn!</button>-->
         
         <div id="startscreen" style="display: none">
             <div id="header">
-                PRESS ANY BUTTON TO JOIN!
+                PRESS ANY BUTTON TO SKIP/JOIN!
             </div>
             <table id="selectionController">
                 <tr id="characterHeaders">
@@ -45,7 +48,7 @@
         <div id="view">
             <canvas id="renderer"></canvas>
             <div id="userinterface">
-                <div id="popup">
+                <div id="popupParent">
                 </div>
             </div>
         </div>

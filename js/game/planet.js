@@ -57,6 +57,7 @@ Planet.prototype = {
         
         context.beginPath();
         context.arc(0, 0, this.RADIUS, 0, Math.PI * 2);
+        
         context.fill();
         
         context.restore();
@@ -231,7 +232,7 @@ Planet.prototype = {
     {
         context.save();
 
-        grd=context.createRadialGradient(0,0,this.RADIUS+10,0,0,140);
+        grd=context.createRadialGradient(0,0,this.RADIUS+20,0,0,122);
         grd.addColorStop(0,"#00000000");
         grd.addColorStop(1, this.ATMOSPHERE_COLOR);
 
@@ -239,7 +240,7 @@ Planet.prototype = {
         context.fillStyle = grd;
         context.arc(0,0, this.RADIUS * this.ATMOSPHERE_SIZE_MODIFIER,  this.ATMOSPHERE_START_ANGLE, this.ATMOSPHERE_END_ANGLE);
         
-        context.shadowBlur = 100;
+        context.shadowBlur = 40;
         context.shadowColor = this.ATMOSPHERE_COLOR;
         
         context.fill();

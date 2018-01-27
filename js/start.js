@@ -4,7 +4,7 @@ function start() {
     gamepad = new Gamepad();
     controllerFactory = new playerControllerFactory(gamepad);
     
-    interface.showStartScreen();
+    //interface.showStartScreen();
     
     renderer.resize();
     interface.startGame();

@@ -34,16 +34,21 @@ Ufo.prototype = {
         context.translate(this.position.x, this.position.y);
         context.rotate(this.initialAngle + this.angle + Math.PI * 0.5);
         
-        context.strokeStyle = this.COLOR;
-        context.beginPath();
-        context.moveTo(-8, 0);
-        context.lineTo(8, 0);
-        context.stroke();
+        //context.strokeStyle = this.COLOR;
+        //context.beginPath();
+        //context.moveTo(-8, 0);
+        //context.lineTo(8, 0);
+        //context.stroke();
         
         context.fillStyle = this.COLOR;
-        context.beginPath();
-        context.arc(0, 0, 4, 0, Math.PI * 2);
-        context.fill();
+        //context.beginPath();
+        //context.arc(0, 0, 4, 0, Math.PI * 2);
+        //context.fill();
+        
+        var imageObj = new Image();
+        context.imageSmoothingEnabled = false;
+        imageObj.src = './img/enemies/ufo_half_2.png';
+        context.drawImage(imageObj, 0, 0, 32, 32);
         
         context.restore();
     },

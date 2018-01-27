@@ -41,13 +41,16 @@ Crystal.prototype = {
         switch(this.color) {
             default:
             case "red":
-                return "rgb(255, 100, 100)";
+                //return "rgb(255, 100, 100)";
+                return "red";
                 break;
             case "green":
-                return "rgb(100, 255, 100)";
+                //return "rgb(100, 255, 100)";
+                return "green";
                 break;
             case "blue":
-                return "rgb(100, 100, 255)";
+                //return "rgb(100, 100, 255)";
+                return "blue";
                 break;
         }
     },
@@ -58,16 +61,19 @@ Crystal.prototype = {
         context.rotate(this.angle + Math.PI * 0.5);
         context.globalAlpha = this.getStrength();
         
-        context.fillStyle = this.getColor();
-        context.beginPath();
-        context.moveTo(0, 0);
-        context.lineTo(-5, -5);
-        context.lineTo(0, -10);
-        context.lineTo(5, -5);
-        context.closePath();
+//        context.fillStyle = this.getColor();
+//        context.beginPath();
+//        context.moveTo(0, 0);
+//        context.lineTo(-5, -5);
+//        context.lineTo(0, -10);
+//        context.lineTo(5, -5);
+//        context.closePath();
         
-        context.shadowBlur = 25;
-        context.shadowColor = this.getColor();
+        var imageObj = new Image();
+        context.imageSmoothingEnabled = false;
+        imageObj.src = './img/gems/gems_' + this.getColor() + '.png';
+        context.drawImage(imageObj, 0, -10, 10, 10);
+        
         
         context.fill();
         
