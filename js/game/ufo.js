@@ -1,5 +1,5 @@
-function Ufo(essence, mover) {
-    this.essence = essence;
+function Ufo(essences, mover) {
+    this.essences = essences;
     this.mover = mover;
     this.finished = false;
     
@@ -24,7 +24,7 @@ Ufo.prototype = {
         context.lineTo(8, 0);
         context.stroke();
         
-        context.fillStyle = this.essence[0].getColor();
+        context.fillStyle = this.essences[0].getColor();
         context.beginPath();
         context.arc(0, 0, 4, 0, Math.PI * 2);
         context.fill();
@@ -35,8 +35,8 @@ Ufo.prototype = {
     storeColors() {
         this.colors = [];
         
-        for(var i = 0; i < this.essence; ++i)
-            this.colors.push(this.essence.color);
+        for(var i = 0; i < this.essences.length; ++i)
+            this.colors.push(this.essences[i].color);
     },
     
     findBeams(beams) {
