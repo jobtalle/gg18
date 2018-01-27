@@ -11,6 +11,13 @@ function Player(controller, angle) {
     this.crystal = null;
     
     this.listen(controller);
+
+    this.idleSprite = resources.base_1_idle.instantiate();
+    this.walkingSprite = resources.base_1_running.instantiate();
+    this.beamingSprite = resources.base_1_shooting.instantiate();
+    this.idleArmsSprite = resources.base_1_idle_arms.instantiate();
+    this.walkingArmsSprite = resources.base_1_running_arms.instantiate();
+
 }
 
 Player.prototype = {
@@ -28,6 +35,16 @@ Player.prototype = {
     
     update(timeStep) {
         this.controller.update();
+        this.idleSprite.update(timeStep);
+        this.walkingSprite.update(timeStep);
+        this.idleArmsSprite.update(timeStep);
+        this.walkingArmsSprite.update(timeStep);
+        this.beamingSprite.update(timeStep);
+
+        if(this.speed != 0)
+            this.state = "walking";
+        else
+            this.state = "standing";
 
         switch(this.state) {
             case "walking":
@@ -75,16 +92,45 @@ Player.prototype = {
         context.save();
         context.translate(this.position.x, this.position.y);
         context.rotate(this.angle + Math.PI * 0.5);
-        
-        if(this.state == "beaming")
-            context.rotate(Math.PI);
-        
+
         context.fillStyle = this.COLOR;
         context.beginPath();
         context.moveTo(0, 0);
         context.lineTo(-3, -10);
         context.lineTo(3, -10);
         context.fill();
+
+        if(this.state == "walking")
+        {
+            if(this.crystal != null)
+            {
+                this.walkingArmsSprite.draw(
+                context, 0,0,0);
+            }
+            else
+                this.walkingSprite.draw(
+                context, 0,0,0);
+        }
+        else if(this.state == "beaming")
+        {
+            this.beamingSprite.draw(
+                context, 0,0,0);
+
+        }
+        else
+        {
+            if(this.crystal != null)
+            {
+                this.idleArmsSprite.draw(
+                    context, 0,0,0);
+            }
+            else
+            this.idleSprite.draw(
+                context, 0,0,0);
+        }
+        
+        if(this.state == "beaming")
+            context.rotate(Math.PI);
         
         context.restore();
         

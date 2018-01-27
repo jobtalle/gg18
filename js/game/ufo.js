@@ -2,7 +2,10 @@ function Ufo(essences, mover) {
     this.essences = essences;
     this.mover = mover;
     this.finished = false;
-    this.sprite = resources.ufo_lander_2.instantiate();
+    this.sprite = resources.ufo_constant_2.instantiate();
+    this.engineSprite = resources.ufo_constant_engine.instantiate();
+    this.lightSprite1 = resources.ufo_light.instantiate();
+    this.lightSprite2 = resources.ufo_light.instantiate();
     
     this.storeColors();
 }
@@ -11,6 +14,9 @@ Ufo.prototype = {
     update(timeStep) {
         this.mover.update(timeStep);
         this.sprite.update(timeStep);
+        this.engineSprite.update(timeStep);
+        this.lightSprite1.update(timeStep);
+        this.lightSprite2.update(timeStep);
     },
     
     render(context) {
@@ -22,11 +28,26 @@ Ufo.prototype = {
         
         context.fillText(colorTexts, this.mover.position.x + 16, this.mover.position.y);
         
-        this.sprite.draw(
-            context,
+        context.save();
+
+        context.translate(
             this.mover.position.x,
-            this.mover.position.y,
-            this.mover.getAngle() + Math.PI * 0.5);
+            this.mover.position.y);
+        context.rotate(this.mover.getAngle() + Math.PI * 0.5);
+
+        this.sprite.draw(
+            context,0,0,
+            0);
+
+        this.engineSprite.draw(
+            context, 0,0,0);
+
+        this.lightSprite1.draw(
+            context,-9,0,0);
+            this.lightSprite2.draw(
+                context,7,0,0);
+
+        context.restore();
     },
     
     storeColors() {
