@@ -17,6 +17,7 @@ Player.prototype = {
     SPEED: 140,
     ACCELERATION: 900,
     FRICTION: 1000,
+    CARRY_HEIGHT: 12,
     
     rotate(angle) {
         this.angle += angle;
@@ -25,31 +26,34 @@ Player.prototype = {
     update(timeStep) {
         switch(this.state) {
             case "walking":
-            if(this.speedChange != 0) {
-                this.speed += this.speedChange * this.ACCELERATION * timeStep;
+                if(this.speedChange != 0) {
+                    this.speed += this.speedChange * this.ACCELERATION * timeStep;
 
-                if(this.speed < -this.SPEED)
-                    this.speed = -this.SPEED;
-                else if(this.speed > this.SPEED)
-                    this.speed = this.SPEED;
-            }
-            else {
-                if(this.speed < 0) {
-                    this.speed += this.FRICTION * timeStep;
-
-                    if(this.speed > 0)
-                        this.speed = 0;
+                    if(this.speed < -this.SPEED)
+                        this.speed = -this.SPEED;
+                    else if(this.speed > this.SPEED)
+                        this.speed = this.SPEED;
                 }
-                else if(this.speed > 0) {
-                    this.speed -= this.FRICTION * timeStep;
+                else {
+                    if(this.speed < 0) {
+                        this.speed += this.FRICTION * timeStep;
 
-                    if(this.speed < 0)
-                        this.speed = 0;
+                        if(this.speed > 0)
+                            this.speed = 0;
+                    }
+                    else if(this.speed > 0) {
+                        this.speed -= this.FRICTION * timeStep;
+
+                        if(this.speed < 0)
+                            this.speed = 0;
+                    }
                 }
-            }
 
-            if(this.speed != 0)
-                this.angle += this.getRadialSpeed(this.speed) * timeStep;
+                if(this.speed != 0)
+                    this.angle += this.getRadialSpeed(this.speed) * timeStep;
+                
+                if(this.crystal != null)
+                    this.crystal.carry(this.angle, this.CARRY_HEIGHT);
                 break;
             case "beaming":
                 if(this.speedChange != 0)
@@ -59,6 +63,9 @@ Player.prototype = {
         
         this.position.x = Math.cos(this.angle) * Planet.prototype.RADIUS;
         this.position.y = Math.sin(this.angle) * Planet.prototype.RADIUS;
+        
+        if(this.crystal != null)
+            this.crystal.update(timeStep);
     },
     
     render(context) {
@@ -77,10 +84,18 @@ Player.prototype = {
         context.fill();
         
         context.restore();
+        
+        if(this.crystal != null)
+            this.crystal.render(context);
     },
     
     pickup(crystal) {
         this.crystal = crystal;
+    },
+    
+    drop() {
+        this.crystal.drop(this.angle);
+        this.crystal = null;
     },
     
     enterBeamer(beamer) {
@@ -140,6 +155,8 @@ Player.prototype = {
             case "walking":
                 if(this.crystal == null)
                     this.onTryPickup(this);
+                else
+                    this.onTryDrop(this);
                 break;
             case "beaming":
                 this.beamer.toggle();

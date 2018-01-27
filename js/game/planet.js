@@ -86,6 +86,7 @@ Planet.prototype = {
             
             player.onTryEnter = this.tryEnter.bind(this);
             player.onTryPickup = this.tryPickup.bind(this);
+            player.onTryDrop = this.tryDrop.bind(this);
         }
     },
     
@@ -122,6 +123,11 @@ Planet.prototype = {
             player.pickup(nearestCrystal);
             this.crystals.splice(this.crystals.indexOf(nearestCrystal), 1);
         }
+    },
+    
+    tryDrop(player) {
+        this.crystals.push(player.crystal);
+        player.drop();
     },
     
     createScenery() {

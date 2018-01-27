@@ -12,6 +12,17 @@ Crystal.prototype = {
         
     },
     
+    carry(angle, height) {
+        this.angle = angle;
+        this.position.x = Math.cos(angle) * (Planet.prototype.RADIUS + height);
+        this.position.y = Math.sin(angle) * (Planet.prototype.RADIUS + height);
+    },
+    
+    drop(angle) {
+        this.position.x = Math.cos(angle) * Planet.prototype.RADIUS;
+        this.position.y = Math.sin(angle) * Planet.prototype.RADIUS;
+    },
+    
     render(context) {
         context.save();
         context.translate(this.position.x, this.position.y);
