@@ -49,10 +49,8 @@ CharSelect.prototype = {
         });
     },
     
-    startGame(){
-        var game = new Game(
-            renderer,
-            this.players);
+    startGame() {
+        var game = new Game(renderer, this.players);
         this.hideCharacterSelection();
         game.start();
     },
@@ -78,7 +76,7 @@ CharSelect.prototype = {
         charHeaders.appendChild(th);
         charPortraits.appendChild(tr);
         
-        this.players.push(new Player(new PlayerController(gamepad, playerId)));
+        this.players.push(new Player(controllerFactory.createPlayerController(playerId)));
     },
     
     getRandomColor() {

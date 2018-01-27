@@ -41,7 +41,7 @@ Player.prototype = {
         this.idleArmsSprite.update(timeStep);
         this.walkingArmsSprite.update(timeStep);
         this.beamingSprite.update(timeStep);
-
+        
         if(this.state !="beaming")
         {
             if(this.speed != 0)
@@ -213,9 +213,9 @@ Player.prototype = {
         switch(this.state) {
             case "walking":
             case "standing":
-                if(this.crystal == null)
+                if(this.onTryPickup != undefined && this.crystal == null)
                     this.onTryPickup(this);
-                else
+                else if(this.onTryDrop != undefined)
                     this.onTryDrop(this);
                 break;
             case "beaming":
