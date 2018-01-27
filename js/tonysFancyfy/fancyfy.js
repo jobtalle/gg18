@@ -48,7 +48,8 @@ function spawnCharacterSelection(playerAmount) {
         th.style.textShadow = '2px 2px rgba(0,0,0,1)';
         th.innerHTML = 'Player:' + i.toString();
 
-        var tr = document.createElement("td");void tr.offsetWidth;
+        var tr = document.createElement("td");
+        void tr.offsetWidth;
         tr.classList.add("expandingClass");
         tr.style.boxShadow = '0px 10px 80px ' + randomcolor;
         tr.innerHTML = 'portrait of player ' + i.toString() + ' goes here';

@@ -10,7 +10,10 @@ function Scenery(angle) {
 
 Scenery.prototype = {
     SCENERY_OBJECTS: [],
-    
+    LIT_FRAME: 1,
+    UNLIT_FRAME: 0,
+
+
     render(context) {
         // context.save();
 
@@ -30,11 +33,11 @@ Scenery.prototype = {
     {
         if(day)
         {
-            
+            this.sprite.setFrame(this.UNLIT_FRAME);
         }
         else
         {
-
+            this.sprite.setFrame(this.LIT_FRAME);
         }
     }
 }

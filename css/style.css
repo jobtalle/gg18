@@ -98,6 +98,15 @@ body {
     image-rendering: pixelated;
     background-repeat: repeat;
     image-rendering: -moz-crisp-edges;
+    
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    background-size: cover;
+    animation-name: pan;
+    animation-duration: 200s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
 }
 
 @keyframes pan {
@@ -223,7 +232,7 @@ body {
 
 #characterHeaders {
     background-color: darkgray;
-    height: 50px;
+    height: 25%;
 }
 
 #characterPortraits {
@@ -238,6 +247,9 @@ th {
     border: 2px solid white;
     border-radius: 25px 25px 0px 0px;
     font-size: 1.5rem;
+    height: auto;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
 /*not working*/
@@ -277,11 +289,6 @@ td {
 #backgroundElements {
     position: absolute;
     pointer-events: none;
-    
-    left: 0px;
-    right: 0px;
-    top: 0px;
-    bottom: 0px;
 }
 
 

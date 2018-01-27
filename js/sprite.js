@@ -57,14 +57,9 @@ SpriteInstance.prototype = {
         context.save();
         context.translate(x, y);
         context.rotate(angle);
-        if(xScale == undefined)
-        {
-            context.scale(1, 1);
-        }
-        else
-        {
+        
+        if(xScale != undefined)
             context.scale(xScale, 1);
-        }
         
         context.drawImage(
             this.sprite.image,

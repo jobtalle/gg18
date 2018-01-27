@@ -1,9 +1,7 @@
 function start() {
-    interface = new Interface();
     renderer = new Renderer();
     gamepad = new Gamepad();
-    
-    //interface.showStartScreen();
+    interface = new Interface();
     
     renderer.resize();
     interface.startGame();

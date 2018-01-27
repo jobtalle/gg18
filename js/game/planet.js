@@ -78,13 +78,11 @@ Planet.prototype = {
         
         context.beginPath();
         context.arc(0, 0, this.RADIUS, 0, Math.PI * 2);
-        
         context.fill();
         
         context.restore();
 
         this.renderHighlight(context);
-        this.renderLines(context);
         
         context.save();
         context.rotate(this.angle);        
@@ -305,6 +303,8 @@ Planet.prototype = {
     renderHighlight(context){
         context.save();
 
+        
+        // tony doe hier dingen!
         var grd=context.createRadialGradient(-30,-50,100,-30,-50,120);
         grd.addColorStop(0, this.COLOR_PLANET_HIGHLIGHT);
         grd.addColorStop(1,"rgba(0,0,0,0)");
@@ -318,43 +318,6 @@ Planet.prototype = {
         context.beginPath();
         context.fillStyle = this.COLOR_PLANET_HIGHLIGHT;
         context.arc(-30,-50, this.RADIUS * 1.2,  0, Math.PI * 2);
-        context.fill();
-
-        context.restore();
-    },
-
-    renderLines(context)
-    {
-        context.save();
-
-        context.beginPath();
-        context.fillStyle ="rgba(0,0,0,0)";
-        context.arc(0,0, this.RADIUS,  0, Math.PI * 2);
-        context.fill();
-        context.clip();
-
-        context.beginPath();
-        context.fillStyle = this.COLOR_PLANET_LINES;
-
-        context.rect(20,40,200,2);
-        context.rect(40,34,200,2);
-
-        context.rect(80,-20,200,2);
-        context.rect(60,-14,30,2);
-        
-        context.rect(30,-40,200,2);
-        context.rect(10,-46,30,2);
-
-        context.rect(-100,46,30,2);
-
-        context.rect(-100,-30,60,2);
-
-        context.fill();
-
-        context.clip();
-        context.beginPath();
-        context.fillStyle = this.COLOR_PLANET;
-        context.arc(-30,-50,this.RADIUS * 1.2, 0, Math.PI * 2);
         context.fill();
 
         context.restore();

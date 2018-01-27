@@ -43,8 +43,8 @@ Ufo.prototype = {
 
         this.lightSprite1.draw(
             context,-9,0,0);
-            this.lightSprite2.draw(
-                context,7,0,0);
+        this.lightSprite2.draw(
+            context,7,0,0);
 
         context.restore();
     },
