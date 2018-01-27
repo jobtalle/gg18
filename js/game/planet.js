@@ -112,7 +112,7 @@ Planet.prototype = {
     {
         context.save();
 
-        grd=context.createRadialGradient(0,0,this.RADIUS,0,0,130);
+        grd=context.createRadialGradient(0,0,this.RADIUS+10,0,0,130);
         grd.addColorStop(0,"#00000000");
         grd.addColorStop(1, this.ATMOSPHERE_COLOR);
 
