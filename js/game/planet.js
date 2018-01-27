@@ -2,7 +2,6 @@ function Planet(players) {
     this.players = players;
     this.angle = 0;
     this.ufos = [];
-    this.dayVector = Vector.prototype.fromAngle(this.ATMOSPHERE_END_ANGLE + (this.ATMOSPHERE_START_ANGLE - this.ATMOSPHERE_END_ANGLE) * 0.5);
     
     this.listenToPlayers(players);
     
@@ -40,14 +39,26 @@ Planet.prototype = {
         for(var i = 0; i < this.ufos.length; ++i)
             this.ufos[i].update(timeStep);
         
-        for(var i = 0; i < this.crystals.length; ++i)
-            this.crystals[i].update(timeStep);
+        for(var i = 0; i < this.crystals.length; ++i) {
+            const crystal = this.crystals[i];
+            
+            crystal.setDay(this.getDay(crystal.position));
+            crystal.update(timeStep);
+        }
         
-        for(var i = 0; i < this.players.length; ++i)
-            this.players[i].update(timeStep);
+        for(var i = 0; i < this.players.length; ++i) {
+            const player = this.players[i];
+            
+            player.setDay(this.getDay(player.position));
+            player.update(timeStep);
+        }
         
-        for(var i = 0; i < this.beamers.length; ++i)
-            this.beamers[i].update(timeStep);
+        for(var i = 0; i < this.beamers.length; ++i) {
+            const beamer = this.beamers[i];
+            
+            beamer.setDay(this.getDay(beamer.position));
+            beamer.update(timeStep);
+        }
     },
     
     render(context) {
@@ -89,6 +100,10 @@ Planet.prototype = {
             this.ufos[i].render(context);
         
         context.restore();
+    },
+    
+    getDay(vector) {
+        return vector.dot(Vector.prototype.fromAngle(this.ATMOSPHERE_END_ANGLE + (this.ATMOSPHERE_START_ANGLE - this.ATMOSPHERE_END_ANGLE) * 0.5 - this.angle)) < 0;
     },
     
     getBeams() {

@@ -44,10 +44,10 @@ Player.prototype = {
 
         if(this.state !="beaming")
         {
-        if(this.speed != 0)
-            this.state = "walking";
-        else
-            this.state = "standing";
+            if(this.speed != 0)
+                this.state = "walking";
+            else
+                this.state = "standing";
         }
 
         switch(this.state) {
@@ -102,45 +102,26 @@ Player.prototype = {
     
     render(context) {
         context.save();
-        // context.translate(this.position.x, this.position.y);
-        // context.rotate(this.angle + Math.PI * 0.5);
-
-        // context.fillStyle = this.COLOR;
-        // context.beginPath();
-        // context.moveTo(0, 0);
-        // context.lineTo(-3, -10);
-        // context.lineTo(3, -10);
-        // context.fill();
-
         if(this.state == "walking")
         {
             if(this.crystal != null)
             {
-                this.walkingArmsSprite.draw(
-                context, this.position.x, this.position.y,this.angle + Math.PI * 0.5, this.xScale);
+                this.walkingArmsSprite.draw(context, this.position.x, this.position.y,this.angle + Math.PI * 0.5, this.xScale);
             }
             else
-                this.walkingSprite.draw(
-                context, this.position.x, this.position.y,this.angle + Math.PI * 0.5, this.xScale);
+                this.walkingSprite.draw(context, this.position.x, this.position.y,this.angle + Math.PI * 0.5, this.xScale);
         }
         else if(this.state == "beaming")
         {
-            this.beamingSprite.draw(
-                context, this.position.x, this.position.y,this.angle + Math.PI * 0.5, this.xScale);
-
+            this.beamingSprite.draw(context, this.position.x, this.position.y,this.angle + Math.PI * 0.5, this.xScale);
         }
         else
         {
             if(this.crystal != null)
-            {
                 this.idleArmsSprite.draw(context, this.position.x, this.position.y,this.angle + Math.PI * 0.5, this.xScale);
-            }
             else
-            this.idleSprite.draw(context, this.position.x, this.position.y,this.angle + Math.PI * 0.5, this.xScale);
+                this.idleSprite.draw(context, this.position.x, this.position.y,this.angle + Math.PI * 0.5, this.xScale);
         }
-        
-        if(this.state == "beaming")
-            context.rotate(Math.PI);
         
         context.restore();
         
@@ -178,6 +159,11 @@ Player.prototype = {
         controller.onActivatePressed = this.onActivatePressed.bind(this);
         controller.onActivateReleased = this.onActivateReleased.bind(this);
         controller.onMove = this.onMove.bind(this);
+    },
+    
+    setDay(day) {
+        if(this.crystal != null)
+            this.crystal.setDay(day);
     },
     
     getRadialSpeed(speed) {
