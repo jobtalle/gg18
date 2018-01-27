@@ -66,7 +66,7 @@ Beamer.prototype = {
         }
         else {
             this.on = true;
-            this.beams.push(new Beam(this.angle, "green", this.beamSize));
+            this.beams.push(new Beam(this.angle, "rgba(100, 255, 0, 0.2)", this.beamSize));
         }
     }
 }
