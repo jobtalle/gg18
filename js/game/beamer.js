@@ -13,7 +13,7 @@ Beamer.prototype = {
     COLOR_DISH: "white",
     DISH_HEIGHT: 12,
     AIM_RANGE: 3,
-    AIM_SPEED: 10,
+    AIM_SPEED: 2,
     
     update(timeStep) {
         for(var i = this.beams.length; i-- > 0;) {
@@ -82,7 +82,7 @@ Beamer.prototype = {
     turn(direction, timeStep) {
         const aimPrevious = this.aim;
         
-        this.aim += direction * timeStep;
+        this.aim += direction * timeStep * this.AIM_SPEED;
         
         if(this.aim > this.AIM_RANGE * 0.5)
             this.aim = this.AIM_RANGE * 0.5;

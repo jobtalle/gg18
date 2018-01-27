@@ -65,6 +65,9 @@ Player.prototype = {
         context.translate(this.position.x, this.position.y);
         context.rotate(this.angle + Math.PI * 0.5);
         
+        if(this.state == "beaming")
+            context.rotate(Math.PI);
+        
         context.fillStyle = this.COLOR;
         context.beginPath();
         context.moveTo(0, 0);
