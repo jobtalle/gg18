@@ -10,6 +10,7 @@ function Ufo(essences, mover) {
 Ufo.prototype = {
     update(timeStep) {
         this.mover.update(timeStep);
+        this.sprite.update(timeStep);
     },
     
     render(context) {
