@@ -1,6 +1,7 @@
 function Crystal(angle, color) {
     this.angle = angle;
     this.color = color;
+    this.life = this.LIFETIME;
     
     this.position = new Vector(
         Math.cos(angle) * Planet.prototype.RADIUS,
@@ -8,8 +9,21 @@ function Crystal(angle, color) {
 }
 
 Crystal.prototype = {
+    LIFETIME: 4,
+    
     update(timeStep) {
         
+    },
+    
+    drain(timeStep) {
+        this.life -= timeStep;
+        
+        if(this.life < 0)
+            this.life = 0;
+    },
+    
+    getStrength() {
+        return Math.sqrt(this.life / this.LIFETIME);
     },
     
     carry(angle, height) {

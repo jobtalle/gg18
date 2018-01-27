@@ -1,9 +1,8 @@
-function Beam(angle, aim, crystal, radius, radians) {
+function Beam(angle, aim, crystal, radius) {
     this.angle = angle;
     this.aim = aim;
     this.crystal = crystal;
     this.radius = radius;
-    this.radians = radians;
     
     this.cut = false;
     this.innerRadius = 0;
@@ -15,6 +14,8 @@ Beam.prototype = {
     
     update(timeStep) {
         this.outerRadius += this.SPEED * timeStep;
+        this.radians = 0.5 * this.crystal.getStrength();
+        
         if(this.outerRadius > Planet.prototype.RADIUS_INCOMING)
             this.outerRadius = Planet.prototype.RADIUS_INCOMING;
         
