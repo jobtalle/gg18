@@ -50,9 +50,13 @@ Ufo.prototype = {
     },
     
     isInBeam(beam) {
-        const delta = this.mover.position.subtract(beam.position).normalize();
+        const delta = this.mover.position.subtract(beam.position);
+        const normalizedDelta = delta.normalize();
+        const length = delta.length();
         
-        return Math.acos(delta.dot(Vector.prototype.fromAngle(beam.angle))) < beam.getAngle() * 0.5;
+        return Math.acos(normalizedDelta.dot(Vector.prototype.fromAngle(beam.angle))) < beam.getAngle() * 0.5 &&
+            length > beam.innerRadius &&
+            length < beam.outerRadius;
     },
     
     match(beams) {
@@ -79,7 +83,7 @@ Ufo.prototype = {
     
     leave() {
         this.finished = true;
-        console.log("Ufo destroyed");
+        this.mover.leave();
     },
     
     addLeaveListener(onLeave) {
