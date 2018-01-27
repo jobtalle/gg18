@@ -62,6 +62,7 @@ Player.prototype = {
                     this.crystal.carry(this.angle, this.CARRY_HEIGHT);
                 break;
             case "beaming":
+                console.log(this.speedChange);
                 if(this.speedChange != 0)
                     this.beamer.turn(this.speedChange, timeStep);
                 break;
@@ -141,10 +142,8 @@ Player.prototype = {
         
         switch(this.state) {
             case "walking":
-                this.speedChange = -delta;
-                break;
             case "beaming":
-                
+                this.speedChange = -delta;
                 break;
         }
     },

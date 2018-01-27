@@ -33,14 +33,13 @@ function PlayerController(gamepad, controllerId)
 }
 
 PlayerController.prototype = {
-    onAxis: null,
     onActivatePressed: null,
     onActiveReleased: null,
     onEnterPressed: null,
     onEnterReleased: null,
+    onMove: null,
     vector: new Vector(),
     zeroVector: new Vector(),
-    onMove: null,
     movedStick: false,
     
     leftKey: "KeyA",
