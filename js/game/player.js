@@ -8,6 +8,7 @@ function Player(controller, angle) {
     this.state = "walking";
     this.position = new Vector();
     this.controller = controller;
+    this.crystal = null;
     
     this.listen(controller);
 }
@@ -18,6 +19,7 @@ Player.prototype = {
     ACCELERATION: 90000,
     FRICTION: 1000,
     controller: null,
+    CARRY_HEIGHT: 12,
     
     rotate(angle) {
         this.angle += angle;
@@ -32,42 +34,55 @@ Player.prototype = {
 
         switch(this.state) {
             case "walking":
-            if(this.speedChange != 0) {
-                this.speed += this.speedChange * this.ACCELERATION * timeStep;
+                if(this.speedChange != 0) {
+                    this.speed += this.speedChange * this.ACCELERATION * timeStep;
 
-                if(this.speed < -this.SPEED)
-                    this.speed = -this.SPEED;
-                else if(this.speed > this.SPEED)
-                    this.speed = this.SPEED;
-            }
-            else {
-                if(this.speed < 0) {
-                    this.speed += this.FRICTION * timeStep;
-
-                    if(this.speed > 0)
-                        this.speed = 0;
+                    if(this.speed < -this.SPEED)
+                        this.speed = -this.SPEED;
+                    else if(this.speed > this.SPEED)
+                        this.speed = this.SPEED;
                 }
-                else if(this.speed > 0) {
-                    this.speed -= this.FRICTION * timeStep;
+                else {
+                    if(this.speed < 0) {
+                        this.speed += this.FRICTION * timeStep;
 
-                    if(this.speed < 0)
-                        this.speed = 0;
+                        if(this.speed > 0)
+                            this.speed = 0;
+                    }
+                    else if(this.speed > 0) {
+                        this.speed -= this.FRICTION * timeStep;
+
+                        if(this.speed < 0)
+                            this.speed = 0;
+                    }
                 }
-            }
 
-            if(this.speed != 0)
-                this.angle += this.getRadialSpeed(this.speed) * timeStep;
+                if(this.speed != 0)
+                    this.angle += this.getRadialSpeed(this.speed) * timeStep;
+                
+                if(this.crystal != null)
+                    this.crystal.carry(this.angle, this.CARRY_HEIGHT);
+                break;
+            case "beaming":
+                if(this.speedChange != 0)
+                    this.beamer.turn(this.speedChange, timeStep);
                 break;
         }
         
         this.position.x = Math.cos(this.angle) * Planet.prototype.RADIUS;
         this.position.y = Math.sin(this.angle) * Planet.prototype.RADIUS;
+        
+        if(this.crystal != null)
+            this.crystal.update(timeStep);
     },
     
     render(context) {
         context.save();
         context.translate(this.position.x, this.position.y);
         context.rotate(this.angle + Math.PI * 0.5);
+        
+        if(this.state == "beaming")
+            context.rotate(Math.PI);
         
         context.fillStyle = this.COLOR;
         context.beginPath();
@@ -77,17 +92,33 @@ Player.prototype = {
         context.fill();
         
         context.restore();
+        
+        if(this.crystal != null)
+            this.crystal.render(context);
     },
     
-    enterBeamer(beamer) {
+    pickup(crystal) {
+        this.crystal = crystal;
+    },
+    
+    drop() {
+        this.crystal.drop(this.angle);
+        this.crystal = null;
+    },
+    
+    enterBeamer(beamer, planet) {
         this.beamer = beamer;
         this.state = "beaming";
         this.speed = 0;
         this.angle = beamer.angle;
+        
+        if(this.crystal != null) {
+            this.beamer.putCrystal(this.crystal, planet);
+            this.crystal = null;
+        }
     },
     
     exitBeamer() {
-        this.beamer.deactivate();
         this.state = "walking";
     },
     
@@ -138,17 +169,19 @@ Player.prototype = {
     
     onActivatePressed() {
         switch(this.state) {
+            case "walking":
+                if(this.crystal == null)
+                    this.onTryPickup(this);
+                else
+                    this.onTryDrop(this);
+                break;
             case "beaming":
-                this.beamer.activate();
+                this.beamer.toggle();
                 break;
         }
     },
     
     onActivateReleased() {
-        switch(this.state) {
-            case "beaming":
-                this.beamer.deactivate();
-                break;
-        }
+        
     }
 }

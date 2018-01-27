@@ -1,0 +1,7 @@
+function UfoDispatcher() {
+    
+}
+
+UfoDispatcher.prototype = {
+    
+}
