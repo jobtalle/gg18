@@ -90,6 +90,40 @@ Beamer.prototype = {
     setDay(day) {
         if(this.crystal != null)
             this.crystal.setDay(day);
+        if(this.crystal.day)
+        {
+            switch( this.crystal.essence.color)
+            {
+                case "red":
+                this.beamerDish = resources.biemer_red.instantiate();
+                break;
+                
+                case "yellow":
+                this.beamerDish = resources.biemer_yellow.instantiate();
+                break;
+
+                case "blue":
+                this.beamerDish = resources.biemer_blue.instantiate();
+                break;
+            }
+        }
+        else
+        {
+            switch( this.crystal.essence.color)
+            {
+                case "red":
+                this.beamerDish = resources.biemer_green.instantiate();
+                break;
+                
+                case "yellow":
+                this.beamerDish = resources.biemer_purple.instantiate();
+                break;
+
+                case "blue":
+                this.beamerDish = resources.biemer_orange.instantiate();
+                break;
+            }
+        }
     },
     
     place(angle) {
