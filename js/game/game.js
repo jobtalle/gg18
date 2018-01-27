@@ -5,6 +5,7 @@ function Game(renderer, players) {
     
     this.ufos = [];
     this.addUfo(new Ufo());
+    this.dispatcher = new UfoDispatcher();
 }
 
 Game.prototype = {
@@ -37,6 +38,7 @@ Game.prototype = {
     update(timeStep) {
         this.space.update(timeStep);
         this.planet.update(timeStep);
+        this.dispatcher.update(timeStep);
         
         for(var i = 0; i < this.ufos.length; ++i)
             this.ufos[i].update(timeStep);
