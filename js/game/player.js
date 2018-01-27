@@ -50,6 +50,10 @@ Player.prototype = {
             if(this.speed != 0)
                 this.angle += this.getRadialSpeed(this.speed) * timeStep;
                 break;
+            case "beaming":
+                if(this.speedChange != 0)
+                    this.beamer.turn(this.speedChange, timeStep);
+                break;
         }
         
         this.position.x = Math.cos(this.angle) * Planet.prototype.RADIUS;

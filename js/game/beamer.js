@@ -11,6 +11,9 @@ function Beamer(angle) {
 Beamer.prototype = {
     COLOR: "#0056bb",
     COLOR_DISH: "white",
+    DISH_HEIGHT: 12,
+    AIM_RANGE: 3,
+    AIM_SPEED: 10,
     
     update(timeStep) {
         for(var i = this.beams.length; i-- > 0;) {
@@ -31,7 +34,7 @@ Beamer.prototype = {
         context.strokeStyle = this.COLOR;
         context.beginPath();
         context.moveTo(0, 0);
-        context.lineTo(0, -6);
+        context.lineTo(0, -this.DISH_HEIGHT);
         context.stroke();
         
         context.restore();
@@ -39,7 +42,8 @@ Beamer.prototype = {
         
         context.translate(this.position.x, this.position.y);
         context.rotate(this.angle + Math.PI * 0.5);
-        context.translate(0, -12);
+        context.translate(0, -this.DISH_HEIGHT);
+        context.rotate(this.aim);
         
         context.fillStyle = this.COLOR_DISH;
         context.beginPath();
@@ -66,7 +70,30 @@ Beamer.prototype = {
         }
         else {
             this.on = true;
-            this.beams.push(new Beam(this.angle, "rgba(100, 255, 0, 0.2)", this.beamSize));
+            this.beams.push(new Beam(
+                this.angle,
+                this.aim,
+                "rgba(100, 255, 0, 0.2)",
+                Planet.prototype.RADIUS + this.DISH_HEIGHT,
+                this.beamSize));
+        }
+    },
+    
+    turn(direction, timeStep) {
+        const aimPrevious = this.aim;
+        
+        this.aim += direction * timeStep;
+        
+        if(this.aim > this.AIM_RANGE * 0.5)
+            this.aim = this.AIM_RANGE * 0.5;
+        else if(this.aim < -this.AIM_RANGE * 0.5)
+            this.aim = -this.AIM_RANGE * 0.5;
+        
+        if(aimPrevious != this.aim) {
+            const delta = this.aim - aimPrevious;
+            
+            if(this.beams.length > 0)
+                this.beams[this.beams.length - 1].rotate(delta);
         }
     }
 }

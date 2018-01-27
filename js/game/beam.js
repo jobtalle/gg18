@@ -1,6 +1,8 @@
-function Beam(angle, color, radians) {
+function Beam(angle, aim, color, radius, radians) {
     this.angle = angle;
+    this.aim = aim;
     this.color = color;
+    this.radius = radius;
     this.radians = radians;
     
     this.cut = false;
@@ -23,8 +25,8 @@ Beam.prototype = {
     render(context) {
         context.save();
         context.rotate(this.angle + Math.PI * 0.5);
-        context.translate(0, -Planet.prototype.RADIUS);
-        context.rotate(-Math.PI * 0.5);
+        context.translate(0, -this.radius);
+        context.rotate(-Math.PI * 0.5 + this.aim);
         
         context.fillStyle = this.color;
         context.beginPath();
@@ -41,5 +43,9 @@ Beam.prototype = {
     
     isInvisible() {
         return this.innerRadius > Planet.prototype.RADIUS_INCOMING;
+    },
+    
+    rotate(angle) {
+        this.aim += angle;
     }
 }
