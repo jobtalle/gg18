@@ -23,6 +23,10 @@ Crystal.prototype = {
         this.position.y = Math.sin(angle) * Planet.prototype.RADIUS;
     },
     
+    getColor() {
+        return this.color;
+    },
+    
     render(context) {
         context.save();
         context.translate(this.position.x, this.position.y);

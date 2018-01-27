@@ -16,6 +16,7 @@ Beamer.prototype = {
     DISH_HEIGHT: 12,
     AIM_RANGE: 3,
     AIM_SPEED: 3,
+    CRYSTAL_SCATTER_RANGE: 16,
     
     update(timeStep) {
         for(var i = this.beams.length; i-- > 0;) {
@@ -47,7 +48,11 @@ Beamer.prototype = {
         context.translate(0, -this.DISH_HEIGHT);
         context.rotate(this.aim);
         
-        context.fillStyle = this.COLOR_DISH;
+        if(this.crystal == null)
+            context.fillStyle = this.COLOR_DISH;
+        else
+            context.fillStyle = this.crystal.getColor();
+        
         context.beginPath();
         context.arc(0, 0, 6, 0, Math.PI);
         context.fill();
@@ -100,5 +105,22 @@ Beamer.prototype = {
             if(this.beams.length > 0)
                 this.beams[this.beams.length - 1].rotate(delta);
         }
+    },
+    
+    putCrystal(crystal, planet) {
+        if(this.crystal != null) {
+            const scatterRadians = this.CRYSTAL_SCATTER_RANGE / Planet.prototype.RADIUS;
+            
+            planet.crystals.push(this.crystal);
+            this.crystal.drop(
+                this.angle - scatterRadians * 0.5 +
+                scatterRadians * Math.random());
+        }
+        
+        this.crystal = crystal;
+    },
+    
+    dropCrystal(crystal) {
+        this.crystal = null;
     }
 }

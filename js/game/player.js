@@ -98,11 +98,16 @@ Player.prototype = {
         this.crystal = null;
     },
     
-    enterBeamer(beamer) {
+    enterBeamer(beamer, planet) {
         this.beamer = beamer;
         this.state = "beaming";
         this.speed = 0;
         this.angle = beamer.angle;
+        
+        if(this.crystal != null) {
+            this.beamer.putCrystal(this.crystal, planet);
+            this.crystal = null;
+        }
     },
     
     exitBeamer() {

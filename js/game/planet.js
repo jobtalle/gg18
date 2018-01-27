@@ -97,7 +97,7 @@ Planet.prototype = {
             const beamer = this.beamers[i];
             
             if(Math.acos(beamer.positionNormalized.dot(playerPositionNormalized)) < this.interactionRadius) {
-                player.enterBeamer(beamer);
+                player.enterBeamer(beamer, this);
                 
                 break;
             }
