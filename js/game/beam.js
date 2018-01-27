@@ -15,7 +15,7 @@ function Beam(angle, aim, crystal, radius) {
 }
 
 Beam.prototype = {
-    SPEED: 800,
+    SPEED: 1500,
     ANGLE: 0.5,
     FLUTTER: 0.1,
     
@@ -48,6 +48,15 @@ Beam.prototype = {
         context.shadowBlur = 25;
         context.shadowColor = this.crystal.getColor();
         
+        context.fill();
+        
+        var minRads = Math.random() * -this.radians * 0.5;
+        var maxRads = Math.random() * this.radians * 0.5;
+        
+        context.fillStyle = "white";
+        context.beginPath();
+        context.arc(0, 0, this.innerRadius, minRads, maxRads, false);
+        context.arc(0, 0, this.outerRadius, maxRads, minRads, true);
         context.fill();
         
         context.restore();
