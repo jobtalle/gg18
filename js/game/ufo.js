@@ -68,7 +68,7 @@ Ufo.prototype = {
             length < beam.outerRadius;
     },
     
-    match(beams) {
+    match(beams, getDay) {
         if(beams.length == 0)
             return false;
         
@@ -78,7 +78,7 @@ Ufo.prototype = {
             matches[i] = false;
         
         for(var i = 0; i < beams.length; ++i) {
-            const index = this.colors.indexOf(beams[i].crystal.essence.color);
+            const index = this.colors.indexOf(beams[i].crystal.essence.getColorName(getDay(beams[i].position)));
             
             if(index != -1)
                 matches[index] = true;
