@@ -3,7 +3,6 @@ function Beamer(angle) {
     this.aim = 0;
     this.beamSize = 0.5;
     this.beams = [];
-    this.on = false;
     this.crystal = null;
     
     this.place(angle);
@@ -73,12 +72,10 @@ Beamer.prototype = {
         if(this.crystal == null)
             return;
         
-        if(this.on) {
-            this.on = false;
+        if(this.beams.length > 0 && !this.beams[this.beams.length - 1].cut) {
             this.beams[this.beams.length - 1].stop();
         }
         else {
-            this.on = true;
             this.beams.push(new Beam(
                 this.angle,
                 this.aim,
@@ -101,7 +98,7 @@ Beamer.prototype = {
         if(aimPrevious != this.aim) {
             const delta = this.aim - aimPrevious;
             
-            if(this.beams.length > 0)
+            if(this.beams.length > 0 && !this.beams[this.beams.length - 1].cut)
                 this.beams[this.beams.length - 1].rotate(delta);
         }
     },

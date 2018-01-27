@@ -5,7 +5,6 @@ function playerControllerFactory(gamepad) {
     gamepad.on('connect', e => {
         if(!this.availableControllerIds.includes(e.index))
         {
-            console.log(e.index);
             this.availableControllerIds.push(e.index);
         }
     });

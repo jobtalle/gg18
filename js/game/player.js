@@ -127,11 +127,11 @@ Player.prototype = {
         // controller.onLeftReleased = this.onLeftReleased.bind(this);
         // controller.onRightPressed = this.onRightPressed.bind(this);
         // controller.onRightReleased = this.onRightReleased.bind(this);
+        
         controller.onEnterPressed = this.onEnterPressed.bind(this);
         controller.onActivatePressed = this.onActivatePressed.bind(this);
         controller.onActivateReleased = this.onActivateReleased.bind(this);
         controller.onPlayerMove = function(dir) {
-            console.log(dir);
             this.speedChange = dir;
         }.bind(this);
     },

@@ -29,7 +29,6 @@ function PlayerController(gamepad, controllerId)
             {
                 var vector = new Vector(e.value[0], e.value[1]);
                 this.targetAngle = this.getAngle(vector);
-                console.log(this.getPlayerDirection(vector));
                 // if(this.onAxis != null)
                 // {
                 //     this.onAxis(vector);
@@ -65,7 +64,7 @@ PlayerController.prototype = {
     playerPos: new Vector(0,0),
     keyboardPos: new Vector(0,0),
     targetAngle: 0,
-    slowdownAngle = 30,
+    slowdownAngle: 30,
 
     onKeyDown(e)
     {
@@ -150,8 +149,8 @@ PlayerController.prototype = {
                 if(this.targetAngle != this.getAngle(this.playerPos))
                 {
                     dir = deltaAngle(this.targetAngle, this.getAngle(this.playerPos));
-                    if(dir > -slowdownAngle && dir < slowdownAngle)
-                        this.onPlayerMove(dir/slowdownAngle);
+                    if(dir > -this.slowdownAngle && dir < this.slowdownAngle)
+                        this.onPlayerMove(dir/ this.slowdownAngle);
                     else
                         this.onPlayerMove(Math.sign(dir));
                 }
