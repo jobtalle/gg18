@@ -82,7 +82,7 @@ Beamer.prototype = {
             this.beams.push(new Beam(
                 this.angle,
                 this.aim,
-                this.crystal.getColor(),
+                this.crystal,
                 Planet.prototype.RADIUS + this.DISH_HEIGHT,
                 this.beamSize));
         }
@@ -117,9 +117,15 @@ Beamer.prototype = {
         }
         
         this.crystal = crystal;
+        
+        if(this.beams.length > 0 && !this.beams[this.beams.length - 1].cut)
+            this.beams[this.beams.length - 1].setCrystal(this.crystal);
     },
     
     dropCrystal() {
+        if(this.beams.length > 0 && !this.beams[this.beams.length - 1].cut)
+            this.beams[this.beams.length - 1].stop();
+        
         this.crystal = null;
     }
 }

@@ -1,7 +1,7 @@
-function Beam(angle, aim, color, radius, radians) {
+function Beam(angle, aim, crystal, radius, radians) {
     this.angle = angle;
     this.aim = aim;
-    this.color = color;
+    this.crystal = crystal;
     this.radius = radius;
     this.radians = radians;
     
@@ -29,7 +29,7 @@ Beam.prototype = {
         context.rotate(-Math.PI * 0.5 + this.aim);
         context.globalAlpha = 0.5;
         
-        context.fillStyle = this.color;
+        context.fillStyle = this.crystal.getColor();
         context.beginPath();
         context.arc(0, 0, this.innerRadius, -this.radians * 0.5, this.radians * 0.5, false);
         context.arc(0, 0, this.outerRadius, this.radians * 0.5, -this.radians * 0.5, true);
@@ -40,6 +40,10 @@ Beam.prototype = {
     
     stop() {
         this.cut = true;
+    },
+    
+    setCrystal(crystal) {
+        this.crystal = crystal;
     },
     
     isInvisible() {
