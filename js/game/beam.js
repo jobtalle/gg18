@@ -15,8 +15,9 @@ function Beam(angle, aim, crystal, radius) {
 }
 
 Beam.prototype = {
-    SPEED: 800,
+    SPEED: 1500,
     ANGLE: 0.5,
+    FLUTTER: 0.1,
     
     update(timeStep) {
         this.outerRadius += this.SPEED * timeStep;
@@ -30,7 +31,7 @@ Beam.prototype = {
     },
     
     getAngle() {
-        return this.ANGLE * this.crystal.getStrength();
+        return (this.ANGLE * this.crystal.getStrength()) * (1 - this.FLUTTER * 0.5 + Math.random() * this.FLUTTER);
     },
     
     render(context) {
@@ -49,6 +50,15 @@ Beam.prototype = {
         
         context.fill();
         
+        var minRads = Math.random() * -this.radians * 0.5;
+        var maxRads = Math.random() * this.radians * 0.5;
+        
+        context.fillStyle = "white";
+        context.beginPath();
+        context.arc(0, 0, this.innerRadius, minRads, maxRads, false);
+        context.arc(0, 0, this.outerRadius, maxRads, minRads, true);
+        context.fill();
+        
         context.restore();
     },
     
@@ -61,7 +71,7 @@ Beam.prototype = {
     },
     
     isInvisible() {
-        return this.innerRadius > Planet.prototype.RADIUS_INCOMING;
+        return this.crystal.getStrength() == 0 || this.innerRadius > Planet.prototype.RADIUS_INCOMING;
     },
     
     rotate(angle) {

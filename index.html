@@ -3,7 +3,8 @@
     <head>
         <title>gg18</title>
         <link rel=stylesheet type="text/css" href="css/style.css"/>
-        <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet"> 
+        <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
+        <script src="json/sequences.json"></script>
         <script src="js/utils/mathUtils.js"></script>
         <script src="js/gamepad.js"></script>
         <script src="js/start.js"></script>
@@ -16,15 +17,16 @@
         <script src="js/game/ufo.js"></script>
         <script src="js/game/beamer.js"></script>
         <script src="js/game/space.js"></script>
-        <script src="js/game/playerControllerFactory.js"></script>
         <script src="js/game/playerController.js"></script>
         <script src="js/game/scenery.js"></script>
         <script src="js/game/crystal.js"></script>
         <script src="js/game/ufoDispatcher.js"></script>
+        <script src="js/game/ufoMoverOrbit.js"></script>
         <script src="js/game/beam.js"></script>
         <script src="js/game/popup.js"></script>
         <script src="js/game/crystalEssence.js"></script>
         <script src="js/interface.js"></script>
+        <script src="js/resources.js"></script>
         <script src="js/tonysFancyfy/fancyfy.js"></script>
     </head>
     <body>
@@ -57,6 +59,6 @@
             <source src="audio/Ufo%20Theme%20nummer%202.ogg" type="audio/ogg">
         </audio>
 -->
-        <script>start();</script>
+        <script>resources = new Resources(); start();</script>
     </body>
 </html>

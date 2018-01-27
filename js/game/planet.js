@@ -1,13 +1,13 @@
 function Planet(players) {
     this.players = players;
     this.angle = 0;
+    this.ufos = [];
     
     this.listenToPlayers(players);
     
     this.createScenery();
     this.createBeamers();
     this.createCrystals();
-    this.createUfos();
     this.calculateInteractionRadius();
 }
 
@@ -33,6 +33,8 @@ Planet.prototype = {
         
         if(this.angle > Math.PI * 2)
             this.angle -= Math.PI * 2;
+        
+        this.checkUfos();
         
         for(var i = 0; i < this.ufos.length; ++i)
             this.ufos[i].update(timeStep);
@@ -80,15 +82,35 @@ Planet.prototype = {
         for(var i = 0; i < this.players.length; ++i)
             this.players[i].render(context);
         
-        for(var i = 0; i < this.ufos.length; ++i)
+        for(var i = this.ufos.length; i-- > 0;)
             this.ufos[i].render(context);
         
         context.restore();
     },
     
+    getBeams() {
+        var beams = [];
+        
+        for(var i = 0; i < this.beamers.length; ++i)
+            for(var j = 0; j < this.beamers[i].beams.length; ++j)
+                beams.push(this.beamers[i].beams[j]);
+        
+        return beams;
+    },
+    
     checkUfos() {
+        const beams = this.getBeams();
+        
         for(var i = 0; i < this.ufos.length; ++i) {
+            const ufo = this.ufos[i];
             
+            if(ufo.finished)
+                continue;
+            
+            const hitBeams = ufo.findBeams(beams);
+            
+            if(ufo.match(hitBeams))
+                ufo.leave();
         }
     },
     
@@ -202,20 +224,30 @@ Planet.prototype = {
                     color = "red";
                     break;
                 case 1:
-                    color = "green";
+                    color = "yellow";
                     break;
                 case 2:
                     color = "blue";
                     break;
             }
             
-            this.crystals.push(new Crystal(Math.random() * 2 * Math.PI, color));
+            this.crystals.push(new Crystal(Math.random() * 2 * Math.PI, new CrystalEssence(color)));
         }
     },
+    
+    dispatch(ufoObject) {
+        var essences;
+        var mover;
         
-    createUfos() {
-        this.ufos = [];
-        this.addUfo(new Ufo());
+        essences = [
+            new CrystalEssence("red")
+        ];
+        mover = new UfoMoverOrbit(2, this.RADIUS_ORBIT, true);
+        
+        this.addUfo(new Ufo(
+            essences,
+            mover
+        ));
     },
     
     addUfo(ufo) {

@@ -1,88 +1,103 @@
-function Ufo(crystals) {
-    this.crystals = crystals;
-    this.initialAngle = Math.random() * Math.PI * 2;
-    this.angle = 0;
-    this.orbit = 0;
-    this.orbits = 1;
-    this.speed = this.getRadialSpeed(300);
-    this.orbitHeight = Planet.prototype.RADIUS_ORBIT;
-    this.position = new Vector();
+function Ufo(essences, mover) {
+    this.essences = essences;
+    this.mover = mover;
+    this.finished = false;
+    
+    this.storeColors();
 }
 
 Ufo.prototype = {
-    COLOR: "#66aa33",
-    INCOMING_RADIANS: 1.4,
-    
     update(timeStep) {
-        const radius = this.getRadius();
-        const angle = this.angle + this.initialAngle;
-        
-        if(this.angle > Math.PI * 2) {
-            this.angle -= Math.PI * 2;
-            
-            if(++this.orbit > this.orbits && this.onLeave != undefined)
-                this.onLeave(this);
-        }
-        
-        this.angle += this.speed * timeStep;
-        this.position.x = Math.cos(angle) * radius;
-        this.position.y = Math.sin(angle) * radius;
+        this.mover.update(timeStep);
     },
     
     render(context) {
+        context.fillStyle = "white";
+        
+        var colorTexts = "";
+        for(var i = 0; i < this.colors.length; ++i)
+            colorTexts += this.colors[i] + " ";
+        
+        context.fillText(colorTexts, this.mover.position.x + 16, this.mover.position.y);
+        
         context.save();
-        context.translate(this.position.x, this.position.y);
-        context.rotate(this.initialAngle + this.angle + Math.PI * 0.5);
+        context.translate(this.mover.position.x, this.mover.position.y);
         
-        //context.strokeStyle = this.COLOR;
-        //context.beginPath();
-        //context.moveTo(-8, 0);
-        //context.lineTo(8, 0);
-        //context.stroke();
+        context.rotate(this.mover.getAngle() + Math.PI * 0.5);
         
-        context.fillStyle = this.COLOR;
-        //context.beginPath();
-        //context.arc(0, 0, 4, 0, Math.PI * 2);
-        //context.fill();
+        context.strokeStyle = this.essences[0].getColor();
+        context.beginPath();
+        context.moveTo(-8, 0);
+        context.lineTo(8, 0);
+        context.stroke();
         
-        var imageObj = new Image();
-        context.imageSmoothingEnabled = false;
-        imageObj.src = './img/enemies/ufo_half_2.png';
-        context.drawImage(imageObj, 0, 0, 32, 32);
+        context.fillStyle = this.essences[0].getColor();
+        context.beginPath();
+        context.arc(0, 0, 4, 0, Math.PI * 2);
+        context.fill();
         
         context.restore();
     },
     
-    isInBeam(beam) {
-        const delta = this.position.subtract(beam.position).normalize();
+    storeColors() {
+        this.colors = [];
         
-        return delta.dot(Vector.prototype.fromAngle(beam.getAngle())) < beam.getAngle();
+        for(var i = 0; i < this.essences.length; ++i)
+            this.colors.push(this.essences[i].color);
     },
     
-    destroy() {
-        console.log("Ufo destroyed");
+    findBeams(beams) {
+        var hitBeams = [];
+        
+        for(var i = 0; i < beams.length; ++i)
+            if(this.isInBeam(beams[i]))
+                hitBeams.push(beams[i]);
+        
+        return hitBeams;
+    },
+    
+    isInBeam(beam) {
+        const delta = this.mover.position.subtract(beam.position);
+        const normalizedDelta = delta.normalize();
+        const length = delta.length();
+        
+        return Math.acos(normalizedDelta.dot(Vector.prototype.fromAngle(beam.angle))) < beam.getAngle() * 0.5 &&
+            length > beam.innerRadius &&
+            length < beam.outerRadius;
+    },
+    
+    match(beams) {
+        if(beams.length == 0)
+            return false;
+        
+        var matches = new Array(this.colors.length);
+        
+        for(var i = 0; i < this.colors.length; ++i)
+            matches[i] = false;
+        
+        for(var i = 0; i < beams.length; ++i) {
+            const index = this.colors.indexOf(beams[i].crystal.essence.color);
+            
+            if(index != -1)
+                matches[index] = true;
+        }
+        
+        for(var i = 0; i < this.colors.length; ++i)
+            if(!matches[i]) return false;
+        
+        return true;
+    },
+    
+    leave() {
+        this.finished = true;
+        this.mover.leave();
     },
     
     addLeaveListener(onLeave) {
-        this.onLeave = onLeave;
-    },
-    
-    getRadius() {
-        if(this.orbit == 0 && this.angle < this.INCOMING_RADIANS) {
-            return this.orbitHeight +
-                (Planet.prototype.RADIUS_INCOMING - this.orbitHeight) *
-                (1 - Math.sin((this.angle / this.INCOMING_RADIANS) * Math.PI * 0.5));
-        }
-        else if(this.orbit == this.orbits && this.angle > Math.PI * 2 - this.INCOMING_RADIANS) {
-            return this.orbitHeight +
-                (Planet.prototype.RADIUS_INCOMING - this.orbitHeight) *
-                (1 - Math.sin(((Math.PI * 2 - this.angle) / this.INCOMING_RADIANS) * Math.PI * 0.5));
-        }
+        var self = this;
         
-        return this.orbitHeight;
-    },
-    
-    getRadialSpeed(speed) {
-        return speed / (Planet.prototype.RADIUS_ORBIT * 2 * Math.PI);
+        this.mover.onLeave = function() {
+            onLeave(self);
+        };
     }
 }
