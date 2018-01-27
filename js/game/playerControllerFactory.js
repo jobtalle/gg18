@@ -1,6 +1,5 @@
 function playerControllerFactory(gamepad) {
     this.gamepad = gamepad;
-    this.availableKeyboardSchemes = this.keyboardSchemes;
     
     gamepad.on('connect', e => {
         if(!this.availableControllerIds.includes(e.index))

@@ -236,7 +236,7 @@ Planet.prototype = {
         
     createUfos() {
         this.ufos = [];
-        this.addUfo(new Ufo([new CrystalEssence("red")]));
+        this.addUfo(new Ufo([new CrystalEssence("red")], new UfoMoverOrbit(2, this.RADIUS_ORBIT)));
     },
     
     addUfo(ufo) {
