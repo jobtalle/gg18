@@ -1,5 +1,5 @@
-function Ufo(essences, mover) {
-    this.essences = essences;
+function Ufo(colors, mover) {
+    this.colors = colors;
     this.mover = mover;
     this.finished = false;
     this.sprite = resources.ufo_constant_2.instantiate();

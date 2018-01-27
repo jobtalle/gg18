@@ -7,7 +7,7 @@ function Game(renderer, players) {
 }
 
 Game.prototype = {
-    SCALE: 2,
+    SCALE: 4,
     
     start() {
         this.lastDate = new Date();
