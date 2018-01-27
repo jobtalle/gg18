@@ -34,6 +34,8 @@ Planet.prototype = {
         if(this.angle > Math.PI * 2)
             this.angle -= Math.PI * 2;
         
+        this.checkUfos();
+        
         for(var i = 0; i < this.ufos.length; ++i)
             this.ufos[i].update(timeStep);
         
@@ -45,8 +47,6 @@ Planet.prototype = {
         
         for(var i = 0; i < this.beamers.length; ++i)
             this.beamers[i].update(timeStep);
-        
-        this.checkUfos();
     },
     
     render(context) {

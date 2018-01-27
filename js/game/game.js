@@ -35,8 +35,8 @@ Game.prototype = {
     
     update(timeStep) {
         this.space.update(timeStep);
-        this.planet.update(timeStep);
         this.dispatcher.update(timeStep);
+        this.planet.update(timeStep);
     },
     
     renderBackground(context) {
