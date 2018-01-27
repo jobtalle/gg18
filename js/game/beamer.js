@@ -120,7 +120,7 @@ Beamer.prototype = {
         this.crystal = crystal;
     },
     
-    dropCrystal(crystal) {
+    dropCrystal(planet) {
         this.crystal = null;
     }
 }

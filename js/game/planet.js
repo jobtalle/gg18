@@ -123,6 +123,16 @@ Planet.prototype = {
             player.pickup(nearestCrystal);
             this.crystals.splice(this.crystals.indexOf(nearestCrystal), 1);
         }
+        else {
+            for(var i = 0; i < this.beamers.length; ++i) {
+                const beamer = this.beamers[i];
+                
+                if(beamer.crystal != null && Math.acos(beamer.positionNormalized.dot(playerPositionNormalized)) < this.interactionRadius) {
+                    player.pickup(beamer.crystal);
+                    beamer.dropCrystal();
+                }
+            }
+        }
     },
     
     tryDrop(player) {
