@@ -2,6 +2,7 @@ function Planet(players) {
     this.players = players;
     this.angle = 0;
     this.ufos = [];
+    this.dayVector = Vector.prototype.fromAngle(this.ATMOSPHERE_END_ANGLE + (this.ATMOSPHERE_START_ANGLE - this.ATMOSPHERE_END_ANGLE) * 0.5);
     
     this.listenToPlayers(players);
     
