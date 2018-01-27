@@ -46,6 +46,10 @@ SpriteInstance.prototype = {
             this.frame -= this.sprite.frames;
     },
     
+    setFrame(frame) {
+        this.frame = frame;
+    },
+    
     draw(context, x, y, angle, xScale) {
         if(!this.sprite.isLoaded())
             return;
