@@ -36,6 +36,8 @@ function SpriteInstance(sprite) {
 }
 
 SpriteInstance.prototype = {
+    EPSILON: 0.00001,
+    
     update(timeStep) {
         if(this.sprite.frames == 1)
             return;
@@ -67,9 +69,9 @@ SpriteInstance.prototype = {
         
         context.drawImage(
             this.sprite.image,
-            this.sprite.width * Math.trunc(this.frame),
+            this.sprite.width * Math.trunc(this.frame) + this.EPSILON,
             0,
-            this.sprite.width,
+            this.sprite.width - this.EPSILON,
             this.sprite.height,
             -this.sprite.xOrigin,
             -this.sprite.yOrigin,

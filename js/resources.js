@@ -50,7 +50,7 @@ Resources.prototype = {
         this.biemer_purple = new Sprite("img/biemer/biemer_purple.png", 7.5,6,1);
         this.biemer_red = new Sprite("img/biemer/biemer_red.png", 7.5,6,1);
         this.biemer_yellow = new Sprite("img/biemer/biemer_yellow.png", 7.5,6,1);
-        this.biemer_spark = new Sprite("img/biemer/biemer_spark.png", 7, 11,11,20);
+        this.biemer_spark = new Sprite("img/biemer/biemer_spark.png", 6.5, 11,11,20);
         
         this.portraits_idle = new Sprite("img/portrait/portraits_idle.png", 0,0,3, 6.667);
         this.portraits_idle_arms = new Sprite("img/portrait/portraits_idle_arms.png", 0,0,3, 6.667);
