@@ -6,8 +6,6 @@ function Ufo(colors, mover) {
     this.engineSprite = resources.ufo_constant_engine.instantiate();
     this.lightSprite1 = resources.ufo_light.instantiate();
     this.lightSprite2 = resources.ufo_light.instantiate();
-    
-    this.storeColors();
 }
 
 Ufo.prototype = {
@@ -48,13 +46,6 @@ Ufo.prototype = {
                 context,7,0,0);
 
         context.restore();
-    },
-    
-    storeColors() {
-        this.colors = [];
-        
-        for(var i = 0; i < this.essences.length; ++i)
-            this.colors.push(this.essences[i].color);
     },
     
     findBeams(beams) {
