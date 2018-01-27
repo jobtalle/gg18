@@ -13,7 +13,7 @@ Beamer.prototype = {
     COLOR_DISH: "white",
     DISH_HEIGHT: 12,
     AIM_RANGE: 3,
-    AIM_SPEED: 12,
+    AIM_SPEED: 2,
     CRYSTAL_SCATTER_RANGE: 16,
     
     update(timeStep) {
