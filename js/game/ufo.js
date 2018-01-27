@@ -14,8 +14,17 @@ Ufo.prototype = {
     },
     
     render(context) {
+        context.fillStyle = "white";
+        
+        var colorTexts = "";
+        for(var i = 0; i < this.colors.length; ++i)
+            colorTexts += this.colors[i] + " ";
+        
+        context.fillText(colorTexts, this.mover.position.x + 16, this.mover.position.y);
+        
         context.save();
         context.translate(this.mover.position.x, this.mover.position.y);
+        
         context.rotate(this.mover.getAngle() + Math.PI * 0.5);
         
         context.strokeStyle = this.COLOR;
