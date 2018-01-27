@@ -25,7 +25,7 @@ Star.prototype = {
         this.element.style.top = this.x + 'px';
         this.element.style.left = this.y + 'px';
         
-        var rnd = getRandomInt(0,7);
+        var rnd = this.getRandomInt(0,7);
         
         
         this.element.setAttribute("src", "/img/gems/stars_big_blue.gif");
@@ -39,5 +39,26 @@ Star.prototype = {
         min = Math.ceil(min);
         max = Math.floor(max);
         return Math.floor(Math.random() * (max - min)) + min;
+    },
+    
+    getRandomStarSprite(rnd){
+        switch (rnd){
+            case 0:
+                break;
+            case 1:
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+            case 4:
+                break;
+            case 5:
+                break;
+            case 6:
+                break;
+            case 7:
+                break;
+        }
     }
 }
