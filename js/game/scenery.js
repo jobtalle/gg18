@@ -15,7 +15,7 @@ Scenery.prototype = {
 
 
     render(context) {
-        this.sprite.draw(context, this.position.x, this.position.y, this.angle - Math.PI * 0.5);
+        this.sprite.draw(context, this.position.x, this.position.y, this.angle + Math.PI * 0.5);
     },
 
     setDay(day)

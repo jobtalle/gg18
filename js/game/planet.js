@@ -9,6 +9,8 @@ function Planet(players) {
     this.createBeamers();
     this.createCrystals();
     this.calculateInteractionRadius();
+    
+    this.tony = Math.cos(Math.PI / 4) * this.RADIUS;
 }
 
 Planet.prototype = {
@@ -23,8 +25,7 @@ Planet.prototype = {
     BEAMER_COUNT: 6,
     ATMOSPHERE_SIZE_MODIFIER: 1.2,
     ATMOSPHERE_COLOR: "rgba(89,133,221,0.66)",
-    ATMOSPHERE_START_ANGLE: 2.35619449019,
-    ATMOSPHERE_END_ANGLE: -0.78539816339,
+    DIR_DAY: Math.PI * 0.25,
     INTERACTION_DISTANCE: 16,
     CRYSTAL_COUNT: 12,
     
@@ -106,7 +107,7 @@ Planet.prototype = {
     },
     
     getDay(vector) {
-        return vector.dot(Vector.prototype.fromAngle(this.ATMOSPHERE_END_ANGLE + (this.ATMOSPHERE_START_ANGLE - this.ATMOSPHERE_END_ANGLE) * 0.5 - this.angle)) < 0;
+        return vector.dot(Vector.prototype.fromAngle(this.DIR_DAY - this.angle)) < 0;
     },
     
     getBeams() {
@@ -300,10 +301,9 @@ Planet.prototype = {
         context.restore();
     },
 
-    renderHighlight(context){
+    renderHighlight(context) {
         context.save();
 
-        
         // tony doe hier dingen!
         var grd=context.createRadialGradient(-30,-50,100,-30,-50,120);
         grd.addColorStop(0, this.COLOR_PLANET_HIGHLIGHT);
@@ -311,13 +311,13 @@ Planet.prototype = {
 
         context.beginPath();
         context.fillStyle ="rgba(0,0,0,0)";
-        context.arc(0,0, this.RADIUS,  0, Math.PI * 2);
+        context.arc(0,0, this.RADIUS, 0, Math.PI * 2);
         context.fill();
         context.clip();
 
         context.beginPath();
         context.fillStyle = this.COLOR_PLANET_HIGHLIGHT;
-        context.arc(-30,-50, this.RADIUS * 1.2,  0, Math.PI * 2);
+        context.arc(-this.tony, -this.tony, this.tony * 2, 0, Math.PI * 2);
         context.fill();
 
         context.restore();
