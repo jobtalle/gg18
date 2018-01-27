@@ -22,8 +22,20 @@ Resources.prototype = {
         this.ufo_mother_engine = new Sprite("img/ufo/ufo_mother_engine.png", 11,6,5, 10);
 
         this.ufo_light = new Sprite("img/ufo/ufo_light.png", 0,0,1);
+        this.ufo_light_blue = new Sprite("img/ufo/ufo_light_blue.png", 0,0,1);
+        this.ufo_light_green = new Sprite("img/ufo/ufo_light_green.png", 0,0,1);
+        this.ufo_light_orange= new Sprite("img/ufo/ufo_light_orange.png", 0,0,1);
+        this.ufo_light_purple= new Sprite("img/ufo/ufo_light_purple.png", 0,0,1);
+        this.ufo_light_red= new Sprite("img/ufo/ufo_light_red.png", 0,0,1);
+        this.ufo_light_yellow= new Sprite("img/ufo/ufo_light_yellow.png", 0,0,1);
         this.ufo_light_mother = new Sprite("img/ufo/ufo_light_mother.png", 0,0,1);
-
+        this.ufo_light_mother_blue = new Sprite("img/ufo/ufo_light_mother_blue.png", 0,0,1);
+        this.ufo_light_mother_green = new Sprite("img/ufo/ufo_light_mother_green.png", 0,0,1);
+        this.ufo_light_mother_orange= new Sprite("img/ufo/ufo_light_mother_orange.png", 0,0,1);
+        this.ufo_light_mother_purple= new Sprite("img/ufo/ufo_light_mother_purple.png", 0,0,1);
+        this.ufo_light_mother_red= new Sprite("img/ufo/ufo_light_mother_red.png", 0,0,1);
+        this.ufo_light_mother_yellow= new Sprite("img/ufo/ufo_light_mother_yellow.png", 0,0,1);
+        
         this.base_1_idle = new Sprite("img/character/base_1_idle.png", 3,10,3, 10);
         this.base_1_idle_arms = new Sprite("img/character/base_1_idle_arms.png", 3,10,3, 10);
         this.base_1_running = new Sprite("img/character/base_1_running.png", 3,10,4, 10);
