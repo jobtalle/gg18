@@ -28,7 +28,7 @@ Beamer.prototype = {
         if(this.crystal != null) {
             this.crystal.update(timeStep);
             
-            if(!this.crystal.cut) {
+            if(this.beams.length > 0 && !this.beams[this.beams.length - 1].cut) {
                 this.crystal.drain(timeStep);
                                
                 if(this.crystal.life == 0)

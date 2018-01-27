@@ -56,6 +56,7 @@ Crystal.prototype = {
         context.save();
         context.translate(this.position.x, this.position.y);
         context.rotate(this.angle + Math.PI * 0.5);
+        context.globalAlpha = this.getStrength();
         
         context.fillStyle = this.getColor();
         context.beginPath();
