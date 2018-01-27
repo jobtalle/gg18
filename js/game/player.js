@@ -11,6 +11,14 @@ function Player(controller, angle) {
     this.crystal = null;
     
     this.listen(controller);
+
+    this.idleSprite = resources.base_1_idle.instantiate();
+    this.walkingSprite = resources.base_1_running.instantiate();
+    this.beamingSprite = resources.base_1_shooting.instantiate();
+    this.idleArmsSprite = resources.base_1_idle_arms.instantiate();
+    this.walkingArmsSprite = resources.base_1_running_arms.instantiate();
+    this.xScale = -1;
+
 }
 
 Player.prototype = {
@@ -28,18 +36,38 @@ Player.prototype = {
     
     update(timeStep) {
         this.controller.update();
+        this.idleSprite.update(timeStep);
+        this.walkingSprite.update(timeStep);
+        this.idleArmsSprite.update(timeStep);
+        this.walkingArmsSprite.update(timeStep);
+        this.beamingSprite.update(timeStep);
+
+        if(this.state !="beaming")
+        {
+        if(this.speed != 0)
+            this.state = "walking";
+        else
+            this.state = "standing";
+        }
 
         switch(this.state) {
             case "walking":
+            case "standing":
                 if(this.speedChange != 0) {
                     const maxFactor = Math.sign(this.speedChange) * this.speedChange;
                     
                     this.speed += Math.sign(this.speedChange) * this.ACCELERATION * timeStep;
 
                     if(this.speed < -this.SPEED * maxFactor)
+                    {
+                        this.xScale = -1;
                         this.speed = -this.SPEED * maxFactor;
+                    }
                     else if(this.speed > this.SPEED * maxFactor)
+                    {
+                        this.xScale = 1;
                         this.speed = this.SPEED * maxFactor;
+                    }
                 }
                 else {
                     if(this.speed < 0) {
@@ -61,6 +89,7 @@ Player.prototype = {
                 
                 if(this.crystal != null)
                     this.crystal.carry(this.angle, this.CARRY_HEIGHT);
+
                 break;
         }
         
@@ -73,18 +102,45 @@ Player.prototype = {
     
     render(context) {
         context.save();
-        context.translate(this.position.x, this.position.y);
-        context.rotate(this.angle + Math.PI * 0.5);
+        // context.translate(this.position.x, this.position.y);
+        // context.rotate(this.angle + Math.PI * 0.5);
+
+        // context.fillStyle = this.COLOR;
+        // context.beginPath();
+        // context.moveTo(0, 0);
+        // context.lineTo(-3, -10);
+        // context.lineTo(3, -10);
+        // context.fill();
+
+        if(this.state == "walking")
+        {
+            if(this.crystal != null)
+            {
+                this.walkingArmsSprite.draw(
+                context, this.position.x, this.position.y,this.angle + Math.PI * 0.5, this.xScale);
+            }
+            else
+                this.walkingSprite.draw(
+                context, this.position.x, this.position.y,this.angle + Math.PI * 0.5, this.xScale);
+        }
+        else if(this.state == "beaming")
+        {
+            this.beamingSprite.draw(
+                context, this.position.x, this.position.y,this.angle + Math.PI * 0.5, this.xScale);
+
+        }
+        else
+        {
+            if(this.crystal != null)
+            {
+                this.idleArmsSprite.draw(context, this.position.x, this.position.y,this.angle + Math.PI * 0.5, this.xScale);
+            }
+            else
+            this.idleSprite.draw(context, this.position.x, this.position.y,this.angle + Math.PI * 0.5, this.xScale);
+        }
         
         if(this.state == "beaming")
             context.rotate(Math.PI);
-        
-        context.fillStyle = this.COLOR;
-        context.beginPath();
-        context.moveTo(0, 0);
-        context.lineTo(-3, -10);
-        context.lineTo(3, -10);
-        context.fill();
         
         context.restore();
         
@@ -114,7 +170,7 @@ Player.prototype = {
     },
     
     exitBeamer() {
-        this.state = "walking";
+        this.state = "standing";
     },
     
     listen(controller) {
@@ -163,6 +219,7 @@ Player.prototype = {
     onEnterPressed() {
         switch(this.state) {
             case "walking":
+            case "standing":
                 this.onTryEnter(this);
                 break;
             case "beaming":
@@ -174,6 +231,7 @@ Player.prototype = {
     onActivatePressed() {
         switch(this.state) {
             case "walking":
+            case "standing":
                 if(this.crystal == null)
                     this.onTryPickup(this);
                 else

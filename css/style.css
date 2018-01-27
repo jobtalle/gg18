@@ -98,15 +98,6 @@ body {
     image-rendering: pixelated;
     background-repeat: repeat;
     image-rendering: -moz-crisp-edges;
-    
-    display:flex;
-    align-items: center;
-    justify-content: center;
-    background-size: cover;
-    animation-name: pan;
-    animation-duration: 200s;
-    animation-iteration-count: infinite;
-    animation-timing-function: linear;
 }
 
 @keyframes pan {
@@ -281,6 +272,16 @@ td {
     animation-fill-mode: forwards;
     animation-duration: 0.4s;
     animation-timing-function: ease-in-out;
+}
+
+#backgroundElements {
+    position: absolute;
+    pointer-events: none;
+    
+    left: 0px;
+    right: 0px;
+    top: 0px;
+    bottom: 0px;
 }
 
 
