@@ -201,7 +201,8 @@ Player.prototype = {
         switch(this.state) {
             case "walking":
             case "standing":
-                this.onTryEnter(this);
+                if(this.onTryEnter != undefined)
+                    this.onTryEnter(this);
                 break;
             case "beaming":
                 this.exitBeamer();

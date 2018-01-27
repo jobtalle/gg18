@@ -15,18 +15,7 @@ Scenery.prototype = {
 
 
     render(context) {
-        // context.save();
-
-        this.sprite.draw(context, this.position.x, this.position.y, this.angle);
-        // context.rotate(this.angle);
-        
-        // context.fillStyle = this.COLOR;
-        
-        // context.beginPath();
-        // context.arc(this.position.x, this.position.y, 1, 0, Math.PI * 2);
-        // context.fill();
-        
-        // context.restore();
+        this.sprite.draw(context, this.position.x, this.position.y, this.angle - Math.PI * 0.5);
     },
 
     setDay(day)
