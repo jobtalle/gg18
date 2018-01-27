@@ -1,69 +1,61 @@
-function PlayerController() {
-    document.body.addEventListener("keydown", this.onKeyDown.bind(this));
-    document.body.addEventListener("keyup", this.onKeyUp.bind(this));
+function PlayerController(gamepad, controllerId)
+{
+    this.controllerId = controllerId;
+
+    gamepad.on('press', 'button_1', e => {
+        if(e.player == this.controllerId)
+            if(this.onActivatePressed != null)
+                this.onActivatePressed();
+    });
+    gamepad.on('release', 'button_1', e => {
+        if(e.player == this.controllerId)
+            if(this.onActivateReleased != null)
+                this.onActivateReleased();
+    });
+    gamepad.on('press', 'button_2', e => {
+        if(e.player == this.controllerId)
+            if(this.onEnterPressed != null)
+                this.onEnterPressed();
+    });
+    gamepad.on('release', 'button_2', e => {
+        if(e.player == this.controllerId)
+            if(this.onEnterReleased != null)
+                this.onEnterReleased(); 
+    });
+    gamepad.on('hold', "stick_axis_left", e=>{
+        if(e.player == this.controllerId)
+        {
+            this.vector.x = e.value[0];
+            this.vector.y = e.value[1];
+            this.movedStick = true;
+        }
+    });
 }
 
 PlayerController.prototype = {
-    onLeftPressed: null,
-    onLeftReleased: null,
-    onRightPressed: null,
-    onRightReleased : null,
-    onActivatePressed : null,
-    onActiveReleased : null,
-    onEnterPressed : null,
-    onEnterReleased : null,
+    onActivatePressed: null,
+    onActiveReleased: null,
+    onEnterPressed: null,
+    onEnterReleased: null,
+    onMove: null,
+    vector: new Vector(),
+    zeroVector: new Vector(),
+    movedStick: false,
+    
+    leftKey: "KeyA",
+    rightKey: "KeyD",
+    upKey: "KeyW",
+    downKey: "KeyS",
+    enterKey: "KeyE",
+    escapeKey: "KeyQ",
 
-    onKeyDown(e)
-    {
-        switch(e.code)
-        {
-            case "ArrowLeft":
-            case "KeyA":
-                if(this.onLeftPressed != null)
-                    this.onLeftPressed();
-                break;
-            case "ArrowRight":
-            case "KeyD":
-            if(this.onRightPressed != null)
-                this.onRightPressed();
-                break;
-            case "Enter":
-            case "KeyE":
-                if(this.onEnterPressed != null)
-                    this.onEnterPressed();
-                break;
-            case "Escape":
-            case "KeyQ":
-                if(this.onActivatePressed != null)
-                    this.onActivatePressed();
-                break;
+    update(deltaTime) {
+        if(this.movedStick) {
+            this.onMove(this.vector);
+            
+            this.movedStick = false;
         }
-    },
-
-    onKeyUp(e)
-    {
-        switch(e.code)
-        {
-            case "ArrowLeft":
-            case "KeyA":
-                if(this.onLeftReleased != null)
-                    this.onLeftReleased();
-                break;
-            case "ArrowRight":
-            case "KeyD":
-            if(this.onRightReleased != null)
-                this.onRightReleased();
-                break;
-            case "Enter":
-            case "KeyE":
-                if(this.onEnterReleased != null)
-                    this.onEnterReleased();
-                break;
-            case "Escape":
-            case "KeyQ":
-                if(this.onActivateReleased != null)
-                    this.onActivateReleased();
-                break;
-        }
+        else
+            this.onMove(this.zeroVector);
     }
 }

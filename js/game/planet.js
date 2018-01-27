@@ -6,6 +6,7 @@ function Planet(players) {
     
     this.createScenery();
     this.createBeamers();
+    this.createCrystals();
     this.calculateInteractionRadius();
 }
 
@@ -24,12 +25,16 @@ Planet.prototype = {
     ATMOSPHERE_START_ANGLE: 2.35619449019,
     ATMOSPHERE_END_ANGLE: -0.78539816339,
     INTERACTION_DISTANCE: 16,
+    CRYSTAL_COUNT: 8,
     
     update(timeStep) {
         this.angle += this.ROTATION_SPEED * timeStep;
         
         if(this.angle > Math.PI * 2)
             this.angle -= Math.PI * 2;
+        
+        for(var i = 0; i < this.crystals.length; ++i)
+            this.crystals[i].update(timeStep);
         
         for(var i = 0; i < this.players.length; ++i)
             this.players[i].update(timeStep);
@@ -64,6 +69,9 @@ Planet.prototype = {
         for(var i = 0; i < this.beamers.length; ++i)
             this.beamers[i].render(context);
         
+        for(var i = 0; i < this.crystals.length; ++i)
+            this.crystals[i].render(context);
+        
         for(var i = 0; i < this.players.length; ++i)
             this.players[i].render(context);
     },
@@ -77,6 +85,9 @@ Planet.prototype = {
             const player = players[i];
             
             player.onTryEnter = this.tryEnter.bind(this);
+            player.onTryPickup = this.tryPickup.bind(this);
+            player.onTryDrop = this.tryDrop.bind(this);
+            player.planet = this;
         }
     },
     
@@ -87,11 +98,47 @@ Planet.prototype = {
             const beamer = this.beamers[i];
             
             if(Math.acos(beamer.positionNormalized.dot(playerPositionNormalized)) < this.interactionRadius) {
-                player.enterBeamer(beamer);
+                player.enterBeamer(beamer, this);
                 
                 break;
             }
         }
+    },
+    
+    tryPickup(player) {
+        const playerPositionNormalized = player.position.normalize();
+        var crystalAngle = 1;
+        var nearestCrystal = null;
+        
+        for(var i = 0; i < this.crystals.length; ++i) {
+            const crystal = this.crystals[i];
+            const angle = Math.acos(crystal.position.normalize().dot(playerPositionNormalized));
+            
+            if(angle < this.interactionRadius && angle < crystalAngle) {
+                crystalAngle = angle;
+                nearestCrystal = crystal;
+            }
+        }
+        
+        if(nearestCrystal != null) {
+            player.pickup(nearestCrystal);
+            this.crystals.splice(this.crystals.indexOf(nearestCrystal), 1);
+        }
+        else {
+            for(var i = 0; i < this.beamers.length; ++i) {
+                const beamer = this.beamers[i];
+                
+                if(beamer.crystal != null && Math.acos(beamer.positionNormalized.dot(playerPositionNormalized)) < this.interactionRadius) {
+                    player.pickup(beamer.crystal);
+                    beamer.dropCrystal();
+                }
+            }
+        }
+    },
+    
+    tryDrop(player) {
+        this.crystals.push(player.crystal);
+        player.drop();
     },
     
     createScenery() {
@@ -107,12 +154,34 @@ Planet.prototype = {
         for(var i = 0; i < this.BEAMER_COUNT; ++i)
             this.beamers.push(new Beamer((Math.PI / 3) * i));
     },
+    
+    createCrystals() {
+        this.crystals = [];
+        
+        for(var i = 0; i < this.CRYSTAL_COUNT; ++i) {
+            var color;
+            
+            switch(i % 3) {
+                case 0:
+                    color = "red";
+                    break;
+                case 1:
+                    color = "green";
+                    break;
+                case 2:
+                    color = "blue";
+                    break;
+            }
+            
+            this.crystals.push(new Crystal(Math.random() * 2 * Math.PI, color));
+        }
+    },
 
     renderAtmosphere(context)
     {
         context.save();
 
-        grd=context.createRadialGradient(0,0,this.RADIUS,0,0,130);
+        grd=context.createRadialGradient(0,0,this.RADIUS+10,0,0,130);
         grd.addColorStop(0,"#00000000");
         grd.addColorStop(1, this.ATMOSPHERE_COLOR);
 

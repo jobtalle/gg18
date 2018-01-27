@@ -47,6 +47,10 @@ Vector.prototype = {
 		return Math.atan2(this.y, this.x);
 	},
 	
+    orthogonal() {
+        return new Vector(this.y, -this.x);
+    },
+    
 	fromAngle(angle, length = 1) {
 		return new Vector(Math.cos(angle) * length, Math.sin(angle) * length);
 	}
