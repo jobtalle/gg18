@@ -47,6 +47,10 @@ Ufo.prototype = {
         context.restore();
     },
     
+    isInBeam(beam) {
+        
+    },
+    
     addLeaveListener(onLeave) {
         this.onLeave = onLeave;
     },

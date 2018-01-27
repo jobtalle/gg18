@@ -25,7 +25,7 @@ Planet.prototype = {
     ATMOSPHERE_START_ANGLE: 2.35619449019,
     ATMOSPHERE_END_ANGLE: -0.78539816339,
     INTERACTION_DISTANCE: 16,
-    CRYSTAL_COUNT: 8,
+    CRYSTAL_COUNT: 12,
     
     update(timeStep) {
         this.angle += this.ROTATION_SPEED * timeStep;

@@ -1,12 +1,17 @@
 function Beam(angle, aim, crystal, radius) {
     this.angle = angle;
-    this.aim = aim;
     this.crystal = crystal;
     this.radius = radius;
     
     this.cut = false;
     this.innerRadius = 0;
     this.outerRadius = 0;
+    
+    this.position = new Vector(
+        Math.cos(this.angle) * radius,
+        Math.sin(this.angle) * radius);
+    
+    this.angle += aim;
 }
 
 Beam.prototype = {
@@ -25,9 +30,8 @@ Beam.prototype = {
     
     render(context) {
         context.save();
-        context.rotate(this.angle + Math.PI * 0.5);
-        context.translate(0, -this.radius);
-        context.rotate(-Math.PI * 0.5 + this.aim);
+        context.translate(this.position.x, this.position.y);
+        context.rotate(this.angle);
         context.globalAlpha = 0.5;
         
         context.fillStyle = this.crystal.getColor();
@@ -52,6 +56,6 @@ Beam.prototype = {
     },
     
     rotate(angle) {
-        this.aim += angle;
+        this.angle += angle;
     }
 }
