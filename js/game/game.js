@@ -4,10 +4,14 @@ function Game(renderer, players) {
     this.planet = new Planet(players);
     this.dispatcher = new UfoDispatcher(this.planet.dispatch.bind(this.planet));
     this.dispatcher.start();
+    
+    this.shakeZoom = 0;
+    this.shakeAngle = 0;
+    this.shakeAngleSpeed = 0;
 }
 
 Game.prototype = {
-    SCALE: 2,
+    SCALE: 4,
     
     start() {
         this.lastDate = new Date();
@@ -33,10 +37,19 @@ Game.prototype = {
         return timeStep;
     },
     
+    shake() {
+        this.shakeZoom += 0.1;
+        this.shakeAngleSpeed = -this.shakeAngleSpeed + Math.sign(this.shakeAngleSpeed) * 1;
+    },
+    
     update(timeStep) {
         this.space.update(timeStep);
         this.dispatcher.update(timeStep);
         this.planet.update(timeStep);
+        
+        this.shakeAngle += this.shakeAngleSpeed;
+        this.shakeAngle *= 1 - 0.1 * timeStep;
+        this.shakeZoom *= 1 - 0.1 * timeStep;
     },
     
     renderBackground(context) {
@@ -48,7 +61,8 @@ Game.prototype = {
         context.translate(
             context.canvas.width / 2,
             context.canvas.height / 2);
-        context.scale(this.SCALE, this.SCALE);
+        context.scale(this.SCALE + this.shakeZoom, this.SCALE + this.shakeZoom);
+        context.rotate(this.shakeAngle);
     },
     
     translateContext(context, offset) {
