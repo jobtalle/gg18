@@ -12,9 +12,9 @@ function Planet(players) {
 }
 
 Planet.prototype = {
-    COLOR_PLANET: "#c0d0b0",
+    COLOR_PLANET: "#769584",
     COLOR_PLANET_HIGHLIGHT: "#dae4d0",
-    COLOR_PLANET_LINES: "#afc0b5",
+    COLOR_PLANET_LINES: "#5f7a7b",
     RADIUS: 100,
     RADIUS_ORBIT: 150,
     RADIUS_INCOMING: 400,
