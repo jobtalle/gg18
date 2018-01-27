@@ -2,6 +2,7 @@ function Ufo(essences, mover) {
     this.essences = essences;
     this.mover = mover;
     this.finished = false;
+    this.sprite = resources.ufo_lander_2.instantiate();
     
     this.storeColors();
 }
@@ -9,6 +10,7 @@ function Ufo(essences, mover) {
 Ufo.prototype = {
     update(timeStep) {
         this.mover.update(timeStep);
+        this.sprite.update(timeStep);
     },
     
     render(context) {
@@ -20,23 +22,11 @@ Ufo.prototype = {
         
         context.fillText(colorTexts, this.mover.position.x + 16, this.mover.position.y);
         
-        context.save();
-        context.translate(this.mover.position.x, this.mover.position.y);
-        
-        context.rotate(this.mover.getAngle() + Math.PI * 0.5);
-        
-        context.strokeStyle = this.essences[0].getColor();
-        context.beginPath();
-        context.moveTo(-8, 0);
-        context.lineTo(8, 0);
-        context.stroke();
-        
-        context.fillStyle = this.essences[0].getColor();
-        context.beginPath();
-        context.arc(0, 0, 4, 0, Math.PI * 2);
-        context.fill();
-        
-        context.restore();
+        this.sprite.draw(
+            context,
+            this.mover.position.x,
+            this.mover.position.y,
+            this.mover.getAngle() + Math.PI * 0.5);
     },
     
     storeColors() {
