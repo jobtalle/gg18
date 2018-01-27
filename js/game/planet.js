@@ -53,6 +53,11 @@ Planet.prototype = {
             player.update(timeStep);
         }
         
+        for(var i = 0; i < this.scenery.length; ++i) {
+            const obj = this.scenery[i];
+            obj.setDay(this.getDay(obj.position));
+        }
+
         for(var i = 0; i < this.beamers.length; ++i) {
             const beamer = this.beamers[i];
             

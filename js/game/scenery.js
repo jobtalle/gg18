@@ -3,21 +3,38 @@ function Scenery(angle) {
     this.position = new Vector(
         Math.cos(angle) * Planet.prototype.RADIUS,
         Math.sin(angle) * Planet.prototype.RADIUS);
+
+    this.SCENERY_OBJECTS = [resources.building_1, resources.building_2, resources.building_3, resources.building_4, resources.building_5, resources.building_6, resources.bush, resources.oak,resources.pine];
+    this.sprite = this.SCENERY_OBJECTS[getRandomInt(0,this.SCENERY_OBJECTS.length)].instantiate();
 }
 
 Scenery.prototype = {
-    COLOR: "#ff0000",
+    SCENERY_OBJECTS: [],
     
     render(context) {
-        context.save();
-        context.rotate(this.angle);
+        // context.save();
+
+        this.sprite.draw(context, this.position.x, this.position.y, this.angle);
+        // context.rotate(this.angle);
         
-        context.fillStyle = this.COLOR;
+        // context.fillStyle = this.COLOR;
         
-        context.beginPath();
-        context.arc(this.position.x, this.position.y, 1, 0, Math.PI * 2);
-        context.fill();
+        // context.beginPath();
+        // context.arc(this.position.x, this.position.y, 1, 0, Math.PI * 2);
+        // context.fill();
         
-        context.restore();
+        // context.restore();
+    },
+
+    setDay(day)
+    {
+        if(day)
+        {
+            
+        }
+        else
+        {
+
+        }
     }
 }
