@@ -36,14 +36,20 @@ function SpriteInstance(sprite) {
 }
 
 SpriteInstance.prototype = {
+    EPSILON: 0.00001,
+    
     update(timeStep) {
         if(this.sprite.frames == 1)
             return;
         
         this.frame += timeStep * this.sprite.fps;
         
-        if(this.frame >= this.sprite.frames)
+        if(this.frame >= this.sprite.frames) {
             this.frame -= this.sprite.frames;
+            
+            if(this.onEnd != undefined)
+                this.onEnd();
+        }
     },
     
     setFrame(frame) {
@@ -63,9 +69,9 @@ SpriteInstance.prototype = {
         
         context.drawImage(
             this.sprite.image,
-            this.sprite.width * Math.trunc(this.frame),
+            this.sprite.width * Math.trunc(this.frame) + this.EPSILON,
             0,
-            this.sprite.width,
+            this.sprite.width - this.EPSILON,
             this.sprite.height,
             -this.sprite.xOrigin,
             -this.sprite.yOrigin,

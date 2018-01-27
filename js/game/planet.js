@@ -23,8 +23,8 @@ Planet.prototype = {
     ROTATION_SPEED: 0.1,
     SCENERY_AMOUNT: 40,
     BEAMER_COUNT: 6,
-    ATMOSPHERE_SIZE_MODIFIER: 1.2,
-    ATMOSPHERE_COLOR: "rgba(89,133,221,0.66)",
+    ATMOSPHERE_SIZE_MODIFIER: 1.35,
+    ATMOSPHERE_COLOR: "rgba(89,133,221,0.3)",
     DIR_DAY: Math.PI * 0.25,
     INTERACTION_DISTANCE: 16,
     CRYSTAL_COUNT: 12,
@@ -286,16 +286,15 @@ Planet.prototype = {
     {
         context.save();
 
-        grd=context.createRadialGradient(0,0,this.RADIUS+20,0,0,122);
+        grd=context.createRadialGradient(0,0,this.RADIUS,0,0,this.RADIUS * this.ATMOSPHERE_SIZE_MODIFIER);
         grd.addColorStop(0,"#00000000");
         grd.addColorStop(1, this.ATMOSPHERE_COLOR);
 
         context.beginPath();
         context.fillStyle = grd;
-        context.arc(0,0, this.RADIUS * this.ATMOSPHERE_SIZE_MODIFIER,  this.ATMOSPHERE_START_ANGLE, this.ATMOSPHERE_END_ANGLE);
-        
-        context.shadowBlur = 40;
-        context.shadowColor = this.ATMOSPHERE_COLOR;
+        context.arc(0,0, this.RADIUS * this.ATMOSPHERE_SIZE_MODIFIER,
+                    this.DIR_DAY + Math.PI * 0.5,
+                    this.DIR_DAY - Math.PI * 0.5);
         
         context.fill();
         context.restore();
@@ -304,7 +303,6 @@ Planet.prototype = {
     renderHighlight(context) {
         context.save();
 
-        // tony doe hier dingen!
         var grd=context.createRadialGradient(-30,-50,100,-30,-50,120);
         grd.addColorStop(0, this.COLOR_PLANET_HIGHLIGHT);
         grd.addColorStop(1,"rgba(0,0,0,0)");

@@ -8,6 +8,7 @@ function Beamer(angle) {
     this.place(angle);
     this.beamerBase = resources.biemer_base.instantiate();
     this.beamerDish = resources.biemer_empty.instantiate();
+    this.beamerSparks = null;
 }
 
 Beamer.prototype = {
@@ -22,6 +23,9 @@ Beamer.prototype = {
         this.turn(timeStep);
         this.beamerBase.update(timeStep);
         this.beamerDish.update(timeStep);
+        
+        if(this.sparks != undefined)
+            this.sparks.update(timeStep);
         
         for(var i = this.beams.length; i-- > 0;) {
             const beam = this.beams[i];
@@ -42,8 +46,10 @@ Beamer.prototype = {
                     this.beamerDish = resources.biemer_empty.instantiate();
                     this.crystal = null;
                     
-                    if(this.beams.length > 0 && !this.beams[this.beams.length - 1].cut)
+                    if(this.beams.length > 0 && !this.beams[this.beams.length - 1].cut) {
+                        this.spark();
                         this.beams[this.beams.length - 1].stop();
+                    }
                 }
             }
         }
@@ -68,6 +74,8 @@ Beamer.prototype = {
             context.fillStyle = this.crystal.getColor();
         
         this.beamerDish.draw(context,0,0,0);
+        if(this.sparks != undefined)
+            this.sparks.draw(context, 0, 0, 0);
 
         context.restore();
     },
@@ -125,13 +133,25 @@ Beamer.prototype = {
         this.positionNormalized = this.position.normalize();
     },
     
+    spark() {
+        if(this.sparks == undefined) {
+            this.sparks = resources.biemer_spark.instantiate();
+            this.sparks.onEnd = this.stopSpark.bind(this);
+        }
+    },
+    
+    stopSpark() {
+        this.sparks = undefined;
+    },
+    
     toggle() {
         if(this.crystal == null)
             return;
         
-        if(this.beams.length > 0 && !this.beams[this.beams.length - 1].cut)
+        if(this.beams.length > 0 && !this.beams[this.beams.length - 1].cut) {
+            this.spark();
             this.beams[this.beams.length - 1].stop();
-        else {
+        } else {
             this.beams.push(new Beam(
                 this.angle,
                 this.aim,
