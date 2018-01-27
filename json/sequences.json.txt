@@ -1,0 +1,34 @@
+sequences = [
+    {
+        "difficulty": {"min": "0", "max": "3"},
+        "ufos": [
+        {
+            "colors": ["red"],
+            "path": "orbits",
+            "orbitCount": "2",
+            "next": "3"
+        },
+        {
+            "colors": ["blue"],
+            "path": "orbits",
+            "orbitCount": "2",
+            "next": "3"
+        }]
+    },
+    {
+        "difficulty": {"min": "2", "max": "5"},
+        "ufos": [
+        {
+            "colors": ["green"],
+            "path": "orbits",
+            "orbitCount": "2",
+            "next": "3"
+        },
+        {
+            "colors": ["green"],
+            "path": "orbits",
+            "orbitCount": "2",
+            "next": "3"
+        }]
+    }
+]

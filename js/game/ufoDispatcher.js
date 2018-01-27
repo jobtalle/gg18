@@ -24,7 +24,7 @@ function UfoDispatcher(callback) {
 UfoDispatcher.prototype = {
     csvData: ["a1,r,,2,a2,r,g,2\r\na1,r,g,2,a2,r,b,2"],
     sequence: [],
-    timer:0.0,
+    timer: 0.0,
     maxTime: 0.0,
     sequenceIndex: 0,
 
@@ -37,10 +37,10 @@ UfoDispatcher.prototype = {
                 this.sequenceIndex++;
 
             if(this.sequenceIndex == this.sequence.length)
-                {
-                    console.log("win");
-                    return;
-                }
+            {
+                console.log("win");
+                return;
+            }
 
             type =  this.sequence[this.sequenceIndex].shift();
             color =  this.sequence[this.sequenceIndex].shift();

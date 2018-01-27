@@ -2,13 +2,9 @@ function Game(renderer, players) {
     this.renderer = renderer;
     this.space = new Space();
     this.planet = new Planet(players);
-<<<<<<< HEAD
-    
-    this.ufos = [];
-    this.addUfo(new Ufo());
-    this.dispatcher = new UfoDispatcher();
-=======
->>>>>>> cae3b5a6519cdb1415bda91c0ba3a575af7c1025
+    this.dispatcher = new UfoDispatcher(function(type, color, secondaryColor, timer) {
+        console.log(color);
+    });
 }
 
 Game.prototype = {
@@ -41,13 +37,7 @@ Game.prototype = {
     update(timeStep) {
         this.space.update(timeStep);
         this.planet.update(timeStep);
-<<<<<<< HEAD
         this.dispatcher.update(timeStep);
-        
-        for(var i = 0; i < this.ufos.length; ++i)
-            this.ufos[i].update(timeStep);
-=======
->>>>>>> cae3b5a6519cdb1415bda91c0ba3a575af7c1025
     },
     
     renderBackground(context) {

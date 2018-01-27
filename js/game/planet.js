@@ -246,7 +246,6 @@ Planet.prototype = {
     },
     
     removeUfo(ufo) {
-        console.log("Remove ufo");
         this.ufos.splice(this.ufos.indexOf(ufo), 1);
     },
 
