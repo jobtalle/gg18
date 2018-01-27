@@ -6,18 +6,22 @@ function Beamer(angle) {
     this.crystal = null;
     
     this.place(angle);
+    this.beamerBase = resources.biemer_base.instantiate();
+    this.beamerDish = resources.biemer_blue.instantiate();
 }
 
 Beamer.prototype = {
     COLOR: "#0056bb",
     COLOR_DISH: "white",
-    DISH_HEIGHT: 12,
+    DISH_HEIGHT: 10,
     AIM_RANGE: 3,
     AIM_SPEED: 1,
     CRYSTAL_SCATTER_RANGE: 16,
     
     update(timeStep) {
         this.turn(timeStep);
+        this.beamerBase.update(timeStep);
+        this.beamerDish.update(timeStep);
         
         for(var i = this.beams.length; i-- > 0;) {
             const beam = this.beams[i];
@@ -49,17 +53,19 @@ Beamer.prototype = {
         context.translate(this.position.x, this.position.y);
         context.rotate(this.angle + Math.PI * 0.5);
         
-        context.strokeStyle = this.COLOR;
-        context.beginPath();
-        context.moveTo(0, 0);
-        context.lineTo(0, -this.DISH_HEIGHT);
-        context.stroke();
+        // context.strokeStyle = this.COLOR;
+        // context.beginPath();
+        // context.moveTo(0, 0);
+        // context.lineTo(0, -this.DISH_HEIGHT);
+        // context.stroke();
         
         context.restore();
         context.save();
         
         context.translate(this.position.x, this.position.y);
         context.rotate(this.angle + Math.PI * 0.5);
+        this.beamerBase.draw(context,0,0,0);
+
         context.translate(0, -this.DISH_HEIGHT);
         context.rotate(this.aim);
         
@@ -68,10 +74,12 @@ Beamer.prototype = {
         else
             context.fillStyle = this.crystal.getColor();
         
-        context.beginPath();
-        context.arc(0, 0, 6, 0, Math.PI);
-        context.fill();
+        // context.beginPath();
+        // context.arc(0, 0, 6, 0, Math.PI);
+        // context.fill();
         
+        this.beamerDish.draw(context,0,0,0);
+
         context.restore();
         
         for(var i = 0; i < this.beams.length; ++i)

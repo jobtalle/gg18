@@ -30,8 +30,8 @@ Resources.prototype = {
         this.base_1_running_arms = new Sprite("img/character/base_1_running_arms.png", 3,10,4, 10);
         this.base_1_shooting = new Sprite("img/character/base_1_shooting.png", 3,10,3, 10);
         
-        this.biemer_base = new Sprite("img/biemer/biemer_base.png", 0,0,1);
-        this.biemer_blue = new Sprite("img/biemer/biemer_blue.png", 0,0,1);
+        this.biemer_base = new Sprite("img/biemer/biemer_base.png", 2,9,1);
+        this.biemer_blue = new Sprite("img/biemer/biemer_blue.png", 7,6,1);
         this.biemer_empty = new Sprite("img/biemer/biemer_empty.png", 0,0,1);
         this.biemer_green = new Sprite("img/biemer/biemer_green.png", 0,0,1);
         this.biemer_orange = new Sprite("img/biemer/biemer_orange.png", 0,0,1);
