@@ -1,4 +1,4 @@
-function UfoMoverOrbit(orbits, height) {
+function UfoMoverOrbit(orbits, height, isBooster) {
     this.position = new Vector();
     this.initialAngle = Math.random() * Math.PI * 2;
     this.angle = 0;
@@ -8,11 +8,13 @@ function UfoMoverOrbit(orbits, height) {
     this.speed = this.getRadialSpeed(300);
     this.leaving = false;
     this.leaveHeight = 0;
+    this.isBooster = isBooster;
 }
 
 UfoMoverOrbit.prototype = {
     INCOMING_RADIANS: 1.4,
     LEAVE_SPEED: 170,
+    BOOSTER_MULTIPLIER: 2,
     
     update(timeStep) {
         const radius = this.getRadius();
@@ -30,6 +32,9 @@ UfoMoverOrbit.prototype = {
             
             if(++this.orbit > this.orbits)
                 this.onLeave(this);
+            
+            if(this.orbit == 1 && this.isBooster)
+                this.speed *= this.BOOSTER_MULTIPLIER;
         }
         
         this.angle += this.speed * timeStep;

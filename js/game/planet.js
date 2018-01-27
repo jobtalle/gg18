@@ -1,13 +1,13 @@
 function Planet(players) {
     this.players = players;
     this.angle = 0;
+    this.ufos = [];
     
     this.listenToPlayers(players);
     
     this.createScenery();
     this.createBeamers();
     this.createCrystals();
-    this.createUfos();
     this.calculateInteractionRadius();
 }
 
@@ -81,7 +81,7 @@ Planet.prototype = {
         for(var i = 0; i < this.players.length; ++i)
             this.players[i].render(context);
         
-        for(var i = 0; i < this.ufos.length; ++i)
+        for(var i = this.ufos.length; i-- > 0;)
             this.ufos[i].render(context);
         
         context.restore();
@@ -235,13 +235,18 @@ Planet.prototype = {
     },
     
     dispatch(ufoObject) {
-        console.log("Spawning:");
-        console.log(ufoObject);
-    },
-    
-    createUfos() {
-        this.ufos = [];
-        this.addUfo(new Ufo([new CrystalEssence("red")], new UfoMoverOrbit(2, this.RADIUS_ORBIT)));
+        var essences;
+        var mover;
+        
+        essences = [
+            new CrystalEssence("red")
+        ];
+        mover = new UfoMoverOrbit(2, this.RADIUS_ORBIT, true);
+        
+        this.addUfo(new Ufo(
+            essences,
+            mover
+        ));
     },
     
     addUfo(ufo) {

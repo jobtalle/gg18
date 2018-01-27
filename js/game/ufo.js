@@ -7,8 +7,6 @@ function Ufo(essences, mover) {
 }
 
 Ufo.prototype = {
-    COLOR: "#66aa33",
-    
     update(timeStep) {
         this.mover.update(timeStep);
     },
@@ -27,7 +25,7 @@ Ufo.prototype = {
         
         context.rotate(this.mover.getAngle() + Math.PI * 0.5);
         
-        context.strokeStyle = this.COLOR;
+        context.strokeStyle = this.essences[0].getColor();
         context.beginPath();
         context.moveTo(-8, 0);
         context.lineTo(8, 0);
@@ -96,6 +94,10 @@ Ufo.prototype = {
     },
     
     addLeaveListener(onLeave) {
-        this.mover.onLeave = onLeave;
+        var self = this;
+        
+        this.mover.onLeave = function() {
+            onLeave(self);
+        };
     }
 }
