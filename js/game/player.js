@@ -145,9 +145,9 @@ Player.prototype = {
                 
                 var aimDir = vector.angle() - this.planet.angle - this.beamer.angle;
                 
-                if(aimDir > Math.PI)
+                while(aimDir > Math.PI)
                     aimDir -= Math.PI * 2;
-                else if(aimDir < -Math.PI)
+                while(aimDir < -Math.PI)
                     aimDir += Math.PI * 2;
                 
                 this.beamer.setAim(aimDir);

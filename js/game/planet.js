@@ -223,7 +223,7 @@ Planet.prototype = {
                     color = "red";
                     break;
                 case 1:
-                    color = "green";
+                    color = "yellow";
                     break;
                 case 2:
                     color = "blue";
@@ -235,7 +235,8 @@ Planet.prototype = {
     },
     
     dispatch(ufoObject) {
-        // TODO
+        console.log("Spawning:");
+        console.log(ufoObject);
     },
     
     createUfos() {
