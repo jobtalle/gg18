@@ -27,6 +27,7 @@ Beam.prototype = {
         context.rotate(this.angle + Math.PI * 0.5);
         context.translate(0, -this.radius);
         context.rotate(-Math.PI * 0.5 + this.aim);
+        context.globalAlpha = 0.5;
         
         context.fillStyle = this.color;
         context.beginPath();

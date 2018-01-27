@@ -1,7 +1,6 @@
-function Beamer(angle, color) {
+function Beamer(angle) {
     this.angle = angle;
     this.aim = 0;
-    this.color = color;
     this.beamSize = 0.5;
     this.beams = [];
     this.on = false;
@@ -83,7 +82,7 @@ Beamer.prototype = {
             this.beams.push(new Beam(
                 this.angle,
                 this.aim,
-                this.color,
+                this.crystal.getColor(),
                 Planet.prototype.RADIUS + this.DISH_HEIGHT,
                 this.beamSize));
         }
@@ -120,7 +119,7 @@ Beamer.prototype = {
         this.crystal = crystal;
     },
     
-    dropCrystal(planet) {
+    dropCrystal() {
         this.crystal = null;
     }
 }

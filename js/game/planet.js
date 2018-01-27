@@ -160,10 +160,17 @@ Planet.prototype = {
         for(var i = 0; i < this.CRYSTAL_COUNT; ++i) {
             var color;
             
-            if(i % 2 == 0)
-                color = "rgb(255, 0, 0)";
-            else
-                color = "rgb(0, 0, 255)";
+            switch(i % 3) {
+                case 0:
+                    color = "red";
+                    break;
+                case 1:
+                    color = "green";
+                    break;
+                case 2:
+                    color = "blue";
+                    break;
+            }
             
             this.crystals.push(new Crystal(Math.random() * 2 * Math.PI, color));
         }

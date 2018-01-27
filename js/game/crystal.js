@@ -24,7 +24,18 @@ Crystal.prototype = {
     },
     
     getColor() {
-        return this.color;
+        switch(this.color) {
+            default:
+            case "red":
+                return "rgb(255, 100, 100)";
+                break;
+            case "green":
+                return "rgb(100, 255, 100)";
+                break;
+            case "blue":
+                return "rgb(100, 100, 255)";
+                break;
+        }
     },
     
     render(context) {
@@ -32,7 +43,7 @@ Crystal.prototype = {
         context.translate(this.position.x, this.position.y);
         context.rotate(this.angle + Math.PI * 0.5);
         
-        context.fillStyle = this.color;
+        context.fillStyle = this.getColor();
         context.beginPath();
         context.moveTo(0, 0);
         context.lineTo(-5, -5);
