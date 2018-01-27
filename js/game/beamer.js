@@ -51,17 +51,6 @@ Beamer.prototype = {
     
     render(context) {
         context.save();
-        context.translate(this.position.x, this.position.y);
-        context.rotate(this.angle + Math.PI * 0.5);
-        
-        // context.strokeStyle = this.COLOR;
-        // context.beginPath();
-        // context.moveTo(0, 0);
-        // context.lineTo(0, -this.DISH_HEIGHT);
-        // context.stroke();
-        
-        context.restore();
-        context.save();
         
         context.translate(this.position.x, this.position.y);
         context.rotate(this.angle + Math.PI * 0.5);
@@ -74,10 +63,6 @@ Beamer.prototype = {
             context.fillStyle = this.COLOR_DISH;
         else
             context.fillStyle = this.crystal.getColor();
-        
-        // context.beginPath();
-        // context.arc(0, 0, 6, 0, Math.PI);
-        // context.fill();
         
         this.beamerDish.draw(context,0,0,0);
 
