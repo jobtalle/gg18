@@ -7,6 +7,7 @@ function Player(controller, angle) {
     this.speedChange = 0;
     this.state = "walking";
     this.position = new Vector();
+    this.crystal = null;
     
     this.listen(controller);
 }

@@ -1,9 +1,11 @@
-function Beamer(angle) {
+function Beamer(angle, color) {
     this.angle = angle;
     this.aim = 0;
+    this.color = color;
     this.beamSize = 0.5;
     this.beams = [];
     this.on = false;
+    this.crystal = null;
     
     this.place(angle);
 }
@@ -13,7 +15,7 @@ Beamer.prototype = {
     COLOR_DISH: "white",
     DISH_HEIGHT: 12,
     AIM_RANGE: 3,
-    AIM_SPEED: 2,
+    AIM_SPEED: 3,
     
     update(timeStep) {
         for(var i = this.beams.length; i-- > 0;) {
@@ -64,6 +66,9 @@ Beamer.prototype = {
     },
     
     toggle() {
+        if(this.crystal == null)
+            return;
+        
         if(this.on) {
             this.on = false;
             this.beams[this.beams.length - 1].stop();
@@ -73,7 +78,7 @@ Beamer.prototype = {
             this.beams.push(new Beam(
                 this.angle,
                 this.aim,
-                "rgba(100, 255, 0, 0.2)",
+                this.color,
                 Planet.prototype.RADIUS + this.DISH_HEIGHT,
                 this.beamSize));
         }

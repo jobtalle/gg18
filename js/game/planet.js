@@ -6,6 +6,7 @@ function Planet(players) {
     
     this.createScenery();
     this.createBeamers();
+    this.createCrystals();
     this.calculateInteractionRadius();
 }
 
@@ -24,12 +25,16 @@ Planet.prototype = {
     ATMOSPHERE_START_ANGLE: 2.35619449019,
     ATMOSPHERE_END_ANGLE: -0.78539816339,
     INTERACTION_DISTANCE: 16,
+    CRYSTAL_COUNT: 8,
     
     update(timeStep) {
         this.angle += this.ROTATION_SPEED * timeStep;
         
         if(this.angle > Math.PI * 2)
             this.angle -= Math.PI * 2;
+        
+        for(var i = 0; i < this.crystals.length; ++i)
+            this.crystals[i].update(timeStep);
         
         for(var i = 0; i < this.players.length; ++i)
             this.players[i].update(timeStep);
@@ -63,6 +68,9 @@ Planet.prototype = {
         
         for(var i = 0; i < this.beamers.length; ++i)
             this.beamers[i].render(context);
+        
+        for(var i = 0; i < this.crystals.length; ++i)
+            this.crystals[i].render(context);
         
         for(var i = 0; i < this.players.length; ++i)
             this.players[i].render(context);
@@ -106,6 +114,21 @@ Planet.prototype = {
         
         for(var i = 0; i < this.BEAMER_COUNT; ++i)
             this.beamers.push(new Beamer((Math.PI / 3) * i));
+    },
+    
+    createCrystals() {
+        this.crystals = [];
+        
+        for(var i = 0; i < this.CRYSTAL_COUNT; ++i) {
+            var color;
+            
+            if(i % 2 == 0)
+                color = "rgb(255, 0, 0)";
+            else
+                color = "rgb(0, 0, 255)";
+            
+            this.crystals.push(new Crystal(Math.random() * 2 * Math.PI, color));
+        }
     },
 
     renderAtmosphere(context)
