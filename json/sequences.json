@@ -6,13 +6,13 @@ sequences = [
             "colors": ["red"],
             "path": "orbits",
             "orbitCount": "2",
-            "next": "3"
+            "next": "1"
         },
         {
             "colors": ["blue"],
             "path": "orbits",
             "orbitCount": "2",
-            "next": "3"
+            "next": "1"
         }]
     },
     {
@@ -22,13 +22,13 @@ sequences = [
             "colors": ["green"],
             "path": "orbits",
             "orbitCount": "2",
-            "next": "3"
+            "next": "1"
         },
         {
             "colors": ["green"],
             "path": "orbits",
             "orbitCount": "2",
-            "next": "3"
+            "next": "1"
         }]
     }
 ];

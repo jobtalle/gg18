@@ -235,7 +235,7 @@ Planet.prototype = {
     },
     
     dispatch(ufoObject) {
-        console.log(ufoObject);
+        // TODO
     },
     
     createUfos() {
