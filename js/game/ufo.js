@@ -1,21 +1,26 @@
-function Ufo(colors, mover) {
+function Ufo(type, colors, mover) {
     this.colors = colors;
     this.mover = mover;
     this.finished = false;
     this.sprite = resources.ufo_constant_2.instantiate();
     this.engineSprite = resources.ufo_constant_engine.instantiate();
-    this.lightSprite1 = resources.ufo_light.instantiate();
-    this.lightSprite2 = resources.ufo_light.instantiate();
-    this.setUfoLights(colors[0]);
+
+    this.lights = [resources.ufo_light.instantiate(),resources.ufo_light.instantiate(),resources.ufo_light.instantiate()];
+
+    this.setUfoLights(colors);
+    this.setUfo(type, colors);
 }
 
 Ufo.prototype = {
     update(timeStep) {
         this.mover.update(timeStep);
-        this.sprite.update(timeStep);
         this.engineSprite.update(timeStep);
-        this.lightSprite1.update(timeStep);
-        this.lightSprite2.update(timeStep);
+        this.sprite.update(timeStep);
+        
+        for (let i = 0; i < this.lights.length; i++) {
+            const light =this.lights[i];
+            light.update(timeStep);
+        }
     },
     
     render(context) {
@@ -41,10 +46,28 @@ Ufo.prototype = {
         this.engineSprite.draw(
             context, 0,0,0);
 
-        this.lightSprite1.draw(
-            context,-9,0,0);
-        this.lightSprite2.draw(
-            context,7,0,0);
+            if(this.colors.length == 1)
+            {
+
+            }
+            else if(this.colors.length == 2)
+            {
+                this.lights[0].draw(
+                    context,-9,0,0);
+
+                this.lights[1].draw(
+                    context,7,0,0);
+            }
+            else
+            {
+                this.lights[0].draw(
+                    context,-9,0,0);
+
+                this.lights[1].draw(
+                    context,-1,0,0);
+                this.lights[2].draw(
+                    context,7,0,0);
+            }
 
         context.restore();
     },
@@ -104,39 +127,82 @@ Ufo.prototype = {
         };
     },
 
-    setUfoLights(color)
+    setUfoLights(colors)
     {
-        switch(color)
+        for (let i = 0; i < colors.length; i++) {
+            const color = colors[i];
+            switch(color)
+            {
+                case "red":
+                this.lights[i] = resources.ufo_light_red.instantiate();
+                break;
+                
+                case "yellow":
+                this.lights[i] = resources.ufo_light_yellow.instantiate();
+                break;
+    
+                case "blue":
+                this.lights[i] = resources.ufo_light_blue.instantiate();
+                break;
+                
+                case "purple":
+                this.lights[i] = resources.ufo_light_purple.instantiate();
+                break;
+                
+                case "orange":
+                this.lights[i] = resources.ufo_light_orange.instantiate();
+                break;
+    
+                case "green":
+                this.lights[i] = resources.ufo_light_green.instantiate();
+                break;
+            }
+        }
+    },
+
+    setUfo(type, colors)
+    {
+        switch(type)
         {
-            case "red":
-            this.lightSprite1 = resources.ufo_light_red.instantiate();
-            this.lightSprite2 = resources.ufo_light_red.instantiate();
-            break;
-            
-            case "yellow":
-            this.lightSprite1 = resources.ufo_light_yellow.instantiate();
-            this.lightSprite2 = resources.ufo_light_yellow.instantiate();
-            break;
-
-            case "blue":
-            this.lightSprite1 = resources.ufo_light_blue.instantiate();
-            this.lightSprite2 = resources.ufo_light_blue.instantiate();
-            break;
-            
-            case "purple":
-            this.lightSprite1 = resources.ufo_light_purple.instantiate();
-            this.lightSprite2 = resources.ufo_light_purple.instantiate();
-            break;
-            
-            case "orange":
-            this.lightSprite1 = resources.ufo_light_orange.instantiate();
-            this.lightSprite2 = resources.ufo_light_orange.instantiate();
-            break;
-
-            case "green":
-            this.lightSprite1 = resources.ufo_light_green.instantiate();
-            this.lightSprite2 = resources.ufo_light_green.instantiate();
-            break;
+            case "booster":
+                if(colors.length >2)
+                    this.sprite = resources.ufo_booster_3.instantiate();
+                else
+                    this.sprite = resources.ufo_booster_2.instantiate();
+                    this.engineSprite = resources.ufo_booster_engine.instantiate();
+                break;
+            case "constant":
+                if(colors.length >2)
+                    this.sprite = resources.ufo_constant_3.instantiate();
+                else
+                    this.sprite = resources.ufo_constant_2.instantiate();
+                    this.engineSprite = resources.ufo_constant_engine.instantiate();
+                break;
+            case "half":
+                if(colors.length >2)
+                    this.sprite = resources.ufo_half_3.instantiate();
+                else
+                    this.sprite = resources.ufo_half_2.instantiate();
+                    this.engineSprite = resources.ufo_half_engine.instantiate();
+                break;
+            case "gem":
+                if(colors.length >2)
+                    this.sprite = resources.ufo_lander_3.instantiate();
+                else
+                    this.sprite = resources.ufo_lander_2.instantiate();
+                    this.engineSprite = resources.ufo_lander_engine.instantiate();
+                break;
+            case "stealer":
+                if(colors.length >2)
+                    this.sprite = resources.ufo_stealer_3.instantiate();
+                else
+                    this.sprite = resources.ufo_stealer_2.instantiate();
+                    this.engineSprite = resources.ufo_lander_engine.instantiate();
+                break;
+            case "mother":
+                this.sprite = resources.ufo_mother.instantiate();
+                this.engineSprite = resources.ufo_mother_engine.instantiate();
+                break;
         }
     }
 }
