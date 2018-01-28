@@ -10,7 +10,7 @@ function CharSelect(playerAmount){
 
     this.color = undefined;
     
-    this.CHARACTER_SYMBOLS = ['&#9830', '&#9829', '&#9827', '&#9824'];
+    this.CHARACTER_SYMBOLS = ['9830', '9829', '9827', '9824', '1422', '4043', '1758', '4044', '9004', '9630', '9865', '9823'];
     this.symbol = undefined;
 
     this.createCharacterSelectionScreen();
@@ -92,7 +92,7 @@ CharSelect.prototype = {
         charPortraits.appendChild(tr);
         tr.appendChild(img);
 
-        this.players.push(new Player(controllerFactory.createPlayerController(playerId)));
+        this.players.push(new Player(controllerFactory.createPlayerController(playerId), undefined, symbol));
         
         if (this.players.length > 1)
             header.innerHTML = 'Press START to play or continue adding players with A';
@@ -103,7 +103,7 @@ CharSelect.prototype = {
     },
     
     getRandomSymbol(){
-        return this.CHARACTER_SYMBOLS[getRandomInt(0, this.CHARACTER_SYMBOLS.length)];
+        return String.fromCharCode(this.CHARACTER_SYMBOLS[getRandomInt(0, this.CHARACTER_SYMBOLS.length)]);
     },
 
     getRandomColor() {

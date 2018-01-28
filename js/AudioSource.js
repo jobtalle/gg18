@@ -1,7 +1,9 @@
-function AudioSource(file, looping) {
+function AudioSource(file, looping, volume) {
     this.audio = new Audio(file);
     this.audio.loop = looping;
     this.paused = true;
+    if(volume != undefined)
+        this.setVolume(volume);
 }   
 
 
