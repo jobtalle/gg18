@@ -16,11 +16,7 @@ body {
 
 #userinterface {
     position: absolute;
-/*
-    top: 90px;
-    left: 90px;
-*/
-    
+
     color: white;
 }
 
@@ -226,10 +222,7 @@ body {
     margin-left: auto;
     margin-right: auto;
     
-    padding-left: 15%;
-    padding-right: 15%;
-    
-    padding-bottom: 25%;
+    padding: 36px;
     
     border-spacing: 40px 0px;
     
@@ -274,6 +267,11 @@ td {
     border-radius: 0px 0px 10px 10px;
     text-align: center;
     padding: 10px;
+}
+
+td > img {
+    width: calc(36 * 10px);
+    height: calc(44 * 10px);
 }
 
 @keyframes expand {
