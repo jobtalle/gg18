@@ -1,216 +1,822 @@
 sequences = [
-    {
-        "difficulty": {"min": "0", "max": "2"},
-        "ufos": [
-        {
-            "colors": ["red","red"],
-            "path": "constant",
-            "speed": "1",
-            "orbitCount": "2",
-            "next": "1"
-        },
-        {
-			"colors": ["yellow"," yellow "],            
-			"path": "stealer",
-            "speed": "1",
-            "waitTime": "2",
-            "next": "3"
-        },
-        {
-            "colors": ["blue","blue"],
-            "path": "gem",
-            "speed": "1",
-            "next": "3"
-        },
-        {
-            "colors": ["green"," green "],
-            "path": "constant",
-            "speed": "1",
-            "orbitCount": "2",
-            "next": "3"
-        },
-        {
-            "colors": ["purple"," purple "],
-            "path": "constant",
-            "speed": "1",
-            "orbitCount": "2",
-            "next": "3"
-        },
-        {
-            "colors": ["orange","orange"],
-            "path": "constant",
-            "speed": "1",
-            "orbitCount": "2",
-            "next": "3"
-        }
-		]
+  {
+    "difficulty": {
+      "min": "0",
+      "max": "0"
     },
-    {
-        "difficulty": {"min": "0", "max": "2"},
-        "ufos": [
-        {
-            "colors": ["red","red"],
-            "path": "constant",
-            "speed": "1",
-            "orbitCount": "2",
-            "next": "1"
-        },
-        {
-			"colors": ["yellow"," yellow "],            
-			"path": "booster",
-            "speed": "1",
-            "orbitCount": "2",
-            "next": "3"
-        },
-        {
-            "colors": ["blue","blue"],
-            "path": "gem",
-            "speed": "1",
-            "next": "3"
-        },
-        {
-            "colors": ["green"," green "],
-            "path": "stealer",
-            "speed": "1",
-            "waitTime": "2",
-            "next": "3"
-        },
-        {
-            "colors": ["purple"," purple "],
-            "path": "constant",
-            "speed": "1",
-            "orbitCount": "2",
-            "next": "3"
-        },
-        {
-            "colors": ["orange","orange"],
-            "path": "booster",
-            "speed": "1",
-            "orbitCount": "2",
-            "next": "3"
-        }
-		]
+    "ufos": [
+      {
+        "colors": [
+          "red",
+          "red"
+        ],
+        "path": "constant",
+        "speed": ".5",
+        "orbitCount": "2",
+        "next": "1"
+      },
+      {
+        "colors": [
+          "red",
+          " red"
+        ],
+        "path": "stealer",
+        "speed": ".2",
+        "waitTime": "2",
+        "next": "3"
+      },
+      {
+        "colors": [
+          "red",
+          "red"
+        ],
+        "path": "gem",
+        "speed": ".5",
+        "next": "6"
+      }
+    ]
+  },
+  {
+    "difficulty": {
+      "min": "0",
+      "max": "0"
     },
-    {
-        "difficulty": {"min": "1", "max": "3"},
-        "ufos": [
-        {
-            "colors": ["yellow","red"],
-            "path": "constant",
-            "speed": "1",
-            "orbitCount": "2",
-            "next": "3"
-        },
-        {
-            "colors": ["purple","green"],
-            "path": "constant",
-            "speed": "1",
-            "orbitCount": "2",
-            "next": "6"
-        }]
+    "ufos": [
+      {
+        "colors": [
+          "purple",
+          "purple"
+        ],
+        "path": "constant",
+        "speed": ".5",
+        "orbitCount": "2",
+        "next": "1"
+      },
+      {
+        "colors": [
+          "purple",
+          " purple"
+        ],
+        "path": "stealer",
+        "speed": ".2",
+        "waitTime": "2",
+        "next": "3"
+      },
+      {
+        "colors": [
+          "purple",
+          "purple"
+        ],
+        "path": "gem",
+        "speed": ".5",
+        "next": "6"
+      }
+    ]
+  },
+  {
+    "difficulty": {
+      "min": "1",
+      "max": "1"
     },
-    {
-        "difficulty": {"min": "1", "max": "3"},
-        "ufos": [
-        {
-            "colors": ["orange","yellow"],
-            "path": "constant",
-            "speed": "1",
-            "orbitCount": "2",
-            "next": "3"
-        },
-        {
-            "colors": ["green","purple"],
-            "path": "constant",
-            "speed": "1",
-            "orbitCount": "2",
-            "next": "6"
-        }]
+    "ufos": [
+      {
+        "colors": [
+          "red",
+          "red"
+        ],
+        "path": "constant",
+        "speed": ".5",
+        "orbitCount": "2",
+        "next": "1"
+      },
+      {
+        "colors": [
+          "yellow",
+          " yellow"
+        ],
+        "path": "stealer",
+        "speed": ".2",
+        "waitTime": "2",
+        "next": "3"
+      },
+      {
+        "colors": [
+          "blue",
+          "blue"
+        ],
+        "path": "gem",
+        "speed": ".5",
+        "next": "6"
+      }
+    ]
+  },
+  {
+    "difficulty": {
+      "min": "0",
+      "max": "0"
     },
-    {//rank3
-        "difficulty": {"min": "2", "max": "4"},
-        "ufos": [
-        {
-            "colors": ["yellow","red"],
-            "path": "constant",
-            "speed": "1",
-            "orbitCount": "2",
-            "next": "3"
-        },
-        {
-            "colors": ["green","purple"],
-            "path": "constant",
-            "speed": "1",
-            "orbitCount": "2",
-            "next": "6"
-        }]
+    "ufos": [
+      {
+        "colors": [
+          "green",
+          " green"
+        ],
+        "path": "constant",
+        "speed": ".5",
+        "orbitCount": "2",
+        "next": "3"
+      },
+      {
+        "colors": [
+          "purple",
+          " purple"
+        ],
+        "path": "constant",
+        "speed": ".5",
+        "orbitCount": "2",
+        "next": "3"
+      },
+      {
+        "colors": [
+          "orange",
+          "orange"
+        ],
+        "path": "constant",
+        "speed": ".5",
+        "orbitCount": "2",
+        "next": "9"
+      }
+    ]
+  },
+  {
+    "difficulty": {
+      "min": "1",
+      "max": "1"
     },
-    {//rank3
-        "difficulty": {"min": "2", "max": "4"},
-        "ufos": [
-        {
-            "colors": ["green","purple"],
-            "path": "constant",
-            "speed": "1",
-            "orbitCount": "2",
-            "next": "3"
-        },
-        {
-            "colors": ["blue","purple"],
-            "path": "constant",
-            "speed": "1",
-            "orbitCount": "2",
-            "next": "6"
-        }]
+    "ufos": [
+      {
+        "colors": [
+          "green",
+          " green"
+        ],
+        "path": "constant",
+        "speed": ".5",
+        "orbitCount": "2",
+        "next": "3"
+      },
+      {
+        "colors": [
+          "purple",
+          " purple"
+        ],
+        "path": "constant",
+        "speed": ".5",
+        "orbitCount": "2",
+        "next": "3"
+      },
+      {
+        "colors": [
+          "purple",
+          " purple"
+        ],
+        "path": "constant",
+        "speed": "1",
+        "orbitCount": "2",
+        "next": "3"
+      },
+      {
+        "colors": [
+          "orange",
+          "orange"
+        ],
+        "path": "booster",
+        "speed": ".5",
+        "orbitCount": "2",
+        "next": "9"
+      }
+    ]
+  },
+  {
+    "difficulty": {
+      "min": "1",
+      "max": "1"
     },
-    {//rank4
-        "difficulty": {"min": "3", "max": "5"},
-        "ufos": [
-        {
-            "colors": ["orange","yellow"],
-            "path": "constant",
-            "speed": "1",
-            "orbitCount": "2",
-            "next": "3"
-        },
-        {
-            "colors": ["blue","purple"],
-            "path": "constant",
-            "speed": "1",
-            "orbitCount": "2",
-            "next": "3"
-        },
-        {
-            "colors": ["green","purple"],
-            "path": "constant",
-            "speed": "1",
-            "orbitCount": "2",
-            "next": "6"
-        }]
+    "ufos": [
+      {
+        "colors": [
+          "green",
+          " green"
+        ],
+        "path": "constant",
+        "speed": ".5",
+        "orbitCount": "2",
+        "next": "3"
+      },
+      {
+        "colors": [
+          "purple",
+          " purple"
+        ],
+        "path": "constant",
+        "speed": ".5",
+        "orbitCount": "2",
+        "next": "3"
+      },
+      {
+        "colors": [
+          "purple",
+          " orange"
+        ],
+        "path": "constant",
+        "speed": ".3",
+        "orbitCount": "2",
+        "next": "3"
+      },
+      {
+        "colors": [
+          "orange",
+          "orange"
+        ],
+        "path": "booster",
+        "speed": ".5",
+        "orbitCount": "2",
+        "next": "9"
+      }
+    ]
+  },
+  {
+    "difficulty": {
+      "min": "2",
+      "max": "2"
     },
-    {//rank4
-        "difficulty": {"min": "3", "max": "5"},
-        "ufos": [
-        {
-            "colors": ["blue","yellow"],
-            "path": "constant",
-            "speed": "1",
-            "orbitCount": "2",
-            "next": "3"
-        },
-        {
-            "colors": ["red","purple"],
-            "path": "constant",
-            "speed": "1",
-            "orbitCount": "2",
-            "next": "3"
-        },
-        {
-            "colors": ["green","red"],
-            "path": "constant",
-            "speed": "1",
-            "orbitCount": "2",
-            "next": "6"
-        }]
-    }
+    "ufos": [
+      {
+        "colors": [
+          "purple",
+          " blue"
+        ],
+        "path": "constant",
+        "speed": ".5",
+        "orbitCount": "2",
+        "next": "3"
+      },
+      {
+        "colors": [
+          "purple",
+          " purple"
+        ],
+        "path": "constant",
+        "speed": ".5",
+        "orbitCount": "2",
+        "next": "3"
+      },
+      {
+        "colors": [
+          "yellow",
+          " green"
+        ],
+        "path": "constant",
+        "speed": ".3",
+        "orbitCount": "2",
+        "next": "3"
+      },
+      {
+        "colors": [
+          "orange",
+          "orange"
+        ],
+        "path": "booster",
+        "speed": ".4",
+        "orbitCount": "2",
+        "next": "9"
+      }
+    ]
+  },
+  {
+    "difficulty": {
+      "min": "2",
+      "max": "2"
+    },
+    "ufos": [
+      {
+        "colors": [
+          "purple",
+          " blue"
+        ],
+        "path": "constant",
+        "speed": ".5",
+        "orbitCount": "2",
+        "next": "3"
+      },
+      {
+        "colors": [
+          "purple",
+          " purple"
+        ],
+        "path": "constant",
+        "speed": ".5",
+        "orbitCount": "2",
+        "next": "3"
+      },
+      {
+        "colors": [
+          "blue",
+          "blue"
+        ],
+        "path": "constant",
+        "speed": ".5",
+        "orbitCount": "2",
+        "next": "3"
+      },
+      {
+        "colors": [
+          "red",
+          " red"
+        ],
+        "path": "constant",
+        "speed": ".5",
+        "orbitCount": "2",
+        "next": "3"
+      },
+      {
+        "colors": [
+          "orange",
+          "orange"
+        ],
+        "path": "booster",
+        "speed": "1.4",
+        "orbitCount": "2",
+        "next": "9"
+      }
+    ]
+  },
+  {
+    "difficulty": {
+      "min": "3",
+      "max": "4"
+    },
+    "ufos": [
+      {
+        "colors": [
+          "red",
+          "red"
+        ],
+        "path": "constant",
+        "speed": ".5",
+        "orbitCount": "2",
+        "next": "1"
+      },
+      {
+        "colors": [
+          "yellow",
+          " yellow"
+        ],
+        "path": "stealer",
+        "speed": ".2",
+        "waitTime": "2",
+        "next": "3"
+      },
+      {
+        "colors": [
+          "blue",
+          "blue"
+        ],
+        "path": "gem",
+        "speed": ".5",
+        "next": "3"
+      },
+      {
+        "colors": [
+          "green",
+          " green"
+        ],
+        "path": "constant",
+        "speed": ".5",
+        "orbitCount": "2",
+        "next": "3"
+      },
+      {
+        "colors": [
+          "purple",
+          " purple"
+        ],
+        "path": "constant",
+        "speed": ".5",
+        "orbitCount": "2",
+        "next": "3"
+      },
+      {
+        "colors": [
+          "orange",
+          "orange"
+        ],
+        "path": "constant",
+        "speed": ".5",
+        "orbitCount": "2",
+        "next": "9"
+      }
+    ]
+  },
+  {
+    "difficulty": {
+      "min": "3",
+      "max": "4"
+    },
+    "ufos": [
+      {
+        "colors": [
+          "red",
+          "red"
+        ],
+        "path": "constant",
+        "speed": ".5",
+        "orbitCount": "2",
+        "next": "1"
+      },
+      {
+        "colors": [
+          "yellow",
+          " yellow"
+        ],
+        "path": "booster",
+        "speed": ".5",
+        "orbitCount": "2",
+        "next": "3"
+      },
+      {
+        "colors": [
+          "blue",
+          "blue"
+        ],
+        "path": "gem",
+        "speed": ".5",
+        "next": "3"
+      },
+      {
+        "colors": [
+          "green",
+          " green"
+        ],
+        "path": "stealer",
+        "speed": ".2",
+        "waitTime": "2",
+        "next": "3"
+      },
+      {
+        "colors": [
+          "purple",
+          " purple"
+        ],
+        "path": "constant",
+        "speed": ".5",
+        "orbitCount": "2",
+        "next": "3"
+      },
+      {
+        "colors": [
+          "orange",
+          "orange"
+        ],
+        "path": "booster",
+        "speed": ".5",
+        "orbitCount": "2",
+        "next": "9"
+      }
+    ]
+  },
+  {
+    "difficulty": {
+      "min": "4",
+      "max": "5"
+    },
+    "ufos": [
+      {
+        "colors": [
+          "green",
+          " green"
+        ],
+        "path": "stealer",
+        "speed": ".2",
+        "waitTime": "2",
+        "next": "2"
+      },
+      {
+        "colors": [
+          "red",
+          "red"
+        ],
+        "path": "stealer",
+        "speed": ".2",
+        "waitTime": "2",
+        "next": "1"
+      },
+      {
+        "colors": [
+          "purple",
+          " purple"
+        ],
+        "path": "stealer",
+        "speed": ".2",
+        "waitTime": "2",
+        "next": "3"
+      },
+      {
+        "colors": [
+          "yellow",
+          " yellow"
+        ],
+        "path": "stealer",
+        "speed": ".21",
+        "waitTime": "2",
+        "next": "2"
+      },
+      {
+        "colors": [
+          "orange",
+          "orange"
+        ],
+        "path": "stealer",
+        "speed": ".21",
+        "waitTime": "2",
+        "next": "2"
+      },
+      {
+        "colors": [
+          "blue",
+          " blue"
+        ],
+        "path": "stealer",
+        "speed": ".21",
+        "waitTime": "2",
+        "next": "9"
+      }
+    ]
+  },
+  {
+    "difficulty": {
+      "min": "1",
+      "max": "3"
+    },
+    "ufos": [
+      {
+        "colors": [
+          "yellow",
+          " red"
+        ],
+        "path": "gem",
+        "speed": "1",
+        "next": "1"
+      },
+      {
+        "colors": [
+          "blue",
+          "blue"
+        ],
+        "path": "gem",
+        "speed": "1",
+        "next": "3"
+      },
+      {
+        "colors": [
+          "red",
+          "red"
+        ],
+        "path": "gem",
+        "speed": "1",
+        "next": "2"
+      },
+      {
+        "colors": [
+          "orange",
+          "orange"
+        ],
+        "path": "gem",
+        "speed": "1",
+        "next": "1"
+      },
+      {
+        "colors": [
+          "purple",
+          " purple"
+        ],
+        "path": "gem",
+        "speed": "1",
+        "next": "2"
+      },
+      {
+        "colors": [
+          "blue",
+          "blue"
+        ],
+        "path": "gem",
+        "speed": "1",
+        "next": "5"
+      }
+    ]
+  },
+  {
+    "difficulty": {
+      "min": "1",
+      "max": "3"
+    },
+    "ufos": [
+      {
+        "colors": [
+          "orange",
+          "orange"
+        ],
+        "path": "gem",
+        "speed": "1",
+        "next": "1"
+      },
+      {
+        "colors": [
+          "purple",
+          " purple"
+        ],
+        "path": "gem",
+        "speed": "1",
+        "next": "2"
+      },
+      {
+        "colors": [
+          "yellow",
+          " red"
+        ],
+        "path": "gem",
+        "speed": "1",
+        "next": "1"
+      },
+      {
+        "colors": [
+          "blue",
+          "blue"
+        ],
+        "path": "gem",
+        "speed": "1",
+        "next": "3"
+      },
+      {
+        "colors": [
+          "purple",
+          " purple"
+        ],
+        "path": "stealer",
+        "speed": ".2",
+        "waitTime": "2",
+        "next": "3"
+      },
+      {
+        "colors": [
+          "yellow",
+          " yellow"
+        ],
+        "path": "stealer",
+        "speed": ".2",
+        "waitTime": "2",
+        "next": "2"
+      },
+      {
+        "colors": [
+          "blue",
+          "blue"
+        ],
+        "path": "gem",
+        "speed": "1",
+        "next": "5"
+      }
+    ]
+  },
+  {
+    "difficulty": {
+      "min": "3",
+      "max": "4"
+    },
+    "ufos": [
+      {
+        "colors": [
+          "yellow",
+          "red"
+        ],
+        "path": "constant",
+        "speed": "1",
+        "orbitCount": "2",
+        "next": "3"
+      },
+      {
+        "colors": [
+          "green",
+          "purple"
+        ],
+        "path": "constant",
+        "speed": "1",
+        "orbitCount": "2",
+        "next": "6"
+      }
+    ]
+  },
+  {
+    "difficulty": {
+      "min": "2",
+      "max": "4"
+    },
+    "ufos": [
+      {
+        "colors": [
+          "green",
+          "purple"
+        ],
+        "path": "constant",
+        "speed": "1",
+        "orbitCount": "2",
+        "next": "3"
+      },
+      {
+        "colors": [
+          "blue",
+          "purple"
+        ],
+        "path": "constant",
+        "speed": "1",
+        "orbitCount": "2",
+        "next": "6"
+      }
+    ]
+  },
+  {
+    "difficulty": {
+      "min": "3",
+      "max": "5"
+    },
+    "ufos": [
+      {
+        "colors": [
+          "orange",
+          "yellow"
+        ],
+        "path": "constant",
+        "speed": "1",
+        "orbitCount": "2",
+        "next": "3"
+      },
+      {
+        "colors": [
+          "blue",
+          "purple"
+        ],
+        "path": "constant",
+        "speed": "1",
+        "orbitCount": "2",
+        "next": "3"
+      },
+      {
+        "colors": [
+          "green",
+          "purple"
+        ],
+        "path": "constant",
+        "speed": "1",
+        "orbitCount": "2",
+        "next": "6"
+      }
+    ]
+  },
+  {
+    "difficulty": {
+      "min": "3",
+      "max": "5"
+    },
+    "ufos": [
+      {
+        "colors": [
+          "blue",
+          "yellow"
+        ],
+        "path": "constant",
+        "speed": "1",
+        "orbitCount": "2",
+        "next": "3"
+      },
+      {
+        "colors": [
+          "red",
+          "purple"
+        ],
+        "path": "constant",
+        "speed": "1",
+        "orbitCount": "2",
+        "next": "3"
+      },
+      {
+        "colors": [
+          "green",
+          "red"
+        ],
+        "path": "constant",
+        "speed": "1",
+        "orbitCount": "2",
+        "next": "6"
+      }
+    ]
+  }
 ];

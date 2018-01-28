@@ -66,13 +66,13 @@ CharSelect.prototype = {
     addPlayer(playerId) {
         var charHeaders = document.getElementById("characterHeaders");
         var charPortraits = document.getElementById("characterPortraits");
+        var header = document.getElementById("header");
 
         this.color = this.getRandomColor();
         const symbol = this.getRandomSymbol();
         var th = document.createElement("th");
         th.style.color = this.color;
         th.style.textShadow = '2px 2px rgba(255,255,255,1)';
-        //th.innerHTML = 'Player: ' + playerId.toString();
         th.innerHTML = 'Player: ' + symbol;
         this.symbol = symbol;
 
@@ -90,6 +90,9 @@ CharSelect.prototype = {
         tr.appendChild(img);
 
         this.players.push(new Player(controllerFactory.createPlayerController(playerId)));
+        
+        if (this.players.length > 1)
+            header.innerHTML = 'Press START to play or continue adding players with A';
     },
 
     getNewPortrait(){
@@ -101,13 +104,17 @@ CharSelect.prototype = {
     },
 
     getRandomColor() {
-        var letters = '0123456789ABCDEF';
-        var color = '#';
-        for (var i = 0; i < 6; i++)
-        {
-            color += letters[Math.floor(Math.random() * 16)];
-        }
-        return color;
+//        var letters = '0123456789ABCDEF';
+//        var color = '#';
+//        for (var i = 0; i < 6; i++)
+//        {
+//            color += letters[Math.floor(Math.random() * 16)];
+//        }
+//        return color;
+        
+        return "hsl(" + 360 * Math.random() + ',' +
+                 (75 + 100 * Math.random()) + '%,' + 
+                 (50 + 0 * Math.random()) + '%)';
     },
 
     getRandomInt(min, max) {

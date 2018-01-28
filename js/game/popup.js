@@ -31,10 +31,10 @@ Popup.prototype = {
 
         void this.element.offsetWidth;
 
-        this.element.style.border = '2px solid ' + this.color;
+        //this.element.style.border = '2px solid ' + this.color;
         
         this.element.style.textShadow = '2px 2px ' + this.color;
-        this.element.style.boxShadow = '0px 0px 25px ' + this.color;
+        //this.element.style.boxShadow = '0px 0px 25px ' + this.color;
 
         this.element.classList.add("popup");
         this.element.innerHTML = this.score;
@@ -50,13 +50,9 @@ Popup.prototype = {
     },
     
     getRandomColor() {
-        var letters = '0123456789ABCDEF';
-        var color = '#';
-        for (var i = 0; i < 6; i++) 
-        {
-            color += letters[Math.floor(Math.random() * 16)];
-        }
-        return color;
+        return "hsl(" + 360 * Math.random() + ',' +
+                 (75 + 100 * Math.random()) + '%,' + 
+                 (50 + 0 * Math.random()) + '%)';
     },
     
     getRandomInt(min, max) {
