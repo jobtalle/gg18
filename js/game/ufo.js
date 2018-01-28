@@ -147,7 +147,6 @@ Ufo.prototype = {
         this.mover.leave();
         
         this.leaveAudio.play();
-        console.log(planet.angle);
         
         if (this.success){
             const scale = Game.prototype.SCALE;
