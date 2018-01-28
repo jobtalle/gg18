@@ -32,6 +32,21 @@ Planet.prototype = {
     CRYSTAL_COUNT: 12,
     CRYSTAL_DECAY: 0.03,
     
+    isGameOver() {
+        for(var i = 0; i < this.players.length; ++i)
+            if(this.players[i].crystal != null)
+                return false;
+        
+        for(var i = 0; i < this.beamers.length; ++i)
+            if(this.beamers[i].crystal != null)
+                return false;
+                
+        if(this.crystals.length != 0)
+            return false;
+        
+        return true;
+    },
+    
     update(timeStep) {
         this.mist.update(timeStep);
         this.angle += this.ROTATION_SPEED * timeStep;
@@ -74,6 +89,13 @@ Planet.prototype = {
             beamer.setDay(this.getDay(beamer.position));
             beamer.update(timeStep);
         }
+        
+        if(this.isGameOver())
+            this.gameOver();
+    },
+    
+    gameOver() {
+        gameoverScreen.ShowScoreScreen();
     },
     
     render(context) {
