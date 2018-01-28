@@ -16,7 +16,7 @@ Resources.prototype = {
         this.ufo_stealer_3 = new Sprite("img/ufo/ufo_stealer_3.png", 11, 12, 1);
         this.ufo_mother = new Sprite("img/ufo/ufo_mother.png", 24, 19, 1);
 
-        this.ufo_booster_engine = new Sprite("img/ufo/ufo_booster_engine.png", 13,0,5, 10);
+        this.ufo_booster_engine = new Sprite("img/ufo/ufo_booster_engine.png", 13,5,5, 10);
         this.ufo_constant_engine = new Sprite("img/ufo/ufo_constant_engine.png", 13,0,5, 10);
         this.ufo_half_engine_left = new Sprite("img/ufo/ufo_half_engine_left.png", 11,0,5, 10);
         this.ufo_half_engine_right = new Sprite("img/ufo/ufo_half_engine_right.png", 11,0,5, 10);
