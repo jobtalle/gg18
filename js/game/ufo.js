@@ -94,9 +94,6 @@ Ufo.prototype = {
     leave() {
         this.finished = true;
         this.mover.leave();
-        
-        console.log("spawn popup");
-        new Popup(0,0,666, 'red');
     },
     
     addLeaveListener(onLeave) {

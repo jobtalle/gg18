@@ -12,6 +12,10 @@ function Beam(angle, aim, crystal, radius) {
         Math.sin(this.angle) * radius);
     
     this.angle += aim;
+    this.laserSound = new Audio("audio/Laser voor sfinx.wav");
+    this.laserSound.loop = true;
+    
+    this.startSound();
 }
 
 Beam.prototype = {
@@ -57,13 +61,18 @@ Beam.prototype = {
         context.beginPath();
         context.arc(0, 0, this.innerRadius, minRads, maxRads, false);
         context.arc(0, 0, this.outerRadius, maxRads, minRads, true);
-        context.fill();
-        
+        context.fill();       
         context.restore();
+    },
+    
+    startSound(){
+        this.laserSound.play();
     },
     
     stop() {
         this.cut = true;
+        this.laserSound.pause();
+        this.laserSound.currentTime = 0;
     },
     
     setCrystal(crystal) {
