@@ -48,6 +48,10 @@ Game.prototype = {
     },
 
     update(timeStep) {
+        if(getRandomInt(0, 100) == 1)
+        {
+            new Star(-1,-1,-1);
+        }
         this.space.update(timeStep);
         this.dispatcher.update(timeStep);
         this.planet.update(timeStep);
