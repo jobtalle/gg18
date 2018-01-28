@@ -70,6 +70,9 @@ CharSelect.prototype = {
 
         this.color = this.getRandomColor();
         const symbol = this.getRandomSymbol();
+        
+        this.CHARACTER_SYMBOLS.splice(this.CHARACTER_SYMBOLS.indexOf(symbol), 1);
+        
         var th = document.createElement("th");
         th.style.color = this.color;
         th.style.textShadow = '2px 2px rgba(255,255,255,1)';
@@ -80,7 +83,7 @@ CharSelect.prototype = {
 
         void tr.offsetWidth;
         tr.classList.add("expandingClass");
-        tr.style.boxShadow = '0px 10px 80px ' + this.color;
+        tr.style.boxShadow = '0px 20px 80px ' + this.color;
 
         var img = document.createElement("img");
         img.setAttribute("src", "img/character/" + this.getNewPortrait());
@@ -104,14 +107,6 @@ CharSelect.prototype = {
     },
 
     getRandomColor() {
-//        var letters = '0123456789ABCDEF';
-//        var color = '#';
-//        for (var i = 0; i < 6; i++)
-//        {
-//            color += letters[Math.floor(Math.random() * 16)];
-//        }
-//        return color;
-        
         return "hsl(" + 360 * Math.random() + ',' +
                  (75 + 100 * Math.random()) + '%,' + 
                  (50 + 0 * Math.random()) + '%)';
