@@ -11,6 +11,15 @@ function Star(x, y, type) {
     else
         this.y = y;
     
+    if(x== -1 && y == -1)
+    {
+        while(this.x > window.innerHeight * .3 && this.x < window.innerHeight * .7 && this.y > window.innerWidth * .3 && this.y < window.innerWidth * .7)
+        {
+            this.x = this.getRandomInt(0, window.innerHeight);
+            this.y = this.getRandomInt(0, window.innerWidth);
+        }
+    }
+
     if (type == -1)
         this.type = this.getRandomInt(0,7);
     else
