@@ -12,6 +12,7 @@ function Beamer(angle) {
     this.beamerStartAudio = resources.transmission.instantiate();
     this.crystalBreakAudio = resources.spring.instantiate();
     this.turnAudio = resources.entrance.instantiate();
+    this.day = true;
 }
 
 Beamer.prototype = {
@@ -25,7 +26,7 @@ Beamer.prototype = {
     update(timeStep) {
         this.turn(timeStep);
         this.beamerBase.update(timeStep);
-        this.beamerDish.update(timeStep);
+        // this.beamerDish.update(timeStep);
         
         if(this.sparks != undefined)
             this.sparks.update(timeStep);
@@ -85,10 +86,25 @@ Beamer.prototype = {
     },
     
     setDay(day) {
-        if(this.crystal != null)
+        if(this.day != day)
         {
-            this.crystal.setDay(day);
-            this.setBiemerColor();
+            this.day = day;
+            if(this.crystal != null)
+            {
+                this.crystal.setDay(day);
+                this.setBiemerColor();
+            }
+        }
+        if(day)
+        {
+            this.beamerBase.setFrame(0);
+            if(this.crystal == null)
+                this.beamerDish.setFrame(0);
+        }
+        else{
+            this.beamerBase.setFrame(1);
+            if(this.crystal == null)
+                this.beamerDish.setFrame(1);
         }
     },
 
