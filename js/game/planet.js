@@ -115,6 +115,10 @@ Planet.prototype = {
         }
     },
     
+    addGem(angle) {
+        this.crystals.push(new Crystal(angle, new CrystalEssence(this.randomEssenceColor())));
+    },
+    
     getDay(vector) {
         return vector.dot(Vector.prototype.fromAngle(this.DIR_DAY - this.angle)) < 0;
     },
@@ -246,6 +250,17 @@ Planet.prototype = {
             this.beamers.push(new Beamer((Math.PI / 3) * i));
     },
     
+    randomEssenceColor() {
+        switch(Math.trunc(Math.random() * 3) % 2) {
+            case 0:
+                return "red";
+            case 1:
+                return "yellow";
+            case 2:
+                return "blue";
+        }
+    },
+    
     createCrystals() {
         this.crystals = [];
         
@@ -276,7 +291,8 @@ Planet.prototype = {
             "red"
         ];
         mover = new UfoMoverOrbit(2, this.RADIUS_ORBIT, 50, true);
-        //mover = new UfoMoverPickup(Math.random() * 2 * Math.PI, 40, 5);
+        mover = new UfoMoverPickup(Math.random() * 2 * Math.PI, 40, 5);
+        mover = new UfoMoverGem(Math.random() * 2, 60);
         
         this.addUfo(new Ufo(
             colors,

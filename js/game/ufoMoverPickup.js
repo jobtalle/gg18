@@ -10,7 +10,6 @@ function UfoMoverPickup(angle, speed, waitTime) {
 }
 
 UfoMoverPickup.prototype = {
-    VALID_ANGLE_OFFSET: 1,
     LEAVE_SPEED_FACTOR: 2,
     REMOVE_GEM_RADIUS: 15,
     
