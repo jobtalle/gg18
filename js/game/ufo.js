@@ -13,6 +13,8 @@ function Ufo(type, colors, mover) {
 
     this.lightPos = [];
     this.setLightPos(type);
+
+    this.leaveAudio = resources.curse3.instantiate();
 }
 
 Ufo.prototype = {
@@ -112,6 +114,7 @@ Ufo.prototype = {
         this.finished = true;
         this.mover.leave();
         
+        this.leaveAudio.play();
         if (this.success){
             const scale = Game.prototype.SCALE;
             const position = new Vector(

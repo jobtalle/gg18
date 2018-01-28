@@ -290,15 +290,19 @@ Planet.prototype = {
         
         switch(ufoObject.path) {
             case "constant":
+            resources.warp.instantiate().play();
                 mover = new UfoMoverOrbit(ufoObject.orbitCount, this.RADIUS_ORBIT + Math.random() * this.RADIUS_ORBIT_RANDOM, 50 * ufoObject.speed, false);
                 break;
             case "booster":
+            resources.warp.instantiate().play();
                 mover = new UfoMoverOrbit(ufoObject.orbitCount, this.RADIUS_ORBIT + Math.random() * this.RADIUS_ORBIT_RANDOM, 50 * ufoObject.speed, true);
                 break;
             case "stealer":
+            resources.warp.instantiate().play();
                 mover = new UfoMoverPickup(Math.random() * Math.PI * 2, 50 * ufoObject.speed, ufoObject.waitTime);
                 break;
             case "gem":
+            resources.blessing.instantiate().play();
                 mover = new UfoMoverGem(Math.random() * Math.PI * 2, 50 * ufoObject.speed);
                 break;
         }
