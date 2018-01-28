@@ -105,6 +105,10 @@ Ufo.prototype = {
         return true;
     },
     
+    getScore() {
+        return 1000;
+    },
+    
     leave(planet) {
         this.finished = true;
         this.mover.leave();
@@ -115,8 +119,8 @@ Ufo.prototype = {
                 Math.cos(planet.angle) * this.mover.position.x - Math.sin(planet.angle) * this.mover.position.x,
                 Math.sin(planet.angle) * this.mover.position.y + Math.cos(planet.angle) * this.mover.position.y,
             );
-            
-            new Popup(position.x * scale, position.y * scale, 5000);
+            console.log(position);
+            new Popup(position.x * scale, position.y * scale, this.getScore());
         }
     },
     

@@ -16,7 +16,9 @@ body {
 
 #userinterface {
     position: absolute;
-
+    left: 0px;
+    top: 0px;
+    
     color: white;
 }
 
@@ -46,6 +48,10 @@ body {
         transform: scale(0, 0);
     }
     
+}
+
+#popupParent {
+    position: absolute;
 }
 
 .popup {
