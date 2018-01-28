@@ -36,7 +36,7 @@
     </head>
     <body>
         
-        <button id="charSel" type="button" onclick="new CharSelect(4);">Spawn character select screen</button>
+<!--        <button id="charSel" type="button" onclick="new CharSelect(4);">Spawn character select screen</button>-->
 <!--        <button id="charSel" type="button" onclick="new Star(-1, -1, 0)">Spawn star</button>-->
         
 <!--        <button id="charSel" type="button" onclick="new Popup(-1, -1, 666)">Doe spawn!</button>-->
@@ -67,6 +67,14 @@
         <audio autoplay loop>
             <source src="audio/Ufo%20Theme%20nummer%202.ogg" type="audio/ogg">
         </audio>
-        <script>resources = new Resources(); start();</script>
+        <script>resources = new Resources(); start();
+        
+        document.body.onkeyup = function(e){
+            if(e.keyCode == 32){
+                console.log("Spacey");
+                new Popup(0,0,666);
+            }
+        }
+        </script>
     </body>
 </html>

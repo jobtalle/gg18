@@ -3,14 +3,14 @@ sequences = [
         "difficulty": {"min": "0", "max": "2"},
         "ufos": [
         {
-            "colors": ["red"],
+            "colors": ["red","red"],
             "path": "orbits",
             "speed": "1",
             "orbitCount": "2",
             "next": "1"
         },
         {
-            "colors": ["orange"],
+            "colors": ["orange","orange"],
             "path": "booster",
             "speed": "1",
             "orbitCount": "2",
@@ -21,14 +21,14 @@ sequences = [
         "difficulty": {"min": "0", "max": "2"},
         "ufos": [
         {
-            "colors": ["blue"],
+            "colors": ["blue","blue"],
             "path": "orbits",
             "speed": "1",
             "orbitCount": "2",
             "next": "3"
         },
         {
-            "colors": ["green"],
+            "colors": ["green","green"],
             "path": "booster",
             "speed": "1",
             "orbitCount": "2",
