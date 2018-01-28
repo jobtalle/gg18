@@ -16,6 +16,8 @@ function Ufo(type, colors, mover) {
     this.setLightPos(type);
 
     this.leaveAudio = resources.curse3.instantiate();
+    this.correctMatch = resources.zap.instantiate();
+    this.wrongMatch = resources.zap6a.instantiate();
 }
 
 Ufo.prototype = {
@@ -97,7 +99,10 @@ Ufo.prototype = {
     
     match(beams, getDay) {
         if(beams.length == 0)
+        {
+            this.wrongMatch.play();
             return false;
+        }
         
         var hitColors = [];
         
@@ -106,8 +111,12 @@ Ufo.prototype = {
         
         for(var i = 0; i < this.colors.length; ++i)
             if(this.colors[i].indexOf(hitColors) == -1)
+            {
                 return false;
+                this.wrongMatch.play();
+            }
         
+        this.correctMatch.play();
         return true;
     },
     
