@@ -11,6 +11,7 @@ function Beamer(angle) {
     this.beamerSparks = null;
     this.beamerStartAudio = resources.transmission.instantiate();
     this.crystalBreakAudio = resources.spring.instantiate();
+    this.turnAudio = resources.entrance.instantiate();
 }
 
 Beamer.prototype = {
@@ -188,10 +189,14 @@ Beamer.prototype = {
             this.aim = -this.AIM_RANGE * 0.5;
         
         if(aimPrevious != this.aim) {
+            this.turnAudio.play();
             const delta = this.aim - aimPrevious;
             
             if(this.beams.length > 0 && !this.beams[this.beams.length - 1].cut)
                 this.beams[this.beams.length - 1].rotate(delta);
+        }
+        else{
+            this.turnAudio.stop();
         }
     },
     
