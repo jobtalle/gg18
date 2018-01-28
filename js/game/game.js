@@ -5,13 +5,17 @@ function Game(renderer, players) {
     this.dispatcher = new UfoDispatcher(this.planet.dispatch.bind(this.planet));
     this.dispatcher.start();
 
-    this.shakeZoom = 0;
-    this.shakeAngle = 0;
-    this.shakeAngleSpeed = 0;
+    shake = this.shakeFunc.bind(this);
+    
+    this.shake = 0;
 }
 
 Game.prototype = {
     SCALE: 4,
+    SHAKE_INCREASE: 1,
+    SHAKE_DECREASE: 3,
+    SHAKE_ZOOM: 0.05,
+    SHAKE_SHIFT: 5,
 
     start() {
         this.lastDate = new Date();
@@ -42,9 +46,8 @@ Game.prototype = {
         return timeStep;
     },
 
-    shake() {
-        this.shakeZoom += 0.1;
-        this.shakeAngleSpeed = -this.shakeAngleSpeed + Math.sign(this.shakeAngleSpeed) * 1;
+    shakeFunc() {
+        this.shake += this.SHAKE_INCREASE;
     },
 
     update(timeStep) {
@@ -52,22 +55,22 @@ Game.prototype = {
         this.dispatcher.update(timeStep);
         this.planet.update(timeStep);
 
-        this.shakeAngle += this.shakeAngleSpeed;
-        this.shakeAngle *= 1 - 0.1 * timeStep;
-        this.shakeZoom *= 1 - 0.1 * timeStep;
+        this.shake *= 1 - this.SHAKE_DECREASE * timeStep;
     },
 
     renderBackground(context) {
         context.restore();
 
         this.space.render(context);
-
+        
+        var extraZoom = this.shake * this.SHAKE_ZOOM * Math.random();
+        var shift = this.SHAKE_SHIFT * this.shake;
+        
         context.save();
         context.translate(
-            context.canvas.width / 2,
-            context.canvas.height / 2);
-        context.scale(this.SCALE + this.shakeZoom, this.SCALE + this.shakeZoom);
-        context.rotate(this.shakeAngle);
+            context.canvas.width / 2 - shift * 0.5 + Math.random() * shift,
+            context.canvas.height / 2 - shift * 0.5 + Math.random() * shift);
+        context.scale(this.SCALE + extraZoom, this.SCALE + extraZoom);
     },
 
     translateContext(context, offset) {

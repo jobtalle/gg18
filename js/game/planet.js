@@ -52,7 +52,7 @@ Planet.prototype = {
             const player = this.players[i];
             
             player.setDay(this.getDay(player.position));
-            player.update(timeStep);
+            player.update(timeStep, shake);
         }
         
         for(var i = 0; i < this.scenery.length; ++i) {
