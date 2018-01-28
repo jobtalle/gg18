@@ -9,6 +9,8 @@ function Beamer(angle) {
     this.beamerBase = resources.biemer_base.instantiate();
     this.beamerDish = resources.biemer_empty.instantiate();
     this.beamerSparks = null;
+    this.beamerStartAudio = resources.transmission.instantiate();
+    this.crystalBreakAudio = resources.spring.instantiate();
 }
 
 Beamer.prototype = {
@@ -43,6 +45,7 @@ Beamer.prototype = {
                 this.crystal.drain(timeStep);
                                
                 if(this.crystal.life == 0) {
+                    this.crystalBreakAudio.play();
                     this.beamerDish = resources.biemer_empty.instantiate();
                     this.crystal = null;
                     
@@ -150,8 +153,10 @@ Beamer.prototype = {
         
         if(this.beams.length > 0 && !this.beams[this.beams.length - 1].cut) {
             this.spark();
+            this.beamerStartAudio.stop();
             this.beams[this.beams.length - 1].stop();
         } else {
+            this.beamerStartAudio.play();
             this.beams.push(new Beam(
                 this.angle,
                 this.aim,
