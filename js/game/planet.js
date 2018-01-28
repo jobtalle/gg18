@@ -284,9 +284,30 @@ Planet.prototype = {
         }
     },
     
+    getRandomColor() {
+        switch(Math.trunc(Math.random() * 6)) {
+            case 0:
+                return "red";
+            case 1:
+                return "yellow";
+            case 2:
+                return "blue";
+            case 3:
+                return "green";
+            case 4:
+                return "purple";
+            case 5:
+                return "orange";
+        }
+    },
+    
     dispatch(ufoObject) {
         var colors = ufoObject.colors;
         var mover;
+        
+        for(var i = 0; i < colors.length; ++i)
+            if(colors[i] == "random")
+                colors[i] = this.getRandomColor();
         
         switch(ufoObject.path) {
             case "constant":
