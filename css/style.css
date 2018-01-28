@@ -32,20 +32,22 @@ body {
     0%      
     { 
         transform: scale(0, 0);
+        opacity: 100;
     }
-    35%    
-    { 
-        transform: scale(1, 1);
-    }
-    75%
+    20%
     {
-        opacity: 100%;
-        transform: scale(1, 1);
+        opacity: 100;
+        transform: scale(2, 2);
+    }
+    60%
+    {
+        opacity: 100;
     }
     100%
     {
-        opacity: 0%;
-        transform: scale(0, 0);
+        opacity: 0;
+        
+        transform: scale(2.5, 2.5);
     }
     
 }
@@ -61,15 +63,17 @@ body {
     height: auto;
     background: none;
     margin: 0 auto;
-    padding: 15px;
-    border-radius: 80px;
+    padding: 8px;
+    border-radius: 150px;
+    font-size: 1.3em;
     text-shadow: 2px 2px rgba(0,0,0,1);
+    transform: scale(0, 0);
     
     animation-name: popin;
-    animation-duration: 1.5s;
+    animation-duration: 0.3s;
+    animation-timing-function: ease-in;
     animation-iteration-count: 1;
-    
-    transform: scale(0, 0);
+    animation-fill-mode: forwards;
 }
 
 #gloweffect {
@@ -82,7 +86,7 @@ body {
     
     animation-name: flash;
     animation-duration: .5s;
-    animation-direction: alternate;
+    animation-direction: normal;
     animation-iteration-count: infinite;
     animation-timing-function: ease-in-out;
 }
