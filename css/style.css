@@ -236,7 +236,7 @@ body {
 }
 
 #characterHeaders {
-    background-color: darkgray;
+    background-color: black;
     height: 25%;
 }
 
@@ -381,6 +381,20 @@ td > img {
     animation-iteration-count: 1;
     animation-fill-mode: backwards;
     animation-timing-function: ease-in-out;
+}
+
+@keyframes particleAnim {
+    0%      {opacity: 100;}
+    100%    {opacity: 0;}
+}
+
+.particles {
+    animation-name: particleAnim;
+    animation-duration: 2s;
+    animation-direction: normal;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-out;
 }
 
 

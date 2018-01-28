@@ -163,16 +163,26 @@ Ufo.prototype = {
         
         this.leaveAudio.play();
         
-        if (this.success){
-            const scale = Game.prototype.SCALE;
+        const scale = Game.prototype.SCALE;
             const angle = planet.angle;
             const position = new Vector(
                 Math.cos(angle) * this.mover.position.x - Math.sin(angle) * this.mover.position.y,
                 Math.sin(angle) * this.mover.position.x + Math.cos(angle) * this.mover.position.y,
             );
-            
+        
+        if (this.success){
             globalScore.addScore(this.getScore());
             new Popup(position.x * scale, position.y * scale, this.getScore());
+            
+            for (var i = 0; i < 10; i++){
+                new Particle(position.x * scale + this.getRandomInt(-50,50), position.y * scale + this.getRandomInt(-50,50), 0);
+            }
+        }
+        else{
+            console.log("unsuccesfull leave");
+            for (var i = 0; i < 10; i++){
+                new Particle(position.x * scale + this.getRandomInt(-50,50), position.y * scale + this.getRandomInt(-50,50), 1);
+            }
         }
     },
     
@@ -182,6 +192,12 @@ Ufo.prototype = {
         this.mover.onLeave = function() {
             onLeave(self);
         };
+    },
+    
+    getRandomInt(min, max) {
+        min = Math.ceil(min);
+        max = Math.floor(max);
+        return Math.floor(Math.random() * (max - min)) + min;
     },
 
     setUfoLights(colors)
