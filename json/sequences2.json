@@ -2,7 +2,7 @@ sequences = [
   {
     "difficulty": {
       "min": "0",
-      "max": "0"
+      "max": "1"
     },
     "ufos": [
       {
@@ -39,7 +39,7 @@ sequences = [
   {
     "difficulty": {
       "min": "0",
-      "max": "0"
+      "max": "1"
     },
     "ufos": [
       {
@@ -76,7 +76,7 @@ sequences = [
   {
     "difficulty": {
       "min": "1",
-      "max": "1"
+      "max": "2"
     },
     "ufos": [
       {
@@ -113,7 +113,7 @@ sequences = [
   {
     "difficulty": {
       "min": "0",
-      "max": "0"
+      "max": "1"
     },
     "ufos": [
       {
@@ -151,7 +151,7 @@ sequences = [
   {
     "difficulty": {
       "min": "1",
-      "max": "1"
+      "max": "2"
     },
     "ufos": [
       {
@@ -199,7 +199,7 @@ sequences = [
   {
     "difficulty": {
       "min": "1",
-      "max": "1"
+      "max": "2"
     },
     "ufos": [
       {
@@ -224,8 +224,7 @@ sequences = [
       },
       {
         "colors": [
-          "purple",
-          "orange"
+          "randomDay","randomDay"
         ],
         "path": "constant",
         "speed": ".3",
@@ -252,8 +251,7 @@ sequences = [
     "ufos": [
       {
         "colors": [
-          "purple",
-          "blue"
+          "randomNight","randomNight"
         ],
         "path": "constant",
         "speed": ".5",
@@ -272,8 +270,7 @@ sequences = [
       },
       {
         "colors": [
-          "yellow",
-          "green"
+          "randomDay","randomDay"
         ],
         "path": "constant",
         "speed": ".3",
@@ -300,8 +297,7 @@ sequences = [
     "ufos": [
       {
         "colors": [
-          "purple",
-          "blue"
+          "randomNight","randomNight"
         ],
         "path": "constant",
         "speed": ".5",
@@ -495,9 +491,9 @@ sequences = [
           "red",
           "red"
         ],
-        "path": "constant",
-        "speed": ".5",
-        "orbitCount": "2",
+        "path": "stealer",
+        "speed": ".2",
+        "waitTime": "2",
         "next": "1"
       },
       {
@@ -505,19 +501,20 @@ sequences = [
           "yellow",
           "yellow"
         ],
-        "path": "booster",
-        "speed": ".5",
-        "orbitCount": "2",
-        "next": "3"
+        "path": "stealer",
+        "speed": ".2",
+        "waitTime": "2",
+        "next": "1"
       },
       {
         "colors": [
           "blue",
           "blue"
         ],
-        "path": "gem",
-        "speed": ".5",
-        "next": "3"
+        "path": "stealer",
+        "speed": ".2",
+        "waitTime": "2",
+        "next": "1"
       },
       {
         "colors": [
@@ -527,17 +524,17 @@ sequences = [
         "path": "stealer",
         "speed": ".2",
         "waitTime": "2",
-        "next": "3"
+        "next": "1"
       },
       {
         "colors": [
           "purple",
           "purple"
         ],
-        "path": "constant",
-        "speed": ".5",
-        "orbitCount": "2",
-        "next": "3"
+        "path": "stealer",
+        "speed": ".2",
+        "waitTime": "2",
+        "next": "1"
       },
       {
         "colors": [
@@ -627,8 +624,7 @@ sequences = [
     "ufos": [
       {
         "colors": [
-          "yellow",
-          "red"
+          "randomNight","randomNight"
         ],
         "path": "gem",
         "speed": "1",
@@ -762,8 +758,7 @@ sequences = [
     "ufos": [
       {
         "colors": [
-          "yellow",
-          "red"
+          "randomDay","randomDay"
         ],
         "path": "constant",
         "speed": "1",
@@ -790,8 +785,7 @@ sequences = [
     "ufos": [
       {
         "colors": [
-          "green",
-          "purple"
+          "randomNight","randomNight"
         ],
         "path": "constant",
         "speed": "1",
@@ -818,8 +812,7 @@ sequences = [
     "ufos": [
       {
         "colors": [
-          "orange",
-          "yellow"
+          "randomNight","randomNight"
         ],
         "path": "constant",
         "speed": "1",
@@ -828,8 +821,7 @@ sequences = [
       },
       {
         "colors": [
-          "blue",
-          "purple"
+          "randomNight","randomNight"
         ],
         "path": "constant",
         "speed": "1",
@@ -838,8 +830,7 @@ sequences = [
       },
       {
         "colors": [
-          "green",
-          "purple"
+          "randomDay","randomDay"
         ],
         "path": "constant",
         "speed": "1",
@@ -856,8 +847,7 @@ sequences = [
     "ufos": [
       {
         "colors": [
-          "blue",
-          "yellow"
+          "randomDay","randomDay"
         ],
         "path": "constant",
         "speed": "1",
@@ -866,8 +856,7 @@ sequences = [
       },
       {
         "colors": [
-          "red",
-          "purple"
+          "randomNight","randomNight"
         ],
         "path": "constant",
         "speed": "1",
@@ -876,8 +865,7 @@ sequences = [
       },
       {
         "colors": [
-          "green",
-          "red"
+          "randomNight","randomNight"
         ],
         "path": "constant",
         "speed": "1",
@@ -894,8 +882,7 @@ sequences = [
     "ufos": [
       {
         "colors": [
-          "orange",
-          "yellow"
+          "random","random"
         ],
         "path": "constant",
         "speed": "1",
@@ -904,8 +891,7 @@ sequences = [
       },
       {
         "colors": [
-          "blue",
-          "purple"
+          "randomDay","randomDay"
         ],
         "path": "constant",
         "speed": "1",
@@ -914,8 +900,7 @@ sequences = [
       },
       {
         "colors": [
-          "green",
-          "purple"
+          "randomNight","randomNight"
         ],
         "path": "constant",
         "speed": "1",
