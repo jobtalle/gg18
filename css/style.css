@@ -318,3 +318,32 @@ td > img {
     width: 100%;
     margin: 0 auto;
 }
+
+
+
+#ScoreElement {
+    animation-name: headerBounce;
+    animation-duration: 1.5s;
+    animation-direction: alternate;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
