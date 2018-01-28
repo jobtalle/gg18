@@ -486,6 +486,73 @@ sequences = [
   },
   {
     "difficulty": {
+      "min": "10",
+      "max": "99"
+    },
+    "ufos": [
+      {
+        "colors": [
+          "red",
+          "red"
+        ],
+        "path": "constant",
+        "speed": ".5",
+        "orbitCount": "2",
+        "next": "1"
+      },
+      {
+        "colors": [
+          "yellow",
+          "yellow"
+        ],
+        "path": "booster",
+        "speed": ".5",
+        "orbitCount": "2",
+        "next": "3"
+      },
+      {
+        "colors": [
+          "blue",
+          "blue"
+        ],
+        "path": "gem",
+        "speed": ".5",
+        "next": "3"
+      },
+      {
+        "colors": [
+          "green",
+          "green"
+        ],
+        "path": "stealer",
+        "speed": ".2",
+        "waitTime": "2",
+        "next": "3"
+      },
+      {
+        "colors": [
+          "purple",
+          "purple"
+        ],
+        "path": "constant",
+        "speed": ".5",
+        "orbitCount": "2",
+        "next": "3"
+      },
+      {
+        "colors": [
+          "orange",
+          "orange"
+        ],
+        "path": "booster",
+        "speed": ".5",
+        "orbitCount": "2",
+        "next": "9"
+      }
+    ]
+  },
+  {
+    "difficulty": {
       "min": "4",
       "max": "5"
     },
