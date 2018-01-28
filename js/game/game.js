@@ -16,6 +16,7 @@ Game.prototype = {
     start() {
         this.lastDate = new Date();
         this.animate();
+        resources.interlude.play();
     },
 
     restart() {

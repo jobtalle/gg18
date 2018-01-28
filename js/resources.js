@@ -85,5 +85,19 @@ Resources.prototype = {
         this.pine = new Sprite("img/environment/pine.png",4,10,2,1);
 
 
+        this.blessing = new AudioSource("sfx/blessing.ogg", false);
+        this.curse3 = new AudioSource("sfx/curse3.ogg", false);
+        this.disenchant = new AudioSource("sfx/disenchant.ogg", false);
+        this.entrance = new AudioSource("sfx/entrance.ogg", false);
+        this.heal = new AudioSource("sfx/heal.ogg", false);
+        this.interlude = new AudioSource("sfx/interlude.ogg", false);
+        this.magicerase = new AudioSource("sfx/magicerase.ogg", false);
+        this.sand = new AudioSource("sfx/sand.ogg", false);
+        this.spring = new AudioSource("sfx/spring.ogg", false);
+        this.transmission = new AudioSource("sfx/transmision.ogg", false);
+        this.warp = new AudioSource("sfx/warp.ogg", false);
+        this.zap = new AudioSource("sfx/zap.ogg", false);
+        this.zap2 = new AudioSource("sfx/zap2.ogg", false);
+        this.zap6a = new AudioSource("sfx/zap6a.ogg", false);
     }
 }
