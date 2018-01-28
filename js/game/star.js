@@ -2,19 +2,19 @@ var tmp = []
 
 function Star(x, y, type) {
     if (x == -1)
-        this.x = this.getRandomInt(0, window.innerWidth);
+        this.x = this.getRandomInt(0, window.innerHeight);
     else
         this.x = x;
     
     if (y == -1)
-        this.y = this.getRandomInt(0, window.innerHeight);
+        this.y = this.getRandomInt(0, window.innerWidth);
     else
         this.y = y;
     
     if (type == -1)
-        this.type = type;
-    else
         this.type = this.getRandomInt(0,7);
+    else
+        this.type = type;
     
     this.spawnStar();
 }
@@ -42,6 +42,10 @@ Star.prototype = {
         this.element.setAttribute("height", "32");
         
         this.getParent().appendChild(this.element);
+
+        setTimeout(function(){
+            this.getParent().removeChild(this.element);
+        }.bind(this), 5000);
     },
     
     getRandomInt(min, max) {

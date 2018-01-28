@@ -51,7 +51,7 @@ Game.prototype = {
     },
 
     update(timeStep) {
-        if(getRandomInt(0, 100) == 1)
+        if(getRandomInt(0, 20) == 1)
         {
             new Star(-1,-1,-1);
         }
