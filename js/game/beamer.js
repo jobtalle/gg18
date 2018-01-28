@@ -14,7 +14,7 @@ function Beamer(angle) {
 Beamer.prototype = {
     COLOR: "#0056bb",
     COLOR_DISH: "white",
-    DISH_HEIGHT: 7,
+    DISH_HEIGHT: 13,
     AIM_RANGE: 3,
     AIM_SPEED: 5,
     CRYSTAL_SCATTER_RANGE: 16,

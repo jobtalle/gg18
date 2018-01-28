@@ -1,0 +1,7 @@
+function UfoMoverPickup() {
+    
+}
+
+UfoMoverPickup.prototype = {
+    
+}
