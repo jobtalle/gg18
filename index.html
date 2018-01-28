@@ -37,6 +37,7 @@
         <script src="js/resources.js"></script>
         <script src="js/tonysFancyfy/fancyfy.js"></script>
         <script src="js/AudioSource.js"></script>
+        <script src="js/game/gameover.js"></script>
     </head>
     <body>
         
@@ -44,11 +45,13 @@
 <!--        <button id="charSel" type="button" onclick="new Star(-1, -1, 0)">Spawn star</button>-->
         
 <!--        <button id="charSel" type="button" onclick="new Popup(-1, -1, 666)">Doe spawn!</button>-->
-        
+        <div id="gameOver">
+            Game over! You lose
+        </div>
         
         <div id="startscreen" style="display: none">
             <div id="header">
-                PRESS ANY BUTTON TO SKIP/JOIN!
+                PRESS ANY BUTTON TO JOIN!
             </div>
             <table id="selectionController">
                 <tr id="characterHeaders">
@@ -102,7 +105,7 @@
         document.body.onkeyup = function(e){
             if(e.keyCode == 32){
                 // do something here
-                new Popup(0,0,100);
+                gameoverScreen.ShowScoreScreen();
             }
         }
         </script>
