@@ -7,7 +7,19 @@ function ControllerFactory() {
                 this.controllers[i].onPressButton1();
     });
     
+    gamepad.on("press", "shoulder_bottom_right", e => {
+        for(var i = 0; i < this.controllers.length; ++i)
+            if(this.controllers[i].controllerId == e.player)
+                this.controllers[i].onPressButton1();
+    });
+    
     gamepad.on("release", "button_1", e => {
+        for(var i = 0; i < this.controllers.length; ++i)
+            if(this.controllers[i].controllerId == e.player)
+                this.controllers[i].onReleaseButton1();
+    });
+    
+    gamepad.on("release", "shoulder_bottom_right", e => {
         for(var i = 0; i < this.controllers.length; ++i)
             if(this.controllers[i].controllerId == e.player)
                 this.controllers[i].onReleaseButton1();
@@ -19,7 +31,19 @@ function ControllerFactory() {
                 this.controllers[i].onPressButton2();
     });
     
+    gamepad.on("press", "shoulder_bottom_left", e => {
+        for(var i = 0; i < this.controllers.length; ++i)
+            if(this.controllers[i].controllerId == e.player)
+                this.controllers[i].onPressButton2();
+    });
+    
     gamepad.on('release', 'button_2', e => {
+        for(var i = 0; i < this.controllers.length; ++i)
+            if(this.controllers[i].controllerId == e.player)
+                this.controllers[i].onReleaseButton2();
+    });
+    
+    gamepad.on("release", "shoulder_bottom_left", e => {
         for(var i = 0; i < this.controllers.length; ++i)
             if(this.controllers[i].controllerId == e.player)
                 this.controllers[i].onReleaseButton2();
