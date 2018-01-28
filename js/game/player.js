@@ -1,8 +1,8 @@
-function Player(controller, angle, symbol) {
+function Player(controller, angle, symbolColor) {
     if(angle == undefined)
         angle = 0;
     
-    this.symbol = symbol;
+    this.symbolColor = symbolColor;
     this.angle = angle;
     this.speed = 0;
     this.speedChange = 0;
@@ -21,6 +21,7 @@ function Player(controller, angle, symbol) {
     this.xScale = -1;
 
     this.walkingSound = resources.sand.instantiate();
+    this.time = 0;
 }
 
 Player.prototype = {
@@ -37,6 +38,7 @@ Player.prototype = {
     },
     
     update(timeStep) {
+        this.time += timeStep * 5;
         this.controller.update();
         this.idleSprite.update(timeStep);
         this.walkingSprite.update(timeStep);
@@ -135,8 +137,13 @@ Player.prototype = {
         
         context.translate(this.position.x, this.position.y);
         context.rotate(this.angle + Math.PI * .5);
-        context.fillStyle = "#585858";
-         context.fillText(this.symbol, -3,10);
+        context.fillStyle = this.symbolColor;
+
+        offset = 0;
+        if(this.state == "beaming")
+            offset = Math.sin(this.time) *2;
+
+        context.fillText(String.fromCharCode("9650"), -5,10 + offset);
 
         context.restore();
 
