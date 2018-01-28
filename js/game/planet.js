@@ -18,7 +18,8 @@ Planet.prototype = {
     COLOR_PLANET_HIGHLIGHT: "#dae4d0",
     COLOR_PLANET_LINES: "#afc0b5",
     RADIUS: 50,
-    RADIUS_ORBIT: 100,
+    RADIUS_ORBIT: 80,
+    RADIUS_ORBIT_RANDOM: 30,
     RADIUS_INCOMING: 400,
     ROTATION_SPEED: 0.1,
     SCENERY_AMOUNT: 40,
@@ -289,10 +290,10 @@ Planet.prototype = {
         
         switch(ufoObject.path) {
             case "constant":
-                mover = new UfoMoverOrbit(ufoObject.orbitCount, this.RADIUS_ORBIT, 50 * ufoObject.speed, false);
+                mover = new UfoMoverOrbit(ufoObject.orbitCount, this.RADIUS_ORBIT + Math.random() * this.RADIUS_ORBIT_RANDOM, 50 * ufoObject.speed, false);
                 break;
             case "booster":
-                mover = new UfoMoverOrbit(ufoObject.orbitCount, this.RADIUS_ORBIT, 50 * ufoObject.speed, true);
+                mover = new UfoMoverOrbit(ufoObject.orbitCount, this.RADIUS_ORBIT + Math.random() * this.RADIUS_ORBIT_RANDOM, 50 * ufoObject.speed, true);
                 break;
             case "stealer":
                 mover = new UfoMoverPickup(Math.random() * Math.PI * 2, 50 * ufoObject.speed, ufoObject.waitTime);
@@ -302,7 +303,7 @@ Planet.prototype = {
                 break;
         }
         
-        this.addUfo(new Ufo("stealer",
+        this.addUfo(new Ufo(ufoObject.path,
             colors,
             mover
         ));

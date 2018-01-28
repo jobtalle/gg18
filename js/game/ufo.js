@@ -10,6 +10,9 @@ function Ufo(type, colors, mover) {
 
     this.setUfoLights(colors);
     this.setUfo(type, colors);
+
+    this.lightPos = [];
+    this.setLightPos(type);
 }
 
 Ufo.prototype = {
@@ -25,14 +28,6 @@ Ufo.prototype = {
     },
     
     render(context) {
-        context.fillStyle = "white";
-        
-        var colorTexts = "";
-        for(var i = 0; i < this.colors.length; ++i)
-            colorTexts += this.colors[i] + " ";
-        
-        context.fillText(colorTexts, this.mover.position.x + 16, this.mover.position.y);
-        
         context.save();
 
         context.translate(
@@ -54,20 +49,20 @@ Ufo.prototype = {
             else if(this.colors.length == 2)
             {
                 this.lights[0].draw(
-                    context,-9,-4,0);
+                    context,this.lightPos[0].x,this.lightPos[0].y,0);
 
                 this.lights[1].draw(
-                    context,7,-4,0);
+                    context,this.lightPos[2].x,this.lightPos[2].y,0);
             }
             else
             {
                 this.lights[0].draw(
-                    context,-9,-4,0);
+                    context,this.lightPos[0].x,this.lightPos[0].y,0);
 
                 this.lights[1].draw(
-                    context,-1,-4,0);
+                    context,this.lightPos[1].x,this.lightPos[1].y,0);
                 this.lights[2].draw(
-                    context,7,-4,0);
+                    context,this.lightPos[2].x,this.lightPos[2].y,0);
             }
 
         context.restore();
@@ -101,22 +96,20 @@ Ufo.prototype = {
         if(beams.length == 0)
             return false;
         
-        var matches = new Array(this.colors.length);
+        var hitColors = [];
+        
+        for(var i = 0; i < beams.length; ++i)
+            hitColors.push(beams[i].crystal.essence.getColorName(getDay(beams[i].position)));
         
         for(var i = 0; i < this.colors.length; ++i)
-            matches[i] = false;
-        
-        for(var i = 0; i < beams.length; ++i) {
-            const index = this.colors.indexOf(beams[i].crystal.essence.getColorName(getDay(beams[i].position)));
-            
-            if(index != -1)
-                matches[index] = true;
-        }
-        
-        for(var i = 0; i < this.colors.length; ++i)
-            if(!matches[i]) return false;
+            if(this.colors[i].indexOf(hitColors) == -1)
+                return false;
         
         return true;
+    },
+    
+    getScore() {
+        return 1000;
     },
     
     leave(planet) {
@@ -129,8 +122,8 @@ Ufo.prototype = {
                 Math.cos(planet.angle) * this.mover.position.x - Math.sin(planet.angle) * this.mover.position.x,
                 Math.sin(planet.angle) * this.mover.position.y + Math.cos(planet.angle) * this.mover.position.y,
             );
-            
-            new Popup(position.x * scale, position.y * scale, 5000);
+            console.log(position);
+            new Popup(position.x * scale, position.y * scale, this.getScore());
         }
     },
     
@@ -218,6 +211,41 @@ Ufo.prototype = {
                 this.sprite = resources.ufo_mother.instantiate();
                 this.engineSprite = resources.ufo_mother_engine.instantiate();
                 break;
+        }
+    },
+    setLightPos(type)
+    {
+        switch(type){
+        case "booster":
+            this.lightPos.push(new Vector(9, -3));
+            this.lightPos.push(new Vector(2, -2));
+            this.lightPos.push(new Vector(-5, -3));
+            break;
+        case "constant":
+            this.lightPos.push(new Vector(-9, -3));
+            this.lightPos.push(new Vector(-1, -3));
+            this.lightPos.push(new Vector(7, -3));
+            break;
+        case "half":
+            this.lightPos.push(new Vector(-9, -4));
+            this.lightPos.push(new Vector(-1, -4));
+            this.lightPos.push(new Vector(7, -4));
+            break;
+        case "gem":
+            this.lightPos.push(new Vector(-9, -4));
+            this.lightPos.push(new Vector(-1, -4));
+            this.lightPos.push(new Vector(7, -4));
+            break;
+        case "stealer":
+            this.lightPos.push(new Vector(-9, -4));
+            this.lightPos.push(new Vector(-1, -4));
+            this.lightPos.push(new Vector(7, -4));
+            break;
+        case "mother":
+        this.lightPos.push(new Vector(-9, -4));
+        this.lightPos.push(new Vector(-1, -4));
+        this.lightPos.push(new Vector(7, -4));
+        break;
         }
     }
 }

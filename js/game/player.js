@@ -19,7 +19,7 @@ function Player(controller, angle) {
     this.walkingArmsSprite = resources.base_1_running_arms.instantiate();
     this.xScale = -1;
 
-    this.walkingSound = new AudioSource("sfx/sand.ogg", true);
+    this.walkingSound = resources.sand.instantiate();
 }
 
 Player.prototype = {
