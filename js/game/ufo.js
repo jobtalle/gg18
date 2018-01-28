@@ -13,8 +13,8 @@ function Ufo(type, colors, mover) {
 }
 
 Ufo.prototype = {
-    update(timeStep) {
-        this.mover.update(timeStep);
+    update(timeStep, planet) {
+        this.mover.update(timeStep, planet);
         this.engineSprite.update(timeStep);
         this.sprite.update(timeStep);
         
@@ -54,20 +54,20 @@ Ufo.prototype = {
             else if(this.colors.length == 2)
             {
                 this.lights[0].draw(
-                    context,-9,0,0);
+                    context,-9,-3,0);
 
                 this.lights[1].draw(
-                    context,7,0,0);
+                    context,7,-3,0);
             }
             else
             {
                 this.lights[0].draw(
-                    context,-9,0,0);
+                    context,-9,-3,0);
 
                 this.lights[1].draw(
-                    context,-1,0,0);
+                    context,-1,-3,0);
                 this.lights[2].draw(
-                    context,7,0,0);
+                    context,7,-3,0);
             }
 
         context.restore();

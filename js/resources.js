@@ -4,25 +4,25 @@ function Resources() {
 
 Resources.prototype = {
     load() {
-        this.ufo_booster_2 = new Sprite("img/ufo/ufo_booster_2.png", 11, 0, 1);
-        this.ufo_booster_3 = new Sprite("img/ufo/ufo_booster_3.png", 11, 0, 1);
-        this.ufo_constant_2 = new Sprite("img/ufo/ufo_constant_2.png", 11, 0, 1);
-        this.ufo_constant_3 = new Sprite("img/ufo/ufo_constant_3.png", 11, 0, 1);
-        this.ufo_half_2 = new Sprite("img/ufo/ufo_half_2.png", 11, 0, 1);
-        this.ufo_half_3 = new Sprite("img/ufo/ufo_half_3.png", 11, 0, 1);
-        this.ufo_lander_2 = new Sprite("img/ufo/ufo_lander_2.png", 11, 0, 1);
-        this.ufo_lander_3 = new Sprite("img/ufo/ufo_lander_3.png", 11, 0, 1);
-        this.ufo_stealer_2 = new Sprite("img/ufo/ufo_stealer_2.png", 11, 0, 1);
-        this.ufo_stealer_3 = new Sprite("img/ufo/ufo_stealer_3.png", 11, 0, 1);
-        this.ufo_mother = new Sprite("img/ufo/ufo_mother.png", 11, 0, 1);
+        this.ufo_booster_2 = new Sprite("img/ufo/ufo_booster_2.png", 11, 8, 1);
+        this.ufo_booster_3 = new Sprite("img/ufo/ufo_booster_3.png", 11, 8, 1);
+        this.ufo_constant_2 = new Sprite("img/ufo/ufo_constant_2.png", 11, 9, 1);
+        this.ufo_constant_3 = new Sprite("img/ufo/ufo_constant_3.png", 11, 9, 1);
+        this.ufo_half_2 = new Sprite("img/ufo/ufo_half_2.png", 11, 11, 1);
+        this.ufo_half_3 = new Sprite("img/ufo/ufo_half_3.png", 11, 11, 1);
+        this.ufo_lander_2 = new Sprite("img/ufo/ufo_lander_2.png", 11, 12, 1);
+        this.ufo_lander_3 = new Sprite("img/ufo/ufo_lander_3.png", 11, 12, 1);
+        this.ufo_stealer_2 = new Sprite("img/ufo/ufo_stealer_2.png", 11, 12, 1);
+        this.ufo_stealer_3 = new Sprite("img/ufo/ufo_stealer_3.png", 11, 12, 1);
+        this.ufo_mother = new Sprite("img/ufo/ufo_mother.png", 24, 19, 1);
 
-        this.ufo_booster_engine = new Sprite("img/ufo/ufo_booster_engine.png", 13,-8,5, 10);
-        this.ufo_constant_engine = new Sprite("img/ufo/ufo_constant_engine.png", 13,-8,5, 10);
-        this.ufo_half_engine_left = new Sprite("img/ufo/ufo_half_engine_left.png", 11,-10,5, 10);
-        this.ufo_half_engine_right = new Sprite("img/ufo/ufo_half_engine_right.png", 11,-10,5, 10);
+        this.ufo_booster_engine = new Sprite("img/ufo/ufo_booster_engine.png", 13,0,5, 10);
+        this.ufo_constant_engine = new Sprite("img/ufo/ufo_constant_engine.png", 13,0,5, 10);
+        this.ufo_half_engine_left = new Sprite("img/ufo/ufo_half_engine_left.png", 11,0,5, 10);
+        this.ufo_half_engine_right = new Sprite("img/ufo/ufo_half_engine_right.png", 11,0,5, 10);
         this.ufo_half_engine = new Sprite("img/ufo/ufo_half_engine.png", 16,0,5, 10);
-        this.ufo_lander_engine = new Sprite("img/ufo/ufo_lander_engine.png", 6,-12,5, 10);
-        this.ufo_mother_engine = new Sprite("img/ufo/ufo_mother_engine.png", 13,-19,5, 10);
+        this.ufo_lander_engine = new Sprite("img/ufo/ufo_lander_engine.png", 6,0,5, 10);
+        this.ufo_mother_engine = new Sprite("img/ufo/ufo_mother_engine.png", 26,0,5, 10);
 
         this.ufo_light = new Sprite("img/ufo/ufo_light.png", 0,0,1);
         this.ufo_light_blue = new Sprite("img/ufo/ufo_light_blue.png", 0,0,1);
