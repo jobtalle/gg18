@@ -35,13 +35,13 @@ Resources.prototype = {
         this.ufo_light_mother_purple= new Sprite("img/ufo/ufo_light_mother_purple.png", 0,0,1);
         this.ufo_light_mother_red= new Sprite("img/ufo/ufo_light_mother_red.png", 0,0,1);
         this.ufo_light_mother_yellow= new Sprite("img/ufo/ufo_light_mother_yellow.png", 0,0,1);
-        
+
         this.base_1_idle = new Sprite("img/character/base_1_idle.png", 3,10,3, 10);
         this.base_1_idle_arms = new Sprite("img/character/base_1_idle_arms.png", 3,10,3, 10);
         this.base_1_running = new Sprite("img/character/base_1_running.png", 3,10,4, 10);
         this.base_1_running_arms = new Sprite("img/character/base_1_running_arms.png", 3,10,4, 10);
         this.base_1_shooting = new Sprite("img/character/base_1_shooting.png", 3,10,3, 10);
-        
+
         this.biemer_base = new Sprite("img/biemer/biemer_base.png", 2.5,9,1);
         this.biemer_blue = new Sprite("img/biemer/biemer_blue.png", 7.5,6,1);
         this.biemer_empty = new Sprite("img/biemer/biemer_empty.png", 7.5,6,1);
@@ -51,7 +51,7 @@ Resources.prototype = {
         this.biemer_red = new Sprite("img/biemer/biemer_red.png", 7.5,6,1);
         this.biemer_yellow = new Sprite("img/biemer/biemer_yellow.png", 7.5,6,1);
         this.biemer_spark = new Sprite("img/biemer/biemer_spark.png", 6.5, 11,11,20);
-        
+
         this.portraits_idle = new Sprite("img/portrait/portraits_idle.png", 0,0,3, 6.667);
         this.portraits_idle_arms = new Sprite("img/portrait/portraits_idle_arms.png", 0,0,3, 6.667);
         this.portraits_running = new Sprite("img/portrait/portraits_running.png", 0,0,4, 6.667);
@@ -60,12 +60,12 @@ Resources.prototype = {
 
         this.alien = new Sprite("img/alien.png", 0,0,1);
 
-        this.gems_blue = new Sprite("img/gems/gems_blue.png", 3,6,1);
-        this.gems_green = new Sprite("img/gems/gems_green.png", 3,6,1);
-        this.gems_orange = new Sprite("img/gems/gems_orange.png", 3,6,1);
-        this.gems_purple = new Sprite("img/gems/gems_purple.png", 3,6,1);
-        this.gems_red = new Sprite("img/gems/gems_red.png", 3,6,1);
-        this.gems_yellow = new Sprite("img/gems/gems_yellow.png", 3,6,1);
+        this.gems_blue = new Sprite("img/gems/gems_blue.png", 3,6,6,10);
+        this.gems_green = new Sprite("img/gems/gems_green.png", 3,6,6,10);
+        this.gems_orange = new Sprite("img/gems/gems_orange.png", 3,6,6,10);
+        this.gems_purple = new Sprite("img/gems/gems_purple.png", 3,6,6,10);
+        this.gems_red = new Sprite("img/gems/gems_red.png", 3,6,6,10);
+        this.gems_yellow = new Sprite("img/gems/gems_yellow.png", 3,6,6,10);
 
         this.heart =  new Sprite("img/particles/heart.png", 0,0,5, 10);
         this.mad =  new Sprite("img/particles/mad.png", 0,0,5, 10);
@@ -76,11 +76,11 @@ Resources.prototype = {
         this.building_4 = new Sprite("img/environment/building_4.png",3,7,2,1);
         this.building_5 = new Sprite("img/environment/building_5.png",5,14,2,1);
         this.building_6 = new Sprite("img/environment/building_6.png",2,6,2,1);
-        
+
         this.bush = new Sprite("img/environment/bush.png",4,4,2,1);
         this.oak = new Sprite("img/environment/oak.png",4,10,2,1);
         this.pine = new Sprite("img/environment/pine.png",4,10,2,1);
-        
-        
+
+
     }
 }
