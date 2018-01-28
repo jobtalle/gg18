@@ -18,7 +18,7 @@ sequences = [
       {
         "colors": [
           "red",
-          " red"
+          "red"
         ],
         "path": "stealer",
         "speed": ".2",
@@ -55,7 +55,7 @@ sequences = [
       {
         "colors": [
           "purple",
-          " purple"
+          "purple"
         ],
         "path": "stealer",
         "speed": ".2",
@@ -92,7 +92,7 @@ sequences = [
       {
         "colors": [
           "yellow",
-          " yellow"
+          "yellow"
         ],
         "path": "stealer",
         "speed": ".2",
@@ -119,7 +119,7 @@ sequences = [
       {
         "colors": [
           "green",
-          " green"
+          "green"
         ],
         "path": "constant",
         "speed": ".5",
@@ -129,7 +129,7 @@ sequences = [
       {
         "colors": [
           "purple",
-          " purple"
+          "purple"
         ],
         "path": "constant",
         "speed": ".5",
@@ -157,7 +157,7 @@ sequences = [
       {
         "colors": [
           "green",
-          " green"
+          "green"
         ],
         "path": "constant",
         "speed": ".5",
@@ -167,7 +167,7 @@ sequences = [
       {
         "colors": [
           "purple",
-          " purple"
+          "purple"
         ],
         "path": "constant",
         "speed": ".5",
@@ -177,7 +177,7 @@ sequences = [
       {
         "colors": [
           "purple",
-          " purple"
+          "purple"
         ],
         "path": "constant",
         "speed": "1",
@@ -205,7 +205,7 @@ sequences = [
       {
         "colors": [
           "green",
-          " green"
+          "green"
         ],
         "path": "constant",
         "speed": ".5",
@@ -215,7 +215,7 @@ sequences = [
       {
         "colors": [
           "purple",
-          " purple"
+          "purple"
         ],
         "path": "constant",
         "speed": ".5",
@@ -225,7 +225,7 @@ sequences = [
       {
         "colors": [
           "purple",
-          " orange"
+          "orange"
         ],
         "path": "constant",
         "speed": ".3",
@@ -253,7 +253,7 @@ sequences = [
       {
         "colors": [
           "purple",
-          " blue"
+          "blue"
         ],
         "path": "constant",
         "speed": ".5",
@@ -263,7 +263,7 @@ sequences = [
       {
         "colors": [
           "purple",
-          " purple"
+          "purple"
         ],
         "path": "constant",
         "speed": ".5",
@@ -273,7 +273,7 @@ sequences = [
       {
         "colors": [
           "yellow",
-          " green"
+          "green"
         ],
         "path": "constant",
         "speed": ".3",
@@ -301,7 +301,7 @@ sequences = [
       {
         "colors": [
           "purple",
-          " blue"
+          "blue"
         ],
         "path": "constant",
         "speed": ".5",
@@ -311,7 +311,7 @@ sequences = [
       {
         "colors": [
           "purple",
-          " purple"
+          "purple"
         ],
         "path": "constant",
         "speed": ".5",
@@ -331,7 +331,7 @@ sequences = [
       {
         "colors": [
           "red",
-          " red"
+          "red"
         ],
         "path": "constant",
         "speed": ".5",
@@ -369,7 +369,7 @@ sequences = [
       {
         "colors": [
           "yellow",
-          " yellow"
+          "yellow"
         ],
         "path": "stealer",
         "speed": ".2",
@@ -388,7 +388,7 @@ sequences = [
       {
         "colors": [
           "green",
-          " green"
+          "green"
         ],
         "path": "constant",
         "speed": ".5",
@@ -398,7 +398,7 @@ sequences = [
       {
         "colors": [
           "purple",
-          " purple"
+          "purple"
         ],
         "path": "constant",
         "speed": ".5",
@@ -436,7 +436,7 @@ sequences = [
       {
         "colors": [
           "yellow",
-          " yellow"
+          "yellow"
         ],
         "path": "booster",
         "speed": ".5",
@@ -455,7 +455,7 @@ sequences = [
       {
         "colors": [
           "green",
-          " green"
+          "green"
         ],
         "path": "stealer",
         "speed": ".2",
@@ -465,7 +465,7 @@ sequences = [
       {
         "colors": [
           "purple",
-          " purple"
+          "purple"
         ],
         "path": "constant",
         "speed": ".5",
@@ -493,7 +493,7 @@ sequences = [
       {
         "colors": [
           "green",
-          " green"
+          "green"
         ],
         "path": "stealer",
         "speed": ".2",
@@ -513,7 +513,7 @@ sequences = [
       {
         "colors": [
           "purple",
-          " purple"
+          "purple"
         ],
         "path": "stealer",
         "speed": ".2",
@@ -523,7 +523,7 @@ sequences = [
       {
         "colors": [
           "yellow",
-          " yellow"
+          "yellow"
         ],
         "path": "stealer",
         "speed": ".21",
@@ -543,7 +543,7 @@ sequences = [
       {
         "colors": [
           "blue",
-          " blue"
+          "blue"
         ],
         "path": "stealer",
         "speed": ".21",
@@ -561,7 +561,7 @@ sequences = [
       {
         "colors": [
           "yellow",
-          " red"
+          "red"
         ],
         "path": "gem",
         "speed": "1",
@@ -597,7 +597,7 @@ sequences = [
       {
         "colors": [
           "purple",
-          " purple"
+          "purple"
         ],
         "path": "gem",
         "speed": "1",
@@ -632,7 +632,7 @@ sequences = [
       {
         "colors": [
           "purple",
-          " purple"
+          "purple"
         ],
         "path": "gem",
         "speed": "1",
@@ -641,7 +641,7 @@ sequences = [
       {
         "colors": [
           "yellow",
-          " red"
+          "red"
         ],
         "path": "gem",
         "speed": "1",
@@ -659,7 +659,7 @@ sequences = [
       {
         "colors": [
           "purple",
-          " purple"
+          "purple"
         ],
         "path": "stealer",
         "speed": ".2",
@@ -669,7 +669,7 @@ sequences = [
       {
         "colors": [
           "yellow",
-          " yellow"
+          "yellow"
         ],
         "path": "stealer",
         "speed": ".2",
