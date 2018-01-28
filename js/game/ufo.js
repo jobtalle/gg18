@@ -98,9 +98,6 @@ Ufo.prototype = {
     },
     
     match(beams, getDay) {
-        if(this.finished)
-            return false;
-        
         if(beams.length == 0)
         {
             this.wrongMatch.play();
