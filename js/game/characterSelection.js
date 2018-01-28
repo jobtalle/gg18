@@ -10,7 +10,7 @@ function CharSelect(playerAmount){
 
     this.color = undefined;
     
-    this.CHARACTER_SYMBOLS = ['9830', '9829', '9827', '9824', '1422', '4043', '1758', '4044', '9004', '9630', '9865', '9823'];
+    this.CHARACTER_SYMBOLS = ['9830', '9829', '9827', '9824', '1422', '1758', '4044', '9004', '9630', '9865', '9823'];
     this.symbol = undefined;
 
     this.createCharacterSelectionScreen();
