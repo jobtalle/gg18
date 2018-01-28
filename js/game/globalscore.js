@@ -29,8 +29,6 @@ GlobalScore.prototype = {
     },
     
     removeClass(){
-        console.log("Doei maar weer");
-        
         var scoreObject = this.getParent();
         scoreObject.classList.remove('scoreAnimation');
     },
