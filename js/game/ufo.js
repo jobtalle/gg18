@@ -111,16 +111,18 @@ Ufo.prototype = {
         
         var matchCount = 0;
         for(var i = 0; i < this.colors.length; ++i)
-            if(this.colors[i].indexOf(hitColors) != -1)
+            if(hitColors.indexOf(this.colors[i]) != -1)
                 ++matchCount;
         
         if(matchCount == this.colors.length) {
             this.correctMatch.play();
+            
             return true;
         }
         else {
-            return false;
             this.wrongMatch.play();
+            
+            return false;
         }
     },
     
