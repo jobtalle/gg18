@@ -32,6 +32,7 @@ Popup.prototype = {
 
         void this.element.offsetWidth;
 
+        console.log((this.x + (window.innerWidth * .5)) + 'px', this.y + (window.innerHeight * .5) + 'px');
         this.element.style.border = '2px solid ' + this.color;
         this.element.style.top = this.x + 'px';
         this.element.style.left = this.y + 'px';

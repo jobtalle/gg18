@@ -8,6 +8,8 @@ function CharSelect(playerAmount){
     this.players = [];
     this.CHARACTER_PORTRAITS = ['portraits_idle.gif', 'portraits_idle_arms.gif', 'portraits_running.gif', 'portraits_running_arms.gif', 'portraits_shooting.gif'];
     
+    this.CHARACTER_SYMBOLS = ['&#9830', '&#9829', '&#9827', '&#9824'];
+    
     
 //    this.portraits_idle = new Sprite("img/portrait/portraits_idle.png", 0,0,3, 6.667);
 //    this.portraits_idle_arms = new Sprite("img/portrait/portraits_idle_arms.png", 0,0,3, 6.667);
@@ -72,6 +74,7 @@ CharSelect.prototype = {
         var randomcolor = color;
         th.style.color = color;
         th.style.textShadow = '2px 2px rgba(255,255,255,1)';
+        //th.innerHTML = 'Player: ' + playerId.toString();
         th.innerHTML = 'Player: ' + playerId.toString();
 
         var tr = document.createElement("td");
