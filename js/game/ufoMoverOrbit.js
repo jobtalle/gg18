@@ -66,6 +66,6 @@ UfoMoverOrbit.prototype = {
     },
     
     getRadialSpeed(speed) {
-        return speed / (this.orbitHeight * 2 * Math.PI);
+        return speed / this.orbitHeight;
     }
 }

@@ -11,8 +11,8 @@ function Ufo(colors, mover) {
 }
 
 Ufo.prototype = {
-    update(timeStep) {
-        this.mover.update(timeStep);
+    update(timeStep, planet) {
+        this.mover.update(timeStep, planet);
         this.sprite.update(timeStep);
         this.engineSprite.update(timeStep);
         this.lightSprite1.update(timeStep);

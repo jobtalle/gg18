@@ -38,7 +38,7 @@ Planet.prototype = {
         this.checkUfos();
         
         for(var i = 0; i < this.ufos.length; ++i)
-            this.ufos[i].update(timeStep);
+            this.ufos[i].update(timeStep, this);
         
         for(var i = 0; i < this.crystals.length; ++i) {
             const crystal = this.crystals[i];
@@ -104,6 +104,15 @@ Planet.prototype = {
             this.ufos[i].render(context);
         
         context.restore();
+    },
+    
+    removeGems(angle, radius) {
+        for(var i = this.crystals.length; i-- > 0;) {
+            const crystal = this.crystals[i];
+            
+            if(Math.acos(crystal.position.normalize().dot(Vector.prototype.fromAngle(angle))) < radius)
+                this.crystals.splice(i, 1);
+        }
     },
     
     getDay(vector) {
@@ -266,8 +275,8 @@ Planet.prototype = {
         colors = [
             "red"
         ];
-        mover = new UfoMoverOrbit(2, this.RADIUS_ORBIT, 250, true);
-        mover = new UfoMoverPickup(Math.random() * 2 * Math.PI, 20, 5);
+        mover = new UfoMoverOrbit(2, this.RADIUS_ORBIT, 50, true);
+        //mover = new UfoMoverPickup(Math.random() * 2 * Math.PI, 40, 5);
         
         this.addUfo(new Ufo(
             colors,

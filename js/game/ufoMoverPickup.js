@@ -12,8 +12,9 @@ function UfoMoverPickup(angle, speed, waitTime) {
 UfoMoverPickup.prototype = {
     VALID_ANGLE_OFFSET: 1,
     LEAVE_SPEED_FACTOR: 2,
+    REMOVE_GEM_RADIUS: 15,
     
-    update(timeStep) {
+    update(timeStep, planet) {
         switch(this.state) {
             case "landing":
                 this.radius -= timeStep * this.speed;
@@ -22,6 +23,8 @@ UfoMoverPickup.prototype = {
                 if(this.radius < Planet.prototype.RADIUS) {
                     this.radius = Planet.prototype.RADIUS;
                     this.state = "waiting";
+                    
+                    this.removeGems(planet);
                 }
                 break;
             case "waiting":
@@ -39,6 +42,10 @@ UfoMoverPickup.prototype = {
         this.position.y = Math.sin(this.angle) * this.radius;
     },
     
+    removeGems(planet) {
+        planet.removeGems(this.angle, this.getRadialSpeed(this.REMOVE_GEM_RADIUS));
+    },
+    
     leave() {
         this.state = "leaving";
     },
@@ -48,6 +55,6 @@ UfoMoverPickup.prototype = {
     },
     
     getRadialSpeed(speed) {
-        return speed / (this.radius * 2 * Math.PI);
+        return speed / this.radius;
     }
 }
