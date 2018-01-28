@@ -482,7 +482,7 @@ sequences = [
   },
   {
     "difficulty": {
-      "min": "10",
+      "min": "4",
       "max": "99"
     },
     "ufos": [
@@ -981,7 +981,7 @@ sequences = [
         "path": "constant",
         "speed": "1",
         "orbitCount": "4",
-        "next": "5"
+        "next": "3"
       },
       {
         "colors": [
@@ -1000,7 +1000,7 @@ sequences = [
         ],
         "path": "gem",
         "speed": ".5",
-        "next": "6"
+        "next": "5"
       },
       {
         "colors": [
@@ -1010,7 +1010,7 @@ sequences = [
         "path": "constant",
         "speed": "1",
         "orbitCount": "2",
-        "next": "6"
+        "next": "4"
       },
       {
          "colors": [
@@ -1020,7 +1020,7 @@ sequences = [
         "path": "constant",
         "speed": "1",
         "orbitCount": "2",
-        "next": "5"
+        "next": "3"
       },
       {
         "colors": [
@@ -1030,7 +1030,7 @@ sequences = [
         "path": "constant",
         "speed": "1",
         "orbitCount": "2",
-        "next": "4"
+        "next": "3"
       },
       {
         "colors": [
