@@ -11,6 +11,7 @@ function Planet(players) {
     this.calculateInteractionRadius();
     
     this.tony = Math.cos(Math.PI / 4) * this.RADIUS;
+    this.mist = resources.mist.instantiate();
 }
 
 Planet.prototype = {
@@ -31,6 +32,7 @@ Planet.prototype = {
     CRYSTAL_COUNT: 12,
     
     update(timeStep) {
+        this.mist.update(timeStep);
         this.angle += this.ROTATION_SPEED * timeStep;
         
         if(this.angle > Math.PI * 2)
@@ -105,6 +107,8 @@ Planet.prototype = {
             this.ufos[i].render(context);
         
         context.restore();
+
+        this.renderMist(context);
     },
     
     removeGems(angle, radius) {
@@ -358,6 +362,23 @@ Planet.prototype = {
         context.fillStyle = this.COLOR_PLANET_HIGHLIGHT;
         context.arc(-this.tony, -this.tony, this.tony * 2, 0, Math.PI * 2);
         context.fill();
+
+        context.restore();
+    },
+
+    renderMist(context)
+    {
+        context.save();
+
+        context.beginPath();
+        context.fillStyle ="rgba(0,0,0,0)";
+        context.arc(0,0, this.RADIUS, 0, Math.PI * 2);
+        context.fill();
+        context.clip();
+        context.translate(-50,-50);
+        context.scale(1.219,1.219);
+        context.globalAlpha = .4;
+        this.mist.draw(context, 0,0);
 
         context.restore();
     }

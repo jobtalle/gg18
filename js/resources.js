@@ -84,6 +84,8 @@ Resources.prototype = {
         this.oak = new Sprite("img/environment/oak.png",4,10,2,1);
         this.pine = new Sprite("img/environment/pine.png",4,10,2,1);
 
+        this.mist = new Sprite("img/environment/mist.png", 0,0,17,6);
+
 
         this.blessing = new AudioSource("sfx/blessing.ogg", false);
         this.curse3 = new AudioSource("sfx/curse3.ogg", false);
