@@ -59,6 +59,7 @@ CharSelect.prototype = {
     startGame() {
         var game = new Game(renderer, this.players);
         this.hideCharacterSelection();
+        globalScore.unhide();
         game.start();
     },
 
