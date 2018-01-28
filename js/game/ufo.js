@@ -2,6 +2,7 @@ function Ufo(type, colors, mover) {
     this.colors = colors;
     this.mover = mover;
     this.finished = false;
+    this.success = false;
     this.sprite = resources.ufo_constant_2.instantiate();
     this.engineSprite = resources.ufo_constant_engine.instantiate();
 
