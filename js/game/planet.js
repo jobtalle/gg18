@@ -266,7 +266,8 @@ Planet.prototype = {
         colors = [
             "red"
         ];
-        mover = new UfoMoverOrbit(2, this.RADIUS_ORBIT, true);
+        mover = new UfoMoverOrbit(2, this.RADIUS_ORBIT, 250, true);
+        mover = new UfoMoverPickup(Math.random() * 2 * Math.PI, 40);
         
         this.addUfo(new Ufo(
             colors,
