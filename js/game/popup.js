@@ -15,6 +15,8 @@ function Popup(x, y, score, color) {
     else
         this.color = color;
     
+    this.score = score;
+    
     this.spawnPopup();
 }
 
@@ -24,7 +26,7 @@ Popup.prototype = {
     },
     
     spawnPopup() {
-        console.log(this.x);
+        console.log(this.score);
         
         this.element = document.createElement("popup");
 
@@ -32,15 +34,16 @@ Popup.prototype = {
 
         void this.element.offsetWidth;
 
-        console.log((this.x + (window.innerWidth * .5)) + 'px', this.y + (window.innerHeight * .5) + 'px');
         this.element.style.border = '2px solid ' + this.color;
-        this.element.style.top = this.x + 'px';
-        this.element.style.left = this.y + 'px';
+        
         this.element.style.textShadow = '2px 2px ' + this.color;
         this.element.style.boxShadow = '0px 0px 25px ' + this.color;
 
         this.element.classList.add("popup");
-        this.element.innerHTML = this.color;
+        this.element.innerHTML = this.score;
+
+        this.element.style.top = this.x + (-this.element.clientHeight / 2) + 'px';
+        this.element.style.left = this.y + (-this.element.clientWidth / 2) + 'px';
         
         this.element.addEventListener("webkitAnimationEnd", this.onEnd.bind(this));
     },

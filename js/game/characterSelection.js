@@ -75,7 +75,7 @@ CharSelect.prototype = {
         th.style.color = color;
         th.style.textShadow = '2px 2px rgba(255,255,255,1)';
         //th.innerHTML = 'Player: ' + playerId.toString();
-        th.innerHTML = 'Player: ' + playerId.toString();
+        th.innerHTML = 'Player: ' + this.CHARACTER_SYMBOLS[2];
 
         var tr = document.createElement("td");
 
