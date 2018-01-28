@@ -16,6 +16,7 @@ function Crystal(angle, essence) {
 
 Crystal.prototype = {
     LIFETIME: 4,
+    MIN_ALPHA: 0.3,
 
     update(timeStep) {
         this.crystalSprite.update(timeStep);
@@ -66,7 +67,7 @@ Crystal.prototype = {
     render(context) {
         context.save();
 
-        context.globalAlpha = this.getStrength();
+        context.globalAlpha = Math.max(this.MIN_ALPHA, this.getStrength());
         this.crystalSprite.draw(context, this.position.x, this.position.y, this.angle + Math.PI * 0.5);
         context.restore();
     },

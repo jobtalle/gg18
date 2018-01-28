@@ -131,8 +131,10 @@ Planet.prototype = {
             
             const hitBeams = ufo.findBeams(beams);
             
-            if(ufo.match(hitBeams, this.getDay.bind(this)))
+            if(ufo.match(hitBeams, this.getDay.bind(this))) {
+                ufo.success = true;
                 ufo.leave();
+            }
         }
     },
     
