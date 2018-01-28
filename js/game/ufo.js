@@ -175,13 +175,13 @@ Ufo.prototype = {
             new Popup(position.x * scale, position.y * scale, this.getScore());
             
             for (var i = 0; i < 10; i++){
-                new Particle(position.x * scale + this.getRandomInt(-50,50), position.y * scale + this.getRandomInt(-50,50), 0);
+                new Particle(position.x * scale + this.getRandomInt(-80,80), position.y * scale + this.getRandomInt(-80,80), 0);
             }
         }
         else{
             console.log("unsuccesfull leave");
             for (var i = 0; i < 10; i++){
-                new Particle(position.x * scale + this.getRandomInt(-50,50), position.y * scale + this.getRandomInt(-50,50), 1);
+                new Particle(position.x * scale + this.getRandomInt(-80,80), position.y * scale + this.getRandomInt(-80,80), 1);
             }
         }
     },

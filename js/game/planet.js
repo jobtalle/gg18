@@ -30,6 +30,7 @@ Planet.prototype = {
     DIR_DAY: Math.PI * 0.25,
     INTERACTION_DISTANCE: 16,
     CRYSTAL_COUNT: 12,
+    CRYSTAL_DECAY: 0.03,
     
     update(timeStep) {
         this.mist.update(timeStep);
@@ -43,18 +44,23 @@ Planet.prototype = {
         for(var i = 0; i < this.ufos.length; ++i)
             this.ufos[i].update(timeStep, this);
         
-        for(var i = 0; i < this.crystals.length; ++i) {
+        for(var i = this.crystals.length; i-- > 0;) {
             const crystal = this.crystals[i];
             
             crystal.setDay(this.getDay(crystal.position));
             crystal.update(timeStep);
+            
+            crystal.life -= this.CRYSTAL_DECAY * timeStep;
+            
+            if(crystal.life < 0)
+                this.crystals.splice(this.crystals.indexOf(crystal), 1);
         }
         
         for(var i = 0; i < this.players.length; ++i) {
             const player = this.players[i];
             
             player.setDay(this.getDay(player.position));
-            player.update(timeStep);
+            player.update(timeStep, shake);
         }
         
         for(var i = 0; i < this.scenery.length; ++i) {
@@ -288,9 +294,57 @@ Planet.prototype = {
         }
     },
     
+    getRandomColor() {
+        switch(Math.trunc(Math.random() * 6)) {
+            case 0:
+                return "red";
+            case 1:
+                return "yellow";
+            case 2:
+                return "blue";
+            case 3:
+                return "green";
+            case 4:
+                return "purple";
+            case 5:
+                return "orange";
+        }
+    },
+    
+    getRandomColorDay() {
+        switch(Math.trunc(Math.random() * 3)) {
+            case 0:
+                return "red";
+            case 1:
+                return "yellow";
+            case 2:
+                return "blue";
+        }
+    },
+    
+    getRandomColorNight() {
+        switch(Math.trunc(Math.random() * 3)) {
+            case 0:
+                return "green";
+            case 1:
+                return "purple";
+            case 2:
+                return "orange";
+        }
+    },
+    
     dispatch(ufoObject) {
         var colors = ufoObject.colors;
         var mover;
+        
+        for(var i = 0; i < colors.length; ++i) {
+            if(colors[i] == "random")
+                colors[i] = this.getRandomColor();
+            else if(colors[i] == "randomDay")
+                colors[i] = this.getRandomColorDay();
+            else if(colors[i] == "randomNight")
+                colors[i] = this.getRandomColorNight();
+        }
         
         switch(ufoObject.path) {
             case "constant":

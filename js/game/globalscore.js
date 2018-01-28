@@ -28,6 +28,10 @@ GlobalScore.prototype = {
         this.setScore();
     },
     
+    getScore(){
+        return this.score;
+    },
+    
     removeClass(){
         var scoreObject = this.getParent();
         scoreObject.classList.remove('scoreAnimation');

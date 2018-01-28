@@ -4,6 +4,7 @@ function start() {
     interface = new Interface();
     controllerFactory = new ControllerFactory();
     globalScore = new GlobalScore(0);
+    gameoverScreen = new GameoverScreen();
 	
     renderer.resize();
 }

@@ -397,6 +397,54 @@ td > img {
     animation-timing-function: ease-out;
 }
 
+#gameOver {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    
+    color: white;
+    font-size: 2em; 
+    text-shadow: 4px 4px rgba(0,0,0,1.0);
+    text-align: center;
+    margin: 0 auto;
+    
+    background-image: url(../img/bg.png);
+    background-size: 100%;
+    image-rendering: pixelated;
+    background-repeat: repeat;
+    image-rendering: -moz-crisp-edges;
+    
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    background-size: cover;
+    animation-name: pan;
+    animation-duration: 25s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+.gameoverheader {
+    color: white;
+    position: absolute;
+    font-family: 'Press Start 2P', cursive;
+    text-align: center;
+    top: 45%;
+    
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    
+    animation-name: headerBounce;
+    animation-duration: 1.5s;
+    animation-direction: alternate;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+}
+
 
 
 
