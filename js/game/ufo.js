@@ -111,7 +111,7 @@ Ufo.prototype = {
         
         var matchCount = 0;
         for(var i = 0; i < this.colors.length; ++i)
-            if(this.colors[i].indexOf(hitColors) == -1)
+            if(this.colors[i].indexOf(hitColors) != -1)
                 ++matchCount;
         
         if(matchCount == this.colors.length) {
