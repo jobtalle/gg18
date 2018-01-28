@@ -2,6 +2,7 @@ function Player(controller, angle, symbol) {
     if(angle == undefined)
         angle = 0;
     
+    this.symbol = symbol;
     this.angle = angle;
     this.speed = 0;
     this.speedChange = 0;
@@ -129,9 +130,16 @@ Player.prototype = {
             else
                 this.idleSprite.draw(context, this.position.x, this.position.y,this.angle + Math.PI * 0.5, this.xScale);
         }
-        
         context.restore();
+        context.save();
         
+        context.translate(this.position.x - 2, this.position.y);
+        context.rotate(this.angle + Math.PI * .5);
+        context.translate(0,10);
+        context.fillText(this.symbol, 0,0);
+
+        context.restore();
+
         if(this.crystal != null)
             this.crystal.render(context);
     },

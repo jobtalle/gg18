@@ -10,7 +10,7 @@ function CharSelect(playerAmount){
 
     this.color = undefined;
     
-    this.CHARACTER_SYMBOLS = ['&#9830', '&#9829', '&#9827', '&#9824'];
+    this.CHARACTER_SYMBOLS = ['9830', '9829', '9827', '9824'];
     this.symbol = undefined;
 
     this.createCharacterSelectionScreen();
@@ -100,7 +100,7 @@ CharSelect.prototype = {
     },
     
     getRandomSymbol(){
-        return this.CHARACTER_SYMBOLS[getRandomInt(0, this.CHARACTER_SYMBOLS.length)];
+        return String.fromCharCode(this.CHARACTER_SYMBOLS[getRandomInt(0, this.CHARACTER_SYMBOLS.length)]);
     },
 
     getRandomColor() {
