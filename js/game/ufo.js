@@ -109,15 +109,19 @@ Ufo.prototype = {
         for(var i = 0; i < beams.length; ++i)
             hitColors.push(beams[i].crystal.essence.getColorName(getDay(beams[i].position)));
         
+        var matchCount = 0;
         for(var i = 0; i < this.colors.length; ++i)
-            if(this.colors[i].indexOf(hitColors) == -1)
-            {
-                return false;
-                this.wrongMatch.play();
-            }
+            if(this.colors[i].indexOf(hitColors) != -1)
+                ++matchCount;
         
-        this.correctMatch.play();
-        return true;
+        if(matchCount == this.colors.length) {
+            this.correctMatch.play();
+            return true;
+        }
+        else {
+            return false;
+            this.wrongMatch.play();
+        }
     },
     
     getColorCount() {
