@@ -3,10 +3,13 @@ function Sprite(file, xOrigin, yOrigin, frames, fps) {
     this.yOrigin = yOrigin;
     this.frames = frames;
     this.fps = fps;
+    if(fps == undefined)
+        this.fps = 0;
     this.width = 0;
     this.height = 0;
     
     this.load(file);
+    this.file = file;
 }
 
 Sprite.prototype = {
