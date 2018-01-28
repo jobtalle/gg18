@@ -26,7 +26,7 @@ Popup.prototype = {
     },
     
     spawnPopup() {
-        console.log(this.score);
+        console.log('get score: ' + this.score);
         
         this.element = document.createElement("popup");
 

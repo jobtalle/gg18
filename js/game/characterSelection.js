@@ -8,14 +8,10 @@ function CharSelect(playerAmount){
     this.players = [];
     this.CHARACTER_PORTRAITS = ['portraits_idle.gif', 'portraits_idle_arms.gif', 'portraits_running.gif', 'portraits_running_arms.gif', 'portraits_shooting.gif'];
 
+    this.color = undefined;
+    
     this.CHARACTER_SYMBOLS = ['&#9830', '&#9829', '&#9827', '&#9824'];
-
-
-//    this.portraits_idle = new Sprite("img/portrait/portraits_idle.png", 0,0,3, 6.667);
-//    this.portraits_idle_arms = new Sprite("img/portrait/portraits_idle_arms.png", 0,0,3, 6.667);
-//    this.portraits_running = new Sprite("img/portrait/portraits_running.png", 0,0,4, 6.667);
-//    this.portraits_running_arms = new Sprite("img/portrait/portraits_running_arms.png", 0,0,4, 6.667);
-//    this.portraits_shooting = new Sprite("img/portrait/portraits_shooting.png", 0,0,3, 6.667);
+    this.symbol = undefined;
 
     this.createCharacterSelectionScreen();
     this.addCharacterListeners();
@@ -28,6 +24,8 @@ CharSelect.prototype = {
     },
 
     hideCharacterSelection(){
+        document.getElementById("startscreen").style.display = 'none';
+        
         var charHeaders = document.getElementById("characterHeaders");
         var charPortraits = document.getElementById("characterPortraits");
 
@@ -36,8 +34,9 @@ CharSelect.prototype = {
             charHeaders.removeChild(charHeaders.firstChild);
             charPortraits.removeChild(charPortraits.firstChild);
         }
-
-        document.getElementById("startscreen").style.display = 'none';
+        
+        var tut = document.getElementById("tutorial");
+        
     },
 
     addCharacterListeners(){
@@ -67,19 +66,20 @@ CharSelect.prototype = {
         var charHeaders = document.getElementById("characterHeaders");
         var charPortraits = document.getElementById("characterPortraits");
 
-        const color = this.getRandomColor();
+        this.color = this.getRandomColor();
+        const symbol = this.getRandomSymbol();
         var th = document.createElement("th");
-        var randomcolor = color;
-        th.style.color = color;
+        th.style.color = this.color;
         th.style.textShadow = '2px 2px rgba(255,255,255,1)';
         //th.innerHTML = 'Player: ' + playerId.toString();
-        th.innerHTML = 'Player: ' + this.CHARACTER_SYMBOLS[2];
+        th.innerHTML = 'Player: ' + symbol;
+        this.symbol = symbol;
 
         var tr = document.createElement("td");
 
         void tr.offsetWidth;
         tr.classList.add("expandingClass");
-        tr.style.boxShadow = '0px 10px 80px ' + color;
+        tr.style.boxShadow = '0px 10px 80px ' + this.color;
 
         var img = document.createElement("img");
         img.setAttribute("src", "img/character/" + this.getNewPortrait());
@@ -93,6 +93,10 @@ CharSelect.prototype = {
 
     getNewPortrait(){
         return this.CHARACTER_PORTRAITS[this.getRandomInt(0, this.CHARACTER_PORTRAITS.length)];
+    },
+    
+    getRandomSymbol(){
+        return this.CHARACTER_SYMBOLS[getRandomInt(0, this.CHARACTER_SYMBOLS.length)];
     },
 
     getRandomColor() {

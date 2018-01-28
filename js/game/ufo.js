@@ -50,6 +50,10 @@ Ufo.prototype = {
         context.restore();
     },
     
+    getPosition() {
+        return this.mover.position;
+    },
+    
     findBeams(beams) {
         var hitBeams = [];
         
@@ -92,9 +96,16 @@ Ufo.prototype = {
         return true;
     },
     
-    leave() {
+    leave(x, y, clr) {
         this.finished = true;
         this.mover.leave();
+        
+        if (this.success){
+            const scale = Game.prototype.SCALE;
+            
+            new Popup(-this.mover.position.x * scale, -this.mover.position.y * scale, 5000);
+            console.log(this.mover.position.x * 4, this.mover.position.y * 4);
+        }
     },
     
     addLeaveListener(onLeave) {
