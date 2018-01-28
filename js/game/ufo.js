@@ -117,12 +117,9 @@ Ufo.prototype = {
     leave(planet) {
         this.finished = true;
         this.mover.leave();
-<<<<<<< HEAD
         
         this.leaveAudio.play();
-=======
         console.log(planet.angle);
->>>>>>> fabd3b770270e9879010bfa5b3e2c72f7fcd234a
         if (this.success){
             const scale = Game.prototype.SCALE;
             const angle = planet.angle;
