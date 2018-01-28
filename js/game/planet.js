@@ -295,10 +295,10 @@ Planet.prototype = {
                 mover = new UfoMoverOrbit(ufoObject.orbitCount, this.RADIUS_ORBIT, 50 * ufoObject.speed, true);
                 break;
             case "stealer":
-                
+                mover = new UfoMoverPickup(Math.random() * Math.PI * 2, 50 * ufoObject.speed, ufoObject.waitTime);
                 break;
             case "gem":
-                
+                mover = new UfoMoverGem(Math.random() * Math.PI * 2, 50 * ufoObject.speed);
                 break;
         }
         
