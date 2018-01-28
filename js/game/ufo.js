@@ -154,7 +154,7 @@ Ufo.prototype = {
                 break;
         }
         
-        return base * (1 + 10 * (this.getColorCount() - 1));
+        return base * (1 + 20 * (this.getColorCount() - 1));
     },
     
     leave(planet) {
