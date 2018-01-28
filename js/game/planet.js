@@ -284,13 +284,23 @@ Planet.prototype = {
     },
     
     dispatch(ufoObject) {
-        var colors;
+        var colors = ufoObject.colors;
         var mover;
         
-        colors = [
-            "red"
-        ];
-        mover = new UfoMoverOrbit(2, this.RADIUS_ORBIT, 50, true);
+        switch(ufoObject.path) {
+            case "constant":
+                mover = new UfoMoverOrbit(ufoObject.orbitCount, this.RADIUS_ORBIT, 50 * ufoObject.speed, false);
+                break;
+            case "booster":
+                mover = new UfoMoverOrbit(ufoObject.orbitCount, this.RADIUS_ORBIT, 50 * ufoObject.speed, true);
+                break;
+            case "stealer":
+                mover = new UfoMoverPickup(Math.random() * Math.PI * 2, 50 * ufoObject.speed, ufoObject.waitTime);
+                break;
+            case "gem":
+                mover = new UfoMoverGem(Math.random() * Math.PI * 2, 50 * ufoObject.speed);
+                break;
+        }
         
         this.addUfo(new Ufo("stealer",
             colors,
