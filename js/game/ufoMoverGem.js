@@ -6,6 +6,7 @@ function UfoMoverGem(angle, speed) {
     this.speed = speed;
     this.wait = 0;
     this.angleSign = Math.random() > 0.5?1:-1;
+    this.blessingAudio = resources.blessing.instantiate();
 }
 
 UfoMoverGem.prototype = {
@@ -22,6 +23,7 @@ UfoMoverGem.prototype = {
                     this.radius = Planet.prototype.RADIUS;
                     this.state = "waiting";
                     
+                    this.blessingAudio.play();
                     this.addGem(planet);
                 }
                 break;

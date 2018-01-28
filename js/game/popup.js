@@ -41,7 +41,7 @@ Popup.prototype = {
 
         this.element.style.top = this.y + (-this.element.clientHeight / 2) + window.innerHeight * 0.5 + 'px';
         this.element.style.left = this.x + (-this.element.clientWidth / 2) + window.innerWidth * 0.5 + 'px';
-        console.log( this.x + (-this.element.clientWidth / 2) + 'px');
+        
         this.element.addEventListener("webkitAnimationEnd", this.onEnd.bind(this));
     },
     

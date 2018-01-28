@@ -7,6 +7,7 @@ function UfoMoverPickup(angle, speed, waitTime) {
     this.waitTime = waitTime;
     this.wait = 0;
     this.angleSign = Math.random() > 0.5?1:-1;
+    this.disenchantAudio = resources.disenchant.instantiate();
 }
 
 UfoMoverPickup.prototype = {
@@ -22,6 +23,7 @@ UfoMoverPickup.prototype = {
                 if(this.radius < Planet.prototype.RADIUS) {
                     this.radius = Planet.prototype.RADIUS;
                     this.state = "waiting";
+                    this.disenchantAudio.play();
                     
                     this.removeGems(planet);
                 }

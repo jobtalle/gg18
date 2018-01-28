@@ -5,7 +5,8 @@ function Ufo(type, colors, mover) {
     this.success = false;
     this.sprite = resources.ufo_constant_2.instantiate();
     this.engineSprite = resources.ufo_constant_engine.instantiate();
-
+    this.type = type;
+    
     this.lights = [resources.ufo_light.instantiate(),resources.ufo_light.instantiate(),resources.ufo_light.instantiate()];
 
     this.setUfoLights(colors);
@@ -13,6 +14,10 @@ function Ufo(type, colors, mover) {
 
     this.lightPos = [];
     this.setLightPos(type);
+
+    this.leaveAudio = resources.curse3.instantiate();
+    this.correctMatch = resources.zap.instantiate();
+    this.wrongMatch = resources.zap6a.instantiate();
 }
 
 Ufo.prototype = {
@@ -94,7 +99,10 @@ Ufo.prototype = {
     
     match(beams, getDay) {
         if(beams.length == 0)
+        {
+            this.wrongMatch.play();
             return false;
+        }
         
         var hitColors = [];
         
@@ -103,26 +111,61 @@ Ufo.prototype = {
         
         for(var i = 0; i < this.colors.length; ++i)
             if(this.colors[i].indexOf(hitColors) == -1)
+            {
                 return false;
+                this.wrongMatch.play();
+            }
         
+        this.correctMatch.play();
         return true;
     },
     
+    getColorCount() {
+        var unique = [];
+        
+        for(var i = 0; i < this.colors.length; ++i)
+            if(unique.indexOf(this.colors[i]) == -1)
+                unique.push(this.colors[i]);
+        
+        return unique.length;
+    },
+    
     getScore() {
-        return 1000;
+        var base;
+        
+        switch(this.type) {
+            case "booster":
+                base = 125;
+                break;
+            case "constant":
+                base = 100;
+                break;
+            case "stealer":
+                base = 500;
+                break;
+            case "gem":
+                base = 5;
+                break;
+        }
+        
+        return base * this.getColorCount();
     },
     
     leave(planet) {
         this.finished = true;
         this.mover.leave();
         
+        this.leaveAudio.play();
+        
         if (this.success){
             const scale = Game.prototype.SCALE;
+            const angle = planet.angle;
             const position = new Vector(
-                Math.cos(planet.angle) * this.mover.position.x - Math.sin(planet.angle) * this.mover.position.x,
-                Math.sin(planet.angle) * this.mover.position.y + Math.cos(planet.angle) * this.mover.position.y,
+                Math.cos(angle) * this.mover.position.x - Math.sin(angle) * this.mover.position.y,
+                Math.sin(angle) * this.mover.position.x + Math.cos(angle) * this.mover.position.y,
             );
-            console.log(position);
+            
+            globalScore.addScore(this.getScore());
             new Popup(position.x * scale, position.y * scale, this.getScore());
         }
     },
