@@ -173,9 +173,12 @@ Player.prototype = {
     onMove(vector) {
         var delta;
         
-        if(vector.x == 0 && vector.y == 0)
+        if(vector.x == 0 && vector.y == 0) {
             delta = 0;
-        else
+            
+            if(this.beamer != null)
+                this.beamer.stop();
+        } else
             delta = vector.dot(Vector.prototype.fromAngle(this.angle + this.planet.angle).orthogonal());
         
         this.speedChange = -delta;

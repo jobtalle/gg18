@@ -164,6 +164,10 @@ Beamer.prototype = {
         this.aimDir = aimDir;
     },
     
+    stop() {
+        this.aimDir = this.aim;
+    },
+    
     turn(timeStep) {
         const aimPrevious = this.aim;
         var delta = this.aimDir - this.aim;
