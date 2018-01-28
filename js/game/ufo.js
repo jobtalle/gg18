@@ -115,12 +115,13 @@ Ufo.prototype = {
     leave(planet) {
         this.finished = true;
         this.mover.leave();
-        
+        console.log(planet.angle);
         if (this.success){
             const scale = Game.prototype.SCALE;
+            const angle = planet.angle;
             const position = new Vector(
-                Math.cos(planet.angle) * this.mover.position.x - Math.sin(planet.angle) * this.mover.position.x,
-                Math.sin(planet.angle) * this.mover.position.y + Math.cos(planet.angle) * this.mover.position.y,
+                Math.cos(angle) * this.mover.position.x - Math.sin(angle) * this.mover.position.y,
+                Math.sin(angle) * this.mover.position.x + Math.cos(angle) * this.mover.position.y,
             );
             console.log(position);
             new Popup(position.x * scale, position.y * scale, this.getScore());
