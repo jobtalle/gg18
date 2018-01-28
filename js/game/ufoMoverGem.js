@@ -1,17 +1,16 @@
-function UfoMoverPickup(angle, speed, waitTime) {
+function UfoMoverGem(angle, speed) {
     this.position = new Vector();
     this.angle = angle;
     this.radius = Planet.prototype.RADIUS_INCOMING;
     this.state = "landing";
     this.speed = speed;
-    this.waitTime = waitTime;
     this.wait = 0;
     this.angleSign = Math.random() > 0.5?1:-1;
 }
 
-UfoMoverPickup.prototype = {
+UfoMoverGem.prototype = {
+    WAIT_TIME: 1,
     LEAVE_SPEED_FACTOR: 2,
-    REMOVE_GEM_RADIUS: 15,
     
     update(timeStep, planet) {
         switch(this.state) {
@@ -23,13 +22,13 @@ UfoMoverPickup.prototype = {
                     this.radius = Planet.prototype.RADIUS;
                     this.state = "waiting";
                     
-                    this.removeGems(planet);
+                    this.addGem(planet);
                 }
                 break;
             case "waiting":
                 this.wait += timeStep;
                 
-                if(this.wait > this.waitTime)
+                if(this.wait > this.WAIT_TIME)
                     this.state = "leaving";
                 break;
             case "leaving":
@@ -41,8 +40,8 @@ UfoMoverPickup.prototype = {
         this.position.y = Math.sin(this.angle) * this.radius;
     },
     
-    removeGems(planet) {
-        planet.removeGems(this.angle, this.getRadialSpeed(this.REMOVE_GEM_RADIUS));
+    addGem(planet) {
+        planet.addGem(this.angle);
     },
     
     leave() {
