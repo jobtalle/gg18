@@ -54,20 +54,20 @@ Ufo.prototype = {
             else if(this.colors.length == 2)
             {
                 this.lights[0].draw(
-                    context,-9,-3,0);
+                    context,-9,-4,0);
 
                 this.lights[1].draw(
-                    context,7,-3,0);
+                    context,7,-4,0);
             }
             else
             {
                 this.lights[0].draw(
-                    context,-9,-3,0);
+                    context,-9,-4,0);
 
                 this.lights[1].draw(
-                    context,-1,-3,0);
+                    context,-1,-4,0);
                 this.lights[2].draw(
-                    context,7,-3,0);
+                    context,7,-4,0);
             }
 
         context.restore();
@@ -146,7 +146,7 @@ Ufo.prototype = {
     {
         for (let i = 0; i < colors.length; i++) {
             const color = colors[i];
-            switch(color)
+            switch(color.trim())
             {
                 case "red":
                 this.lights[i] = resources.ufo_light_red.instantiate();
