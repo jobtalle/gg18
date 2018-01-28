@@ -4,50 +4,108 @@ sequences = [
         "ufos": [
         {
             "colors": ["red","red"],
-            "path": "orbits",
+            "path": "constant",
             "speed": "1",
             "orbitCount": "2",
             "next": "1"
+        },
+        {
+			"colors": ["yellow"," yellow "],            
+			"path": "constant",
+            "speed": "1",
+            "orbitCount": "2",
+            "next": "3"
+        },
+        {
+            "colors": ["blue","blue"],
+            "path": "constant",
+            "speed": "1",
+            "orbitCount": "2",
+            "next": "3"
+        },
+        {
+            "colors": ["green"," green "],
+            "path": "constant",
+            "speed": "1",
+            "orbitCount": "2",
+            "next": "3"
+        },
+        {
+            "colors": ["purple"," purple "],
+            "path": "constant",
+            "speed": "1",
+            "orbitCount": "2",
+            "next": "3"
+        },
+        {
+            "colors": ["orange","orange"],
+            "path": "constant",
+            "speed": "1",
+            "orbitCount": "2",
+            "next": "3"
+        }
+		]
+    },
+    {
+        "difficulty": {"min": "0", "max": "2"},
+        "ufos": [
+        {
+            "colors": ["red","red"],
+            "path": "constant",
+            "speed": "1",
+            "orbitCount": "2",
+            "next": "1"
+        },
+        {
+			"colors": ["yellow"," yellow "],            
+			"path": "booster",
+            "speed": "1",
+            "orbitCount": "2",
+            "next": "3"
+        },
+        {
+            "colors": ["blue","blue"],
+            "path": "constant",
+            "speed": "1",
+            "orbitCount": "2",
+            "next": "3"
+        },
+        {
+            "colors": ["green"," green "],
+            "path": "booster",
+            "speed": "1",
+            "orbitCount": "2",
+            "next": "3"
+        },
+        {
+            "colors": ["purple"," purple "],
+            "path": "constant",
+            "speed": "1",
+            "orbitCount": "2",
+            "next": "3"
         },
         {
             "colors": ["orange","orange"],
             "path": "booster",
             "speed": "1",
             "orbitCount": "2",
-            "next": "2"
-        }]
-    },
-    {
-        "difficulty": {"min": "0", "max": "2"},
-        "ufos": [
-        {
-            "colors": ["blue","blue"],
-            "path": "orbits",
-            "speed": "1",
-            "orbitCount": "2",
             "next": "3"
-        },
-        {
-            "colors": ["green","green"],
-            "path": "booster",
-            "speed": "1",
-            "orbitCount": "2",
-            "next": "6"
-        }]
+        }
+		]
     },
     {
         "difficulty": {"min": "1", "max": "3"},
         "ufos": [
         {
             "colors": ["yellow","red"],
-            "path": "orbits",
+            "path": "constant",
             "speed": "1",
             "orbitCount": "2",
             "next": "3"
         },
         {
             "colors": ["purple","green"],
-            "path": "orbit",
+            "path": "constant",
             "speed": "1",
             "orbitCount": "2",
             "next": "6"
@@ -58,14 +116,14 @@ sequences = [
         "ufos": [
         {
             "colors": ["orange","yellow"],
-            "path": "orbits",
+            "path": "constant",
             "speed": "1",
             "orbitCount": "2",
             "next": "3"
         },
         {
             "colors": ["green","purple"],
-            "path": "orbit",
+            "path": "constant",
             "speed": "1",
             "orbitCount": "2",
             "next": "6"
@@ -76,14 +134,14 @@ sequences = [
         "ufos": [
         {
             "colors": ["yellow","red"],
-            "path": "booster",
+            "path": "constant",
             "speed": "1",
             "orbitCount": "2",
             "next": "3"
         },
         {
             "colors": ["green","purple"],
-            "path": "orbits",
+            "path": "constant",
             "speed": "1",
             "orbitCount": "2",
             "next": "6"
@@ -94,14 +152,14 @@ sequences = [
         "ufos": [
         {
             "colors": ["green","purple"],
-            "path": "booster",
+            "path": "constant",
             "speed": "1",
             "orbitCount": "2",
             "next": "3"
         },
         {
             "colors": ["blue","purple"],
-            "path": "orbits",
+            "path": "constant",
             "speed": "1",
             "orbitCount": "2",
             "next": "6"
@@ -112,21 +170,21 @@ sequences = [
         "ufos": [
         {
             "colors": ["orange","yellow"],
-            "path": "booster",
+            "path": "constant",
             "speed": "1",
             "orbitCount": "2",
             "next": "3"
         },
         {
             "colors": ["blue","purple"],
-            "path": "booster",
+            "path": "constant",
             "speed": "1",
             "orbitCount": "2",
             "next": "3"
         },
         {
             "colors": ["green","purple"],
-            "path": "orbits",
+            "path": "constant",
             "speed": "1",
             "orbitCount": "2",
             "next": "6"
@@ -137,21 +195,21 @@ sequences = [
         "ufos": [
         {
             "colors": ["blue","yellow"],
-            "path": "booster",
+            "path": "constant",
             "speed": "1",
             "orbitCount": "2",
             "next": "3"
         },
         {
             "colors": ["red","purple"],
-            "path": "orbits",
+            "path": "constant",
             "speed": "1",
             "orbitCount": "2",
             "next": "3"
         },
         {
             "colors": ["green","red"],
-            "path": "orbits",
+            "path": "constant",
             "speed": "1",
             "orbitCount": "2",
             "next": "6"
