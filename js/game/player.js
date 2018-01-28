@@ -133,10 +133,9 @@ Player.prototype = {
         context.restore();
         context.save();
         
-        context.translate(this.position.x - 2, this.position.y);
+        context.translate(this.position.x, this.position.y);
         context.rotate(this.angle + Math.PI * .5);
-        context.translate(0,10);
-        context.fillText(this.symbol, 0,0);
+        context.fillText(this.symbol, -2,10);
 
         context.restore();
 
