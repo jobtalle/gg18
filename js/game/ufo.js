@@ -119,15 +119,18 @@ Ufo.prototype = {
         return true;
     },
     
-    leave(x, y, clr) {
+    leave(planet) {
         this.finished = true;
         this.mover.leave();
         
         if (this.success){
             const scale = Game.prototype.SCALE;
+            const position = new Vector(
+                Math.cos(planet.angle) * this.mover.position.x - Math.sin(planet.angle) * this.mover.position.x,
+                Math.sin(planet.angle) * this.mover.position.y + Math.cos(planet.angle) * this.mover.position.y,
+            );
             
-            new Popup(-this.mover.position.x * scale, -this.mover.position.y * scale, 5000);
-            console.log(this.mover.position.x * 4, this.mover.position.y * 4);
+            new Popup(position.x * scale, position.y * scale, 5000);
         }
     },
     

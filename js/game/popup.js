@@ -42,9 +42,9 @@ Popup.prototype = {
         this.element.classList.add("popup");
         this.element.innerHTML = this.score;
 
-        this.element.style.top = this.x + (-this.element.clientHeight / 2) + 'px';
-        this.element.style.left = this.y + (-this.element.clientWidth / 2) + 'px';
-        
+        this.element.style.top = this.y + (-this.element.clientHeight / 2) + 'px';
+        this.element.style.left = this.x + (-this.element.clientWidth / 2) + 'px';
+        console.log(this.element.style.top);
         this.element.addEventListener("webkitAnimationEnd", this.onEnd.bind(this));
     },
     

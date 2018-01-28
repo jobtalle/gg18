@@ -146,7 +146,7 @@ Planet.prototype = {
             
             if(ufo.match(hitBeams, this.getDay.bind(this))) {
                 ufo.success = true;
-                ufo.leave();
+                ufo.leave(this);
             }
         }
     },
@@ -288,13 +288,11 @@ Planet.prototype = {
         var mover;
         
         colors = [
-            "red","red"
+            "red"
         ];
         mover = new UfoMoverOrbit(2, this.RADIUS_ORBIT, 50, true);
-        mover = new UfoMoverPickup(Math.random() * 2 * Math.PI, 40, 5);
-        mover = new UfoMoverGem(Math.random() * 2, 60);
         
-        this.addUfo(new Ufo("constant",
+        this.addUfo(new Ufo("stealer",
             colors,
             mover
         ));
