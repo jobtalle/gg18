@@ -301,13 +301,40 @@ Planet.prototype = {
         }
     },
     
+    getRandomColorDay() {
+        switch(Math.trunc(Math.random() * 3)) {
+            case 0:
+                return "red";
+            case 1:
+                return "yellow";
+            case 2:
+                return "blue";
+        }
+    },
+    
+    getRandomColorNight() {
+        switch(Math.trunc(Math.random() * 3)) {
+            case 0:
+                return "green";
+            case 1:
+                return "purple";
+            case 2:
+                return "orange";
+        }
+    },
+    
     dispatch(ufoObject) {
         var colors = ufoObject.colors;
         var mover;
         
-        for(var i = 0; i < colors.length; ++i)
+        for(var i = 0; i < colors.length; ++i) {
             if(colors[i] == "random")
                 colors[i] = this.getRandomColor();
+            else if(colors[i] == "randomDay")
+                colors[i] = this.getRandomColorDay();
+            else if(colors[i] == "randomNight")
+                colors[i] = this.getRandomColorNight();
+        }
         
         switch(ufoObject.path) {
             case "constant":
