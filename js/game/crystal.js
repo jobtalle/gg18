@@ -30,9 +30,9 @@ Crystal.prototype = {
 
     setDay(day) {
         if (this.day != day) {
+            this.day = day;
             this.setCrystalSprite();
         }
-        this.day = day;
     },
 
     drain(timeStep) {
