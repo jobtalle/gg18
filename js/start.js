@@ -4,6 +4,6 @@ function start() {
     interface = new Interface();
     controllerFactory = new ControllerFactory();
     globalScore = new GlobalScore(0);
-    
+	
     renderer.resize();
 }

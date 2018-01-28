@@ -19,6 +19,7 @@ function Player(controller, angle) {
     this.walkingArmsSprite = resources.base_1_running_arms.instantiate();
     this.xScale = -1;
 
+    this.walkingSound = new AudioSource("sfx/sand.ogg", true);
 }
 
 Player.prototype = {
@@ -45,9 +46,15 @@ Player.prototype = {
         if(this.state !="beaming")
         {
             if(this.speed != 0)
+            {
                 this.state = "walking";
+                this.walkingSound.play();
+            }
             else
+            {
                 this.state = "standing";
+                this.walkingSound.stop();
+            }
         }
 
         switch(this.state) {
