@@ -912,9 +912,9 @@ sequences = [
         "next": "3"
       },
       {
-        "colors": [
-          "blue",
-          "purple"
+         "colors": [
+          "green",
+          "green"
         ],
         "path": "constant",
         "speed": "1",
@@ -961,9 +961,9 @@ sequences = [
         "next": "6"
       },
       {
-        "colors": [
-          "red",
-          "purple"
+         "colors": [
+          "yellow",
+          "yellow"
         ],
         "path": "constant",
         "speed": "1",
