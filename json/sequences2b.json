@@ -8,21 +8,21 @@ sequences = [
       {
         "colors": [
           "red",
-          "green"
+          "red"
         ],
         "path": "constant",
         "speed": ".5",
-        "orbitCount": "12",
+        "orbitCount": "2",
         "next": "1"
       },
       {
         "colors": [
-          "blue",
-          " orange"
+          "red",
+          " red"
         ],
         "path": "stealer",
         "speed": ".2",
-        "waitTime": "12",
+        "waitTime": "2",
         "next": "3"
       },
       {
@@ -33,6 +33,118 @@ sequences = [
         "path": "gem",
         "speed": ".5",
         "next": "6"
+      }
+    ]
+  },
+  {
+    "difficulty": {
+      "min": "0",
+      "max": "0"
+    },
+    "ufos": [
+      {
+        "colors": [
+          "purple",
+          "purple"
+        ],
+        "path": "constant",
+        "speed": ".5",
+        "orbitCount": "2",
+        "next": "1"
+      },
+      {
+        "colors": [
+          "purple",
+          " purple"
+        ],
+        "path": "stealer",
+        "speed": ".2",
+        "waitTime": "2",
+        "next": "3"
+      },
+      {
+        "colors": [
+          "purple",
+          "purple"
+        ],
+        "path": "gem",
+        "speed": ".5",
+        "next": "6"
+      }
+    ]
+  },
+  {
+    "difficulty": {
+      "min": "1",
+      "max": "1"
+    },
+    "ufos": [
+      {
+        "colors": [
+          "red",
+          "red"
+        ],
+        "path": "constant",
+        "speed": ".5",
+        "orbitCount": "2",
+        "next": "1"
+      },
+      {
+        "colors": [
+          "yellow",
+          " yellow"
+        ],
+        "path": "stealer",
+        "speed": ".2",
+        "waitTime": "2",
+        "next": "3"
+      },
+      {
+        "colors": [
+          "blue",
+          "blue"
+        ],
+        "path": "gem",
+        "speed": ".5",
+        "next": "6"
+      }
+    ]
+  },
+  {
+    "difficulty": {
+      "min": "0",
+      "max": "0"
+    },
+    "ufos": [
+      {
+        "colors": [
+          "green",
+          " green"
+        ],
+        "path": "constant",
+        "speed": ".5",
+        "orbitCount": "2",
+        "next": "3"
+      },
+      {
+        "colors": [
+          "purple",
+          " purple"
+        ],
+        "path": "constant",
+        "speed": ".5",
+        "orbitCount": "2",
+        "next": "3"
+      },
+      {
+        "colors": [
+          "orange",
+          "orange"
+        ],
+        "path": "constant",
+        "speed": ".5",
+        "orbitCount": "2",
+        "next": "9"
       }
     ]
   },
