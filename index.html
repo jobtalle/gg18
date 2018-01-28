@@ -80,8 +80,6 @@
         
         <div id="view">
             <div id="backgroundElements">
-            <div id="ScoreElement">
-            </div>
             </div>
             
             <canvas id="renderer"></canvas>
@@ -89,6 +87,9 @@
                 <div id="popupParent">
                 </div>
             </div>
+        </div>
+        
+        <div id="ScoreElement">
         </div>
         
         <audio autoplay loop>
@@ -100,6 +101,7 @@
         document.body.onkeyup = function(e){
             if(e.keyCode == 32){
                 // do something here
+                globalScore.addScore(666);
             }
         }
         </script>

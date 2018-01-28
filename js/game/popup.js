@@ -1,5 +1,4 @@
 function Popup(x, y, score, color) {
-    
     if (x == -1)
         this.x = this.getRandomInt(0, window.innerWidth);
     else
@@ -26,8 +25,6 @@ Popup.prototype = {
     },
     
     spawnPopup() {
-        console.log('get score: ' + this.score);
-        
         this.element = document.createElement("popup");
 
         this.getParent().appendChild(this.element);
@@ -42,9 +39,9 @@ Popup.prototype = {
         this.element.classList.add("popup");
         this.element.innerHTML = this.score;
 
-        this.element.style.top = this.y + (-this.element.clientHeight / 2) + 'px';
-        this.element.style.left = this.x + (-this.element.clientWidth / 2) + 'px';
-        console.log(this.element.style.top);
+        this.element.style.top = this.y + (-this.element.clientHeight / 2) + window.innerHeight * 0.5 + 'px';
+        this.element.style.left = this.x + (-this.element.clientWidth / 2) + window.innerWidth * 0.5 + 'px';
+        console.log( this.x + (-this.element.clientWidth / 2) + 'px');
         this.element.addEventListener("webkitAnimationEnd", this.onEnd.bind(this));
     },
     

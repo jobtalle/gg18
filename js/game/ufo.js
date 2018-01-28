@@ -110,19 +110,28 @@ Ufo.prototype = {
         return true;
     },
     
+    getScore() {
+        return 1000;
+    },
+    
     leave(planet) {
         this.finished = true;
         this.mover.leave();
+<<<<<<< HEAD
         
         this.leaveAudio.play();
+=======
+        console.log(planet.angle);
+>>>>>>> fabd3b770270e9879010bfa5b3e2c72f7fcd234a
         if (this.success){
             const scale = Game.prototype.SCALE;
+            const angle = planet.angle;
             const position = new Vector(
-                Math.cos(planet.angle) * this.mover.position.x - Math.sin(planet.angle) * this.mover.position.x,
-                Math.sin(planet.angle) * this.mover.position.y + Math.cos(planet.angle) * this.mover.position.y,
+                Math.cos(angle) * this.mover.position.x - Math.sin(angle) * this.mover.position.y,
+                Math.sin(angle) * this.mover.position.x + Math.cos(angle) * this.mover.position.y,
             );
-            
-            new Popup(position.x * scale, position.y * scale, 5000);
+            console.log(position);
+            new Popup(position.x * scale, position.y * scale, this.getScore());
         }
     },
     

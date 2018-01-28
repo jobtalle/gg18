@@ -16,7 +16,9 @@ body {
 
 #userinterface {
     position: absolute;
-
+    left: 0px;
+    top: 0px;
+    
     color: white;
 }
 
@@ -46,6 +48,10 @@ body {
         transform: scale(0, 0);
     }
     
+}
+
+#popupParent {
+    position: absolute;
 }
 
 .popup {
@@ -321,11 +327,55 @@ td > img {
 
 
 
+@keyframes scoreAnim {
+    0% {color: #ff0000;}
+    10% {color: #ff8000;}
+    20% 
+    {
+        color: #ffff00;
+    }
+    30% {color: #80ff00;}
+    40% {color: #00ff00;
+        transform: rotateZ(5deg);}
+    50% 
+    {
+        color: #00ff80;
+        bottom: 6%;
+    }
+    60% {color: #00ffff;}
+    70% {color: #0080ff;
+        transform: rotateZ(-5deg);}
+    80% 
+    {
+        color: #ffff00;
+    }
+    90% {color: #8000ff;}
+    100% {color: #ff0080;}
+}
+
 #ScoreElement {
-    animation-name: headerBounce;
-    animation-duration: 1.5s;
+    color: white;
+    position: absolute;
+    font-weight: 700;
+    font-size: 220%;
+    font-family: 'Press Start 2P', cursive;
+    text-align: center;
+    bottom: 4%;
+    
+    text-shadow: 0px 0px 100px rgba(0,0,0,1);
+    
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.scoreAnimation {
+    animation-name: scoreAnim;
+    animation-duration: 0.25s;
     animation-direction: alternate;
-    animation-iteration-count: infinite;
+    animation-iteration-count: 1;
+    animation-fill-mode: backwards;
     animation-timing-function: ease-in-out;
 }
 
