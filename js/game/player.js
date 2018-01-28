@@ -135,7 +135,8 @@ Player.prototype = {
         
         context.translate(this.position.x, this.position.y);
         context.rotate(this.angle + Math.PI * .5);
-        context.fillText(this.symbol, -2,10);
+        context.fillStyle = "#585858";
+         context.fillText(this.symbol, -3,10);
 
         context.restore();
 
