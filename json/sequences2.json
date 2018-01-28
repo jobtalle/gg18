@@ -13,14 +13,13 @@ sequences = [
 			"colors": ["yellow"," yellow "],            
 			"path": "stealer",
             "speed": "1",
-            "orbitCount": "2",
+            "waitTime": "2",
             "next": "3"
         },
         {
             "colors": ["blue","blue"],
             "path": "gem",
             "speed": "1",
-            "orbitCount": "2",
             "next": "3"
         },
         {
@@ -67,14 +66,13 @@ sequences = [
             "colors": ["blue","blue"],
             "path": "gem",
             "speed": "1",
-            "orbitCount": "2",
             "next": "3"
         },
         {
             "colors": ["green"," green "],
             "path": "stealer",
             "speed": "1",
-            "orbitCount": "2",
+            "waitTime": "2",
             "next": "3"
         },
         {
