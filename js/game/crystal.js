@@ -21,16 +21,18 @@ Crystal.prototype = {
         this.crystalSprite.update(timeStep);
 
         if (!this.interacting) {
-            this.position.x = Math.cos(this.angle) * (Planet.prototype.RADIUS + Math.sin(this.bounce * 2) + 1);
-            this.position.y = Math.sin(this.angle) * (Planet.prototype.RADIUS + Math.sin(this.bounce * 2) + 1);
+            this.position.x = Math.cos(this.angle) * (Planet.prototype.RADIUS + Math.sin(this.bounce * 2) + 3);
+            this.position.y = Math.sin(this.angle) * (Planet.prototype.RADIUS + Math.sin(this.bounce * 2) + 3);
         }
 
         this.bounce += timeStep;
     },
 
     setDay(day) {
+        if (this.day != day) {
+            this.setCrystalSprite();
+        }
         this.day = day;
-        this.setCrystalSprite();
     },
 
     drain(timeStep) {
@@ -64,32 +66,14 @@ Crystal.prototype = {
     render(context) {
         context.save();
 
-
-        // context.translate(this.position.x, this.position.y);
-        // context.rotate(this.angle + Math.PI * 0.5);
         context.globalAlpha = this.getStrength();
         this.crystalSprite.draw(context, this.position.x, this.position.y, this.angle + Math.PI * 0.5);
-
-        // context.fillStyle = this.getColor();
-        // context.beginPath();
-        // context.moveTo(0, 0);
-        // context.lineTo(-5, -5);
-        // context.lineTo(0, -10);
-        // context.lineTo(5, -5);
-        // context.closePath();
-
-
-        // context.fill();
-
         context.restore();
     },
 
-    setCrystalSprite()
-    {
-        if(this.day)
-        {
-            switch( this.essence.color)
-            {
+    setCrystalSprite() {
+        if(this.day) {
+            switch( this.essence.color ) {
                 case "red":
                 this.crystalSprite = resources.gems_red.instantiate();
                 break;
@@ -103,10 +87,8 @@ Crystal.prototype = {
                 break;
             }
         }
-        else
-        {
-            switch( this.essence.color)
-            {
+        else {
+            switch( this.essence.color ) {
                 case "red":
                 this.crystalSprite = resources.gems_green.instantiate();
                 break;
@@ -120,5 +102,6 @@ Crystal.prototype = {
                 break;
             }
         }
+
     }
 }
