@@ -10,6 +10,9 @@ function Ufo(type, colors, mover) {
 
     this.setUfoLights(colors);
     this.setUfo(type, colors);
+
+    this.lightPos = [];
+    this.setLightPos(type);
 }
 
 Ufo.prototype = {
@@ -46,20 +49,20 @@ Ufo.prototype = {
             else if(this.colors.length == 2)
             {
                 this.lights[0].draw(
-                    context,-9,-4,0);
+                    context,this.lightPos[0].x,this.lightPos[0].y,0);
 
                 this.lights[1].draw(
-                    context,7,-4,0);
+                    context,this.lightPos[2].x,this.lightPos[2].y,0);
             }
             else
             {
                 this.lights[0].draw(
-                    context,-9,-4,0);
+                    context,this.lightPos[0].x,this.lightPos[0].y,0);
 
                 this.lights[1].draw(
-                    context,-1,-4,0);
+                    context,this.lightPos[1].x,this.lightPos[1].y,0);
                 this.lights[2].draw(
-                    context,7,-4,0);
+                    context,this.lightPos[2].x,this.lightPos[2].y,0);
             }
 
         context.restore();
@@ -208,6 +211,41 @@ Ufo.prototype = {
                 this.sprite = resources.ufo_mother.instantiate();
                 this.engineSprite = resources.ufo_mother_engine.instantiate();
                 break;
+        }
+    },
+    setLightPos(type)
+    {
+        switch(type){
+        case "booster":
+            this.lightPos.push(new Vector(9, -3));
+            this.lightPos.push(new Vector(2, -2));
+            this.lightPos.push(new Vector(-5, -3));
+            break;
+        case "constant":
+            this.lightPos.push(new Vector(-9, -3));
+            this.lightPos.push(new Vector(-1, -3));
+            this.lightPos.push(new Vector(7, -3));
+            break;
+        case "half":
+            this.lightPos.push(new Vector(-9, -4));
+            this.lightPos.push(new Vector(-1, -4));
+            this.lightPos.push(new Vector(7, -4));
+            break;
+        case "gem":
+            this.lightPos.push(new Vector(-9, -4));
+            this.lightPos.push(new Vector(-1, -4));
+            this.lightPos.push(new Vector(7, -4));
+            break;
+        case "stealer":
+            this.lightPos.push(new Vector(-9, -4));
+            this.lightPos.push(new Vector(-1, -4));
+            this.lightPos.push(new Vector(7, -4));
+            break;
+        case "mother":
+        this.lightPos.push(new Vector(-9, -4));
+        this.lightPos.push(new Vector(-1, -4));
+        this.lightPos.push(new Vector(7, -4));
+        break;
         }
     }
 }

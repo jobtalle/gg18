@@ -34,5 +34,9 @@ AudioSource.prototype = {
     setVolume(volume)
     {
         this.audio.volume = volume;
+    },
+    instantiate()
+    {
+        return new AudioSource(this.audio.currentSrc, this.audio.loop);
     }
 }
