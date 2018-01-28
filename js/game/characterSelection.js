@@ -89,7 +89,7 @@ CharSelect.prototype = {
         charPortraits.appendChild(tr);
         tr.appendChild(img);
 
-        this.players.push(new Player(controllerFactory.createPlayerController(playerId)));
+        this.players.push(new Player(controllerFactory.createPlayerController(playerId), undefined, symbol));
         
         if (this.players.length > 1)
             header.innerHTML = 'Press START to play or continue adding players with A';

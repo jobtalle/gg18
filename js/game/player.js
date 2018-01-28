@@ -1,4 +1,4 @@
-function Player(controller, angle) {
+function Player(controller, angle, symbol) {
     if(angle == undefined)
         angle = 0;
     
