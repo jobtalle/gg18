@@ -28,14 +28,6 @@ Ufo.prototype = {
     },
     
     render(context) {
-        context.fillStyle = "white";
-        
-        var colorTexts = "";
-        for(var i = 0; i < this.colors.length; ++i)
-            colorTexts += this.colors[i] + " ";
-        
-        context.fillText(colorTexts, this.mover.position.x + 16, this.mover.position.y);
-        
         context.save();
 
         context.translate(
@@ -104,20 +96,14 @@ Ufo.prototype = {
         if(beams.length == 0)
             return false;
         
-        var matches = new Array(this.colors.length);
+        var hitColors = [];
+        
+        for(var i = 0; i < beams.length; ++i)
+            hitColors.push(beams[i].crystal.essence.getColorName(getDay(beams[i].position)));
         
         for(var i = 0; i < this.colors.length; ++i)
-            matches[i] = false;
-        
-        for(var i = 0; i < beams.length; ++i) {
-            const index = this.colors.indexOf(beams[i].crystal.essence.getColorName(getDay(beams[i].position)));
-            
-            if(index != -1)
-                matches[index] = true;
-        }
-        
-        for(var i = 0; i < this.colors.length; ++i)
-            if(!matches[i]) return false;
+            if(this.colors[i].indexOf(hitColors) == -1)
+                return false;
         
         return true;
     },
