@@ -19,6 +19,7 @@ Crystal.prototype = {
     MIN_ALPHA: 0.3,
 
     update(timeStep) {
+        
         this.crystalSprite.update(timeStep);
 
         if (!this.interacting) {

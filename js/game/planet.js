@@ -29,6 +29,7 @@ Planet.prototype = {
     DIR_DAY: Math.PI * 0.25,
     INTERACTION_DISTANCE: 16,
     CRYSTAL_COUNT: 12,
+    CRYSTAL_DECAY: 0.03,
     
     update(timeStep) {
         this.angle += this.ROTATION_SPEED * timeStep;
@@ -41,11 +42,16 @@ Planet.prototype = {
         for(var i = 0; i < this.ufos.length; ++i)
             this.ufos[i].update(timeStep, this);
         
-        for(var i = 0; i < this.crystals.length; ++i) {
+        for(var i = this.crystals.length; i-- > 0;) {
             const crystal = this.crystals[i];
             
             crystal.setDay(this.getDay(crystal.position));
             crystal.update(timeStep);
+            
+            crystal.life -= this.CRYSTAL_DECAY * timeStep;
+            
+            if(crystal.life < 0)
+                this.crystals.splice(this.crystals.indexOf(crystal), 1);
         }
         
         for(var i = 0; i < this.players.length; ++i) {
