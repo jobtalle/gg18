@@ -31,6 +31,7 @@
         <script src="js/game/ufoMoverPickup.js"></script>
         <script src="js/game/ufoMoverGem.js"></script>
         <script src="js/game/characterSelection.js"></script>
+        <script src="js/game/globalscore.js"></script>
         <script src="js/sprite.js"></script>
         <script src="js/resources.js"></script>
         <script src="js/tonysFancyfy/fancyfy.js"></script>
@@ -54,12 +55,6 @@
                 </tr>
             </table>
             <div id="tutorial">
-<!--
-                1. Use the left stick to move your character!<br>
-                2. Use the A button to pick-up gems and put them in a satelite!<br>
-                3. Use the B key when near a satelite to enter it!<br>
-                4. When in a satelite, use the A key to zap the UFO's
--->
                 <div id="holder">
                     <img src="img/tutorial/tut_left_stick.png">
                     Left Stick <br> Move and Aim!
@@ -67,23 +62,26 @@
                 
                 <div id="holder">
                     <img src="img/tutorial/tut_a.png">
-                    A button <br> pick-up gems / put in satelite!
+                    A button <br> pick-up gems / put in satellite!
                 </div>
                     
                 <div id="holder">
                     <img src="img/tutorial/tut_b.png">
-                    B key <br> Enter satelite!
+                    B button <br> Enter satellite!
                 </div>
                 
                 <div id="holder">
                     <img src="img/tutorial/tut_a.png">
-                    In satelite <br> A key / R-trig <br> FIRE!
+                    In satellite <br> A key / R-trig <br> FIRE!
                 </div>
             </div>
         </div>
         
         <div id="view">
-            <div id="backgroundElements"></div>
+            <div id="backgroundElements">
+            <div id="ScoreElement">
+            </div>
+            </div>
             
             <canvas id="renderer"></canvas>
             <div id="userinterface">
@@ -100,8 +98,7 @@
         // debug keys
         document.body.onkeyup = function(e){
             if(e.keyCode == 32){
-                console.log("Spacey");
-                new Popup(0,0,666);
+                // do something here
             }
         }
         </script>

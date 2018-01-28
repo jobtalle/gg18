@@ -97,14 +97,6 @@ body {
     background-repeat: repeat;
     image-rendering: -moz-crisp-edges;
     
-    display:flex;
-    align-items: center;
-    justify-content: center;
-    background-size: cover;
-    animation-name: pan;
-    animation-duration: 200s;
-    animation-iteration-count: infinite;
-    animation-timing-function: linear;
 }
 
 @keyframes pan {
@@ -198,7 +190,7 @@ body {
     font-size: 220%;
     font-family: 'Press Start 2P', cursive;
     text-align: center;
-    top: 15%;
+    top: 8%;
     
     left: 0;
     right: 0;
@@ -214,7 +206,7 @@ body {
 
 #selectionController {
     position: absolute;
-    top: 25%;
+    top: 22%;
     width: 100%;
     
     left: 0;
@@ -222,7 +214,8 @@ body {
     margin-left: auto;
     margin-right: auto;
     
-    padding: 36px;
+    padding-left: 12%;
+    padding-right: 12%;
     
     border-spacing: 40px 0px;
     
