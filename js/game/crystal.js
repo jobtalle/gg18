@@ -15,7 +15,7 @@ function Crystal(angle, essence) {
 }
 
 Crystal.prototype = {
-    LIFETIME: 4,
+    LIFETIME: 400,
     MIN_ALPHA: 0.3,
 
     update(timeStep) {
