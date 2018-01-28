@@ -173,6 +173,7 @@ Beamer.prototype = {
             this.beamerStartAudio.stop();
             this.beams[this.beams.length - 1].stop();
         } else {
+            shake();
             this.beamerStartAudio.play();
             this.beams.push(new Beam(
                 this.angle,
