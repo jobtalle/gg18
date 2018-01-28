@@ -14,6 +14,8 @@ function Ufo(type, colors, mover) {
 
     this.lightPos = [];
     this.setLightPos(type);
+
+    this.leaveAudio = resources.curse3.instantiate();
 }
 
 Ufo.prototype = {
@@ -143,6 +145,9 @@ Ufo.prototype = {
     leave(planet) {
         this.finished = true;
         this.mover.leave();
+        
+        this.leaveAudio.play();
+        console.log(planet.angle);
         
         if (this.success){
             const scale = Game.prototype.SCALE;
