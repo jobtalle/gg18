@@ -10,15 +10,6 @@ function Star(x, y, type) {
         this.y = this.getRandomInt(0, window.innerWidth);
     else
         this.y = y;
-    
-    if(x== -1 && y == -1)
-    {
-        do
-        {
-            this.x = this.getRandomInt(0, window.innerHeight);
-            this.y = this.getRandomInt(0, window.innerWidth);
-        }        while(this.x > window.innerHeight * .3 && this.x < window.innerHeight * .7 && this.y > window.innerWidth * .3 && this.y < window.innerWidth * .7);
-    }
 
     if (type == -1)
         this.type = this.getRandomInt(0,7);
@@ -47,8 +38,9 @@ Star.prototype = {
         this.element.style.left = this.y + 'px';
         
         this.element.setAttribute("src", "img/gems/" + this.getRandomStarSprite(this.type));
-        this.element.setAttribute("width", "32");
-        this.element.setAttribute("height", "32");
+        size = this.getSize(this.type);
+        this.element.setAttribute("width",size );
+        this.element.setAttribute("height", size);
         
         this.getParent().appendChild(this.element);
 
@@ -61,6 +53,22 @@ Star.prototype = {
         min = Math.ceil(min);
         max = Math.floor(max);
         return Math.floor(Math.random() * (max - min)) + min;
+    },
+
+    getSize(type)
+    {
+        switch (type){
+            case 0:
+            case 1:
+            case 2:
+            case 3:
+                return 32;
+            case 4:
+            case 5:
+            case 6:
+            case 7:
+                return 16;
+        }
     },
     
     getRandomStarSprite(rnd){
