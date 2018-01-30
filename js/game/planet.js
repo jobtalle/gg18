@@ -101,6 +101,9 @@ Planet.prototype = {
     render(context) {
         this.renderAtmosphere(context);
 
+        context.mozImageSmoothingEnabled = false;
+        context.webkitImageSmoothingEnabled = false;
+        context.msImageSmoothingEnabled = false;
         context.imageSmoothingEnabled = false;
         
         context.save();
