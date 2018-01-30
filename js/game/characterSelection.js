@@ -15,6 +15,7 @@ function CharSelect(playerAmount){
 
     this.createCharacterSelectionScreen();
     this.addCharacterListeners();
+    this.game = undefined;
 }
 
 CharSelect.prototype = {
@@ -50,17 +51,17 @@ CharSelect.prototype = {
         gamepad.on('press', 'start', e => {
             if (this.playerIndexes.length < 1)
                 console.log("Can't start game because there are not enough players");
-            else
+            else if(this.game == undefined)
                 this.startGame();
 
         });
     },
 
     startGame() {
-        var game = new Game(renderer, this.players);
+        this.game = new Game(renderer, this.players);
         this.hideCharacterSelection();
         globalScore.unhide();
-        game.start();
+        this.game.start();
     },
 
     addPlayer(playerId) {
